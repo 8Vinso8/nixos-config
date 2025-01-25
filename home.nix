@@ -50,7 +50,7 @@
     interactiveShellInit = ''
       set fish_greeting 
       alias router="ssh root@openwrt.lan"
-      alias vps="ssh root@${builtins.readFile ./secrets/vps-ip}"
+      alias vps="ssh root@${inputs.secrets.vpsIp}"
     '';
   };
 

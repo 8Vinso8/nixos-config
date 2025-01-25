@@ -164,11 +164,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1737569578,
-        "narHash": "sha256-6qY0pk2QmUtBT9Mywdvif0i/CLVgpCjMUn6g9vB+f3M=",
+        "lastModified": 1737672001,
+        "narHash": "sha256-YnHJJ19wqmibLQdUeq9xzE6CjrMA568KN/lFPuSVs4I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "47addd76727f42d351590c905d9d1905ca895b82",
+        "rev": "035f8c0853c2977b24ffc4d0a42c74f00b182cd8",
         "type": "github"
       },
       "original": {
@@ -199,6 +199,7 @@
         "chaotic": "chaotic",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_2",
+        "secrets": "secrets",
         "zen-browser": "zen-browser"
       }
     },
@@ -219,16 +220,31 @@
         "type": "github"
       }
     },
+    "secrets": {
+      "locked": {
+        "lastModified": 1737811356,
+        "narHash": "sha256-LJMSOPetOSxJLUa3U6xsZd2142MC5R8//2KCIb6IFis=",
+        "ref": "refs/heads/master",
+        "rev": "42962c0824a1829d8ac7df3448f9fba75ef9df8a",
+        "revCount": 4,
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
+      }
+    },
     "zen-browser": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1737573247,
-        "narHash": "sha256-qYr17CTrtmudrwcDXBZjgZM6E8elQ8O7SfMhmZj7x00=",
+        "lastModified": 1737782128,
+        "narHash": "sha256-jGnAm7ielzT/LFN34WpJY42Gued3TMOi/z8A4zQoL3Q=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "c3ea41c78e72866919a46116a5231c4e92062327",
+        "rev": "3c6e47b39a34f6bb0be2bb52e79168970e91f32a",
         "type": "github"
       },
       "original": {

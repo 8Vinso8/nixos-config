@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -106,7 +106,7 @@
   
   services.sing-box = {
     enable = true;
-    settings = builtins.fromJSON (builtins.readFile ./_secrets/sing-box.json);
+    settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
   };
   
   security.sudo.wheelNeedsPassword = false;

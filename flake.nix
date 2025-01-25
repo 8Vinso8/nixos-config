@@ -7,6 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    secrets.url = "git+ssh://git@github.com/8Vinso8/secrets.git";
   };
 
   outputs =
@@ -16,11 +17,13 @@
       home-manager,
       zen-browser,
       chaotic,
+      secrets,
       ...
     }@inputs:
     {
       nixosConfigurations.vinsopc = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           chaotic.nixosModules.nyx-cache
