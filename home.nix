@@ -49,7 +49,8 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting 
-      ${builtins.readFile ./_secrets/fish-ssh-alias}
+      alias router="ssh root@openwrt.lan"
+      alias vps="ssh root@${builtins.readFile ./secrets/vps-ip}"
     '';
   };
 

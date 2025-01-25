@@ -1,14 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ 
+      ./hardware-configuration.nix
+    ];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_cachyos;
@@ -64,7 +60,7 @@
     packages = [ pkgs.terminus_font ];
     useXkbConfig = true;
   };
-
+  
   environment.variables = {
     VDPAU_DRIVER = "radeonsi";
   };
@@ -94,6 +90,7 @@
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -104,24 +101,18 @@
     jack.enable = true;
   };
   services.pipewire.configPackages = [
-    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
-      builtins.readFile ./configs/pipewire/10-split-input.conf
-    ))
+    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (builtins.readFile ./configs/pipewire/10-split-input.conf))
   ];
-
+  
   services.sing-box = {
     enable = true;
     settings = builtins.fromJSON (builtins.readFile ./_secrets/sing-box.json);
   };
-
+  
   security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "adbusers"
-    ];
+    extraGroups = [ "wheel" "networkmanager" "adbusers" ];
     shell = pkgs.fish;
   };
 
@@ -174,10 +165,8 @@
   programs.adb.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "24.11";
 }
+
