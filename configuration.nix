@@ -17,6 +17,7 @@
       systemd-boot = {
         enable = true;
         configurationLimit = 5;
+        editor = false;
       };
       timeout = 0;
       efi.canTouchEfiVariables = true;
@@ -27,6 +28,8 @@
       verbose = false;
     };
     kernelParams = [
+      "amdgpu.seamless=1"
+      "video=DP-1:2560x1440@165"
       "quiet"
       "splash"
       "loglevel=3"
@@ -34,9 +37,7 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
     ];
-    plymouth = {
-      enable = true;
-    };
+    plymouth.enable = true;
   };
   zramSwap.enable = true;
 
@@ -95,6 +96,15 @@
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    elisa
+    gwenview
+    okular
+    kate
+    khelpcenter
+  ];
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -175,10 +185,21 @@
   programs.adb.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix = {
+    optimise = {
+      automatic = true;
+      dates = [ "daily" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 7d";
+    };
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
 
   system.stateVersion = "24.11";
 }
