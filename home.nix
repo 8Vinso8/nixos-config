@@ -75,10 +75,19 @@
       { name = "done"; src = pkgs.fishPlugins.done.src; }
       { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
     ];
+    shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+    };
+    shellAbbrs = {
+      vps = "ssh root@${inputs.secrets.vpsIp}";
+      router = "ssh root@openwrt.lan";
+      rebsw = "sudo nixos-rebuild switch";
+      flup = "sudo nix flake update --flake /etc/nixos";
+    };
+    preferAbbrs = true;
     interactiveShellInit = ''
       set fish_greeting 
-      alias vps="ssh root@${inputs.secrets.vpsIp}"
-      alias router="ssh root@openwrt.lan"
       set -U __done_kitty_remote_control 1
       set -U __done_kitty_remote_control_password "kitty-rc-password"
     '';
