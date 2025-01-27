@@ -62,8 +62,8 @@
   };
 
   console = {
-    font = "ter-c32b";
     packages = [ pkgs.terminus_font ];
+    font = "ter-c32b";
     useXkbConfig = true;
   };
 
@@ -89,10 +89,14 @@
     };
   };
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.xkb.layout = "us,ru";
-  services.xserver.xkb.options = "grp:caps_toggle";
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "amdgpu" ];
+    xkb = {
+      layout = "us,ru";
+      options = "grp:caps_toggle";
+    };
+  };
 
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
@@ -147,6 +151,9 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       fira-code
+      nerd-fonts.fira-code
+      jetbrains-mono
+      nerd-fonts.jetbrains-mono
     ];
   };
 
