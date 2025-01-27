@@ -81,8 +81,8 @@
     };
     shellAbbrs = {
       vps = "ssh root@${inputs.secrets.vpsIp}";
-      router = "ssh root@openwrt.lan";
-      rebsw = "sudo nixos-rebuild switch";
+      rtr = "ssh root@openwrt.lan";
+      rsw = "sudo nixos-rebuild switch";
       flup = "sudo nix flake update --flake /etc/nixos";
     };
     preferAbbrs = true;
