@@ -19,7 +19,6 @@
     (discord.override {
       withVencord = true;
     })
-    fastfetch
     nixfmt-rfc-style
     vlc
     jq
@@ -30,7 +29,7 @@
     shellIntegration.enableFishIntegration = true;
     font = {
       name = "JetBrainsMono Nerd Font Mono";
-      size = 14;
+      size = 13;
     };
     settings = {
       disable_ligatures = "cursor";
@@ -40,11 +39,12 @@
       scrollback_lines = 10000;
       show_hyperlink_targets = "yes";
       repaint_delay = 6;
+      notify_on_cmd_finish = "unfocused";
+      enable_audio_bell = "no";
+      remember_window_size = "no";
+      initial_window_width = "110c";
+      initial_window_height = "32c";
     };
-    extraConfig = ''
-      remote_control_password "kitty-rc-password" ls
-      allow_remote_control password
-    '';
   };
 
   programs.yazi = {
@@ -72,8 +72,10 @@
   programs.fish = {
     enable = true;
     plugins = [
-      { name = "done"; src = pkgs.fishPlugins.done.src; }
-      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
+      {
+        name = "sponge";
+        src = pkgs.fishPlugins.sponge.src;
+      }
     ];
     shellAliases = {
       ".." = "cd ..";
@@ -88,9 +90,20 @@
     preferAbbrs = true;
     interactiveShellInit = ''
       set fish_greeting 
-      set -U __done_kitty_remote_control 1
-      set -U __done_kitty_remote_control_password "kitty-rc-password"
+      fastfetch
     '';
+  };
+
+  programs.fastfetch = {
+    enable = true;
+    settings = {
+      logo = {
+        source = "nixos_small";
+        padding = {
+          right = 1;
+        };
+      };
+    };
   };
 
   home.stateVersion = "24.11";

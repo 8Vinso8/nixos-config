@@ -46,6 +46,9 @@
   networking.firewall.enable = false;
   services.resolved.enable = true;
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   time.timeZone = "Asia/Vladivostok";
 
   i18n.defaultLocale = "ru_RU.UTF-8";
