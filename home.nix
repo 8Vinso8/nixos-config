@@ -32,6 +32,7 @@
       name = "JetBrainsMono Nerd Font Mono";
       size = 13;
     };
+    themeFile = "Dark_Pastel";
     settings = {
       disable_ligatures = "cursor";
       cursor_shape = "beam";
@@ -45,6 +46,12 @@
       remember_window_size = "no";
       initial_window_width = "110c";
       initial_window_height = "32c";
+      background_opacity = 0.8;
+      hide_window_decorations = "yes";
+      tab_bar_edge = "top";
+      tab_bar_style = "powerline";
+      tab_title_max_length = 15;
+      wayland_enable_ime = "no";
     };
   };
 
@@ -107,10 +114,17 @@
     settings = {
       logo = {
         source = "nixos_small";
-        padding = {
-          right = 1;
-        };
       };
+      modules = [
+        "separator"
+        "os"
+        "kernel"
+        "memory"
+        "swap"
+        "disk"
+        "uptime"
+        "separator"
+      ];
     };
   };
 
