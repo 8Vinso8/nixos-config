@@ -24,7 +24,6 @@
     };
     consoleLogLevel = 0;
     initrd = {
-      kernelModules = [ "amdgpu" ];
       verbose = false;
     };
     kernelParams = [
@@ -45,6 +44,7 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   services.resolved.enable = true;
+  hardware.amdgpu.initrd.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
