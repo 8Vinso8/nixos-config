@@ -23,6 +23,8 @@
     vlc
     jq
     gh
+    yt-dlp
+    ffmpeg
   ];
 
   programs.kitty = {
@@ -122,7 +124,6 @@
         "memory"
         "swap"
         "disk"
-        "uptime"
         "separator"
       ];
     };
