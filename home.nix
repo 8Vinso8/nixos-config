@@ -37,7 +37,6 @@
       nixfmt-rfc-style
       nil
     ];
-    extraConfig = builtins.readFile ./configs/neovim/init.vim; 
     extraLuaConfig = builtins.readFile ./configs/neovim/init.lua; 
   };
 
