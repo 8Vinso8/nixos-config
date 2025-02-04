@@ -137,6 +137,15 @@
     settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
   };
 
+  services.openssh = {
+    enable = true;
+    startWhenNeeded = true;
+    settings = {
+      AllowUsers = [ "vinso" ];
+      PermitRootLogin = "no";
+    };
+  };
+
   security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
