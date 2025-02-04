@@ -159,8 +159,8 @@
 
   environment.systemPackages = with pkgs; [
     git
-    vim
     wget
+    vim
     kdePackages.sddm-kcm
   ];
 

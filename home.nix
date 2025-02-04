@@ -25,7 +25,12 @@
     gh
     yt-dlp
     ffmpeg
+    lynx
   ];
+
+  programs.neovim = {
+    enable = true;
+  };
 
   programs.kitty = {
     enable = true;
