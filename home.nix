@@ -35,32 +35,8 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraConfig = ''
-      			command! -nargs=0 Format :call CocActionAsync('format')
-      		'';
-    extraLuaConfig = ''
-      vim.opt.shiftwidth = 2
-      vim.opt.tabstop = 2
-    '';
-    coc = {
-      enable = true;
-      settings = {
-        languageserver = {
-          nix = {
-            command = "nil";
-            filetypes = [ "nix" ];
-            rootPatterns = [ "flake.nix" ];
-            settings = {
-              nil = {
-                formatting = {
-                  command = [ "nixfmt" ];
-                };
-              };
-            };
-          };
-        };
-      };
-    };
+    extraConfig = builtins.readFile ./configs/neovim/init.vim; 
+    extraLuaConfig = builtins.readFile ./configs/neovim/init.lua; 
   };
 
   programs.kitty = {
