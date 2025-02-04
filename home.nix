@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -19,8 +18,6 @@
     (discord.override {
       withVencord = true;
     })
-    nixfmt-rfc-style
-    nil
     vlc
     jq
     gh
@@ -31,10 +28,15 @@
 
   programs.neovim = {
     enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    extraPackages = with pkgs; [
+      nixfmt-rfc-style
+      nil
+    ];
     extraConfig = builtins.readFile ./configs/neovim/init.vim; 
     extraLuaConfig = builtins.readFile ./configs/neovim/init.lua; 
   };
