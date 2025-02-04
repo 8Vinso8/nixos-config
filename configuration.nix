@@ -160,7 +160,6 @@
   environment.systemPackages = with pkgs; [
     git
     wget
-    vim
     kdePackages.sddm-kcm
   ];
 
@@ -172,6 +171,11 @@
       jetbrains-mono
       nerd-fonts.jetbrains-mono
     ];
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
   };
 
   programs.corectrl = {
