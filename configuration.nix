@@ -51,6 +51,7 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = false;
   services.resolved.enable = true;
+  networking.interfaces.enp4s0.wakeOnLan.enable = true;
 
   time.timeZone = "Asia/Vladivostok";
 

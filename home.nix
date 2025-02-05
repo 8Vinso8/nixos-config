@@ -24,6 +24,7 @@
     yt-dlp
     ffmpeg
     lynx
+    ethtool
   ];
 
   programs.neovim = {
