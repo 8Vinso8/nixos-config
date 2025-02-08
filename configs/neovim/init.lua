@@ -4,10 +4,20 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.number = true;
 
-vim.lsp.config['nil_ls'] = {
-  cmd = { 'nil' },
+
+vim.keymap.set("n", "ff", vim.lsp.buf.format, { remap = false })
+
+vim.lsp.config['nixd'] = {
+  cmd = { 'nixd' },
   filetypes = { 'nix' },
   root_markers = { 'flake.nix' },
+  settings = {
+    nixd = {
+      formatting = {
+        command = { 'nixfmt' },
+      },
+    },
+  },
 }
 
-vim.lsp.enable('nil_ls')
+vim.lsp.enable('nixd')

@@ -12,21 +12,18 @@
     qbittorrent
     inputs.zen-browser.packages."${system}".default
     telegram-desktop
-    uget
-    unrar
     spotify
     (discord.override {
       withVencord = true;
     })
     vlc
-    jq
-    gh
-    yt-dlp
-    ffmpeg
-    lynx
-    ethtool
   ];
 
+  wayland.windowManager.hyprland = {
+    enable = true;
+    systemd.enable = false;
+    settings = { };
+  };
   programs.neovim = {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
@@ -38,7 +35,7 @@
       nixfmt-rfc-style
       nil
     ];
-    extraLuaConfig = builtins.readFile ./configs/neovim/init.lua; 
+    extraLuaConfig = builtins.readFile ./configs/neovim/init.lua;
   };
 
   programs.kitty = {
@@ -119,6 +116,11 @@
       flup = "sudo nix flake update --flake /etc/nixos";
     };
     preferAbbrs = true;
+    loginShellInit = ''
+      if uwsm check may-start
+        exec uwsm start hyprland
+      end
+    '';
     interactiveShellInit = ''
       set fish_greeting 
       fastfetch

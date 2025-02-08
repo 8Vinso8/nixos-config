@@ -38,6 +38,10 @@
   };
 
   hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     amdgpu.initrd.enable = true;
     bluetooth = {
       enable = true;
@@ -47,25 +51,67 @@
 
   zramSwap.enable = true;
 
-  networking.hostName = "vinsopc";
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
-  services.resolved.enable = true;
-  networking.interfaces.enp4s0.wakeOnLan.enable = true;
+  networking = {
+    hostName = "vinsopc";
+    firewall.enable = false;
+    networkmanager = {
+      enable = true;
+    };
+    interfaces.enp4s0.wakeOnLan.enable = true;
+  };
+
+  services = {
+    getty.autologinUser = "vinso";
+    resolved.enable = true;
+    xserver = {
+      enable = true;
+      videoDrivers = [ "amdgpu" ];
+      xkb = {
+        layout = "us,ru";
+        options = "grp:caps_toggle";
+      };
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      configPackages = [
+        (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
+          builtins.readFile ./configs/pipewire/10-split-input.conf
+        ))
+      ];
+    };
+    sing-box = {
+      enable = true;
+      settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
+    };
+    openssh = {
+      enable = true;
+      startWhenNeeded = true;
+      settings = {
+        AllowUsers = [ "vinso" ];
+        PermitRootLogin = "no";
+      };
+    };
+  };
 
   time.timeZone = "Asia/Vladivostok";
 
-  i18n.defaultLocale = "ru_RU.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "ru_RU.UTF-8";
+  i18n = {
+    defaultLocale = "ru_RU.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "ru_RU.UTF-8";
+      LC_IDENTIFICATION = "ru_RU.UTF-8";
+      LC_MEASUREMENT = "ru_RU.UTF-8";
+      LC_MONETARY = "ru_RU.UTF-8";
+      LC_NAME = "ru_RU.UTF-8";
+      LC_NUMERIC = "ru_RU.UTF-8";
+      LC_PAPER = "ru_RU.UTF-8";
+      LC_TELEPHONE = "ru_RU.UTF-8";
+      LC_TIME = "ru_RU.UTF-8";
+    };
   };
 
   console = {
@@ -74,16 +120,14 @@
     useXkbConfig = true;
   };
 
-  environment.variables = {
-    VDPAU_DRIVER = "radeonsi";
+  environment = {
+    variables = {
+      VDPAU_DRIVER = "radeonsi";
+    };
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   systemd.services.BiosSleepFix = {
     enable = true;
@@ -96,56 +140,25 @@
     };
   };
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = [ "amdgpu" ];
-    xkb = {
-      layout = "us,ru";
-      options = "grp:caps_toggle";
+  security = {
+    sudo.wheelNeedsPassword = false;
+    rtkit.enable = true;
+    polkit = {
+      enable = true;
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if ((action.id == "org.corectrl.helper.init" ||
+            action.id == "org.corectrl.helperkiller.init") &&
+            subject.local == true &&
+            subject.active == true &&
+            subject.isInGroup("wheel")) {
+              return polkit.Result.YES;
+          }
+        });
+      '';
     };
   };
 
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    elisa
-    gwenview
-    okular
-    kate
-    khelpcenter
-  ];
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-  services.pipewire.configPackages = [
-    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
-      builtins.readFile ./configs/pipewire/10-split-input.conf
-    ))
-  ];
-
-  services.sing-box = {
-    enable = true;
-    settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
-  };
-
-  services.openssh = {
-    enable = true;
-    startWhenNeeded = true;
-    settings = {
-      AllowUsers = [ "vinso" ];
-      PermitRootLogin = "no";
-    };
-  };
-
-  security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
     extraGroups = [
@@ -156,63 +169,48 @@
     shell = pkgs.fish;
   };
 
-  environment.systemPackages = with pkgs; [
-    git
-    wget
-    kdePackages.sddm-kcm
-  ];
-
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      fira-code
-      nerd-fonts.fira-code
       jetbrains-mono
       nerd-fonts.jetbrains-mono
     ];
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock = {
+  programs = {
+    hyprland = {
       enable = true;
-      ppfeaturemask = "0xffffffff";
+      withUWSM = true;
     };
-  };
-
-  security.polkit = {
-    enable = true;
-    extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if ((action.id == "org.corectrl.helper.init" ||
-          action.id == "org.corectrl.helperkiller.init") &&
-          subject.local == true &&
-          subject.active == true &&
-          subject.isInGroup("wheel")) {
-            return polkit.Result.YES;
-        }
-      });
-    '';
-  };
-
-  programs.steam = {
-    enable = true;
-    package = pkgs.steam.override {
-      extraPkgs = pkgs: [ pkgs.kdePackages.breeze ];
+    neovim = {
+      enable = true;
+      defaultEditor = true;
     };
+    corectrl = {
+      enable = true;
+      gpuOverclock = {
+        enable = true;
+        ppfeaturemask = "0xffffffff";
+      };
+    };
+    steam = {
+      enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: [ pkgs.kdePackages.breeze ];
+      };
+      protontricks.enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
+    dconf.enable = true;
+    fish.enable = true;
+    adb.enable = true;
   };
-
-  programs.dconf.enable = true;
-  programs.fish.enable = true;
-  programs.adb.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     optimise = {
       automatic = true;
       dates = [ "daily" ];

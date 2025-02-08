@@ -13,12 +13,9 @@
 
   outputs =
     {
-      self,
       nixpkgs,
       home-manager,
-      zen-browser,
       chaotic,
-      secrets,
       ...
     }@inputs:
     {
