@@ -64,7 +64,7 @@
     getty.autologinUser = "vinso";
     resolved.enable = true;
     xserver = {
-      enable = true;
+      enable = false;
       videoDrivers = [ "amdgpu" ];
       xkb = {
         layout = "us,ru";

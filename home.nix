@@ -33,7 +33,7 @@
     vimdiffAlias = true;
     extraPackages = with pkgs; [
       nixfmt-rfc-style
-      nil
+      nixd
     ];
     extraLuaConfig = builtins.readFile ./configs/neovim/init.lua;
   };
@@ -116,10 +116,12 @@
       flup = "sudo nix flake update --flake /etc/nixos";
     };
     preferAbbrs = true;
-    loginShellInit = ''
-      if uwsm check may-start
-        exec uwsm start hyprland
-      end
+    loginShellInit = '''';
+    shellInit = ''
+      ;
+            if uwsm check may-start; and test -z $DISPLAY; and test (tty) = "/dev/tty1" 
+              exec uwsm start hyprland
+            end
     '';
     interactiveShellInit = ''
       set fish_greeting 
