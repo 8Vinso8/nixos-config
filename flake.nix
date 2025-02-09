@@ -29,7 +29,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.vinso = import ./home.nix;
+            home-manager.users.vinso = import ./users/vinso/home.nix;
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
