@@ -6,11 +6,13 @@
 
 {
   imports = [ 
+    ../../home
     ../../home/hypr
     ../../home/autostart
     ../../home/programs/neovim
     ../../home/programs/kitty.nix
     ../../home/shells/fish
+    ../../home/programs/yazi
   ];
 
   home.username = "vinso";
@@ -29,7 +31,6 @@
 
   programs.yazi = {
     enable = true;
-    enableFishIntegration = true;
     settings = {
       manager = {
         show_hidden = true;
@@ -52,7 +53,6 @@
 
   programs.starship = {
     enable = true;
-    enableFishIntegration = true;
     enableTransience = true;
   };
 

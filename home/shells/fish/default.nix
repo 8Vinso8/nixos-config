@@ -5,6 +5,11 @@
 }:
 
 {
+  programs.starship.enableFishIntegration = true;
+  programs.starship.enableTransience = true;
+
+  programs.yazi.enableFishIntegration = true;
+
   programs.fish = {
     enable = true;
     plugins = [
