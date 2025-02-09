@@ -46,20 +46,14 @@
     };
   };
 
-  zramSwap.enable = true;
-
   networking = {
     hostName = "firewake";
     firewall.enable = false;
-    networkmanager = {
-      enable = true;
-    };
     interfaces.enp4s0.wakeOnLan.enable = true;
   };
 
   services = {
     getty.autologinUser = "vinso";
-    resolved.enable = true;
     pipewire.configPackages = [
       (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
         builtins.readFile ./10-split-input.conf
@@ -77,29 +71,6 @@
         PermitRootLogin = "no";
       };
     };
-  };
-
-  time.timeZone = "Asia/Vladivostok";
-
-  i18n = {
-    defaultLocale = "ru_RU.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "ru_RU.UTF-8";
-      LC_IDENTIFICATION = "ru_RU.UTF-8";
-      LC_MEASUREMENT = "ru_RU.UTF-8";
-      LC_MONETARY = "ru_RU.UTF-8";
-      LC_NAME = "ru_RU.UTF-8";
-      LC_NUMERIC = "ru_RU.UTF-8";
-      LC_PAPER = "ru_RU.UTF-8";
-      LC_TELEPHONE = "ru_RU.UTF-8";
-      LC_TIME = "ru_RU.UTF-8";
-    };
-  };
-
-  console = {
-    packages = [ pkgs.terminus_font ];
-    font = "ter-c32b";
-    useXkbConfig = true;
   };
 
   environment = {
@@ -121,7 +92,6 @@
 
   security = {
     sudo.wheelNeedsPassword = false;
-    rtkit.enable = true;
   };
 
   users.users.vinso = {
