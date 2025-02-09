@@ -21,4 +21,16 @@
       ];
     };
   };
+  programs.git = {
+    enable = true;
+    userName = "Vinso";
+    userEmail = "8vinso8@gmail.com";
+    extraConfig = {
+      url = {
+        "ssh://git@github.com" = {
+          insteadOf = "https://github.com";
+        };
+      };
+    };
+  };
 }
