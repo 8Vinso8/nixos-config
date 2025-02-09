@@ -52,7 +52,7 @@
   zramSwap.enable = true;
 
   networking = {
-    hostName = "vinsopc";
+    hostName = "firewake";
     firewall.enable = false;
     networkmanager = {
       enable = true;
