@@ -22,12 +22,12 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
-    extraConfig = builtins.readFile ./configs/hypr/hyprland.conf;
+    extraConfig = builtins.readFile ../../configs/hypr/hyprland.conf;
     settings = { };
   };
 
   xdg.configFile."autostart/" = {
-    source = ./configs/autostart;
+    source = ../../configs/autostart;
     recursive = true;
   };
 
@@ -45,7 +45,7 @@
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
     ];
-    extraLuaConfig = builtins.readFile ./configs/neovim/init.lua;
+    extraLuaConfig = builtins.readFile ../../configs/neovim/init.lua;
   };
   programs.kitty = {
     enable = true;
