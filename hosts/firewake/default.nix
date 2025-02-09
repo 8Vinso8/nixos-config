@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/amdgpu
+    ../../modules/programs/corectrl.nix
   ];
 
   boot = {
@@ -126,20 +127,6 @@
   security = {
     sudo.wheelNeedsPassword = false;
     rtkit.enable = true;
-    polkit = {
-      enable = true;
-      extraConfig = ''
-        polkit.addRule(function(action, subject) {
-          if ((action.id == "org.corectrl.helper.init" ||
-            action.id == "org.corectrl.helperkiller.init") &&
-            subject.local == true &&
-            subject.active == true &&
-            subject.isInGroup("wheel")) {
-              return polkit.Result.YES;
-          }
-        });
-      '';
-    };
   };
 
   users.users.vinso = {
@@ -168,12 +155,6 @@
     neovim = {
       enable = true;
       defaultEditor = true;
-    };
-    corectrl = {
-      enable = true;
-      gpuOverclock = {
-        enable = true;
-      };
     };
     steam = {
       enable = true;
