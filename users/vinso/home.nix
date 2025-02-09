@@ -6,7 +6,7 @@
 
 {
   imports = [ 
-    ./home/hypr
+    ../../home/hypr
   ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
