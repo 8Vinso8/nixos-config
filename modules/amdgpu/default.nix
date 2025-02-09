@@ -10,9 +10,9 @@
     };
   };
 
-  services.xserver.videodrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
-  environment.variablse = {
+  environment.variables = {
     VDPAU_DRIVER = "radeonsi";
   };
 
