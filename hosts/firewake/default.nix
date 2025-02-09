@@ -7,7 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/defaultDesktop.nix
+    ../../modules/default.nix
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
     ../../modules/services/pipewire.nix
@@ -39,12 +39,8 @@
     plymouth.enable = true;
   };
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
-  };
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   networking = {
     hostName = "firewake";
@@ -62,14 +58,6 @@
     sing-box = {
       enable = true;
       settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
-    };
-    openssh = {
-      enable = true;
-      startWhenNeeded = true;
-      settings = {
-        AllowUsers = [ "vinso" ];
-        PermitRootLogin = "no";
-      };
     };
   };
 

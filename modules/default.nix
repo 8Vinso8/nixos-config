@@ -5,6 +5,19 @@
 }:
 
 {
+  services.openssh = {
+    enable = true;
+    startWhenNeeded = true;
+    settings = {
+      PermitRootLogin = "no";
+    };
+  };
+
+  zramSwap.enable = true;
+
+  networking.networkmanager.enable = true;
+  services.resolved.enable = true;
+
   console = {
     packages = [ pkgs.terminus_font ];
     font = "ter-c32b";
