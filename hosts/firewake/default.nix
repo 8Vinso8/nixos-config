@@ -58,18 +58,11 @@
   services = {
     getty.autologinUser = "vinso";
     resolved.enable = true;
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-      configPackages = [
-        (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
-          builtins.readFile ../../configs/pipewire/10-split-input.conf
-        ))
-      ];
-    };
+    pipewire.configPackages = [
+      (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
+        builtins.readFile ./10-split-input.conf
+      ))
+    ];
     sing-box = {
       enable = true;
       settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
