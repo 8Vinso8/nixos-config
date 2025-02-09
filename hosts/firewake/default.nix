@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
+    ../../modules/services/pipewire.nix
   ];
 
   boot = {
