@@ -7,7 +7,10 @@
 {
   imports = [ 
     ../../home/hypr
+    ../../home/autostart
+    ../../home/programs/neovim
   ];
+
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
   home.packages = with pkgs; [
@@ -22,27 +25,6 @@
     htop
   ];
 
-  xdg.configFile."autostart/" = {
-    source = ../../configs/autostart;
-    recursive = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    extraPackages = with pkgs; [
-      nixfmt-rfc-style
-      nixd
-    ];
-    plugins = with pkgs.vimPlugins; [
-      autoclose-nvim
-    ];
-    extraLuaConfig = builtins.readFile ../../configs/neovim/init.lua;
-  };
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
