@@ -1,0 +1,20 @@
+{
+  ...
+}:
+{
+  hardware = {
+    amdgpu.initrd.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+  };
+
+  services.xserver.videodrivers = [ "amdgpu" ];
+
+  environment.variablse = {
+    VDPAU_DRIVER = "radeonsi";
+  };
+
+  programs.corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
+}

@@ -25,8 +25,6 @@
       verbose = false;
     };
     kernelParams = [
-      "amdgpu.seamless=1"
-      "video=DP-1:2560x1440@165"
       "quiet"
       "splash"
       "loglevel=3"
@@ -38,11 +36,6 @@
   };
 
   hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-    amdgpu.initrd.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -63,14 +56,6 @@
   services = {
     getty.autologinUser = "vinso";
     resolved.enable = true;
-    xserver = {
-      enable = false;
-      videoDrivers = [ "amdgpu" ];
-      xkb = {
-        layout = "us,ru";
-        options = "grp:caps_toggle";
-      };
-    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -121,9 +106,6 @@
   };
 
   environment = {
-    variables = {
-      VDPAU_DRIVER = "radeonsi";
-    };
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
     };
@@ -190,7 +172,6 @@
       enable = true;
       gpuOverclock = {
         enable = true;
-        ppfeaturemask = "0xffffffff";
       };
     };
     steam = {
