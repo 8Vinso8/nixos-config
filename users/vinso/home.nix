@@ -9,6 +9,8 @@
     ../../home/hypr
     ../../home/autostart
     ../../home/programs/neovim
+    ../../home/programs/kitty
+    ../../home/shells/fish
   ];
 
   home.username = "vinso";
@@ -24,36 +26,6 @@
     vlc
     htop
   ];
-
-  programs.kitty = {
-    enable = true;
-    shellIntegration.enableFishIntegration = true;
-    font = {
-      name = "JetBrainsMono Nerd Font Mono";
-      size = 13;
-    };
-    themeFile = "Dark_Pastel";
-    settings = {
-      disable_ligatures = "cursor";
-      cursor_shape = "beam";
-      cursor_beam_thickness = 1.5;
-      cursor_blink_interval = 0;
-      scrollback_lines = 10000;
-      show_hyperlink_targets = "yes";
-      repaint_delay = 6;
-      notify_on_cmd_finish = "unfocused";
-      enable_audio_bell = "no";
-      remember_window_size = "no";
-      initial_window_width = "110c";
-      initial_window_height = "32c";
-      background_opacity = 0.8;
-      hide_window_decorations = "yes";
-      tab_bar_edge = "top";
-      tab_bar_style = "powerline";
-      tab_title_max_length = 15;
-      wayland_enable_ime = "no";
-    };
-  };
 
   programs.yazi = {
     enable = true;
@@ -82,40 +54,6 @@
     enable = true;
     enableFishIntegration = true;
     enableTransience = true;
-  };
-
-  programs.fish = {
-    enable = true;
-    plugins = [
-      {
-        name = "sponge";
-        src = pkgs.fishPlugins.sponge.src;
-      }
-    ];
-    shellAliases = {
-      ".." = "cd ..";
-      "..." = "cd ../..";
-    };
-    shellAbbrs = {
-      vps = "ssh root@${inputs.secrets.vpsIp}";
-      rtr = "ssh root@openwrt.lan";
-      rsw = "sudo nixos-rebuild switch";
-      flup = "sudo nix flake update --flake /etc/nixos";
-    };
-
-    loginShellInit = ''
-      if uwsm check may-start -q; 
-        and test (tty) = /dev/tty1;
-        and test -z $DISPLAY;
-        exec uwsm start hyprland-uwsm.desktop
-      end
-    '';
-
-    preferAbbrs = true;
-    interactiveShellInit = ''
-      set fish_greeting 
-      fastfetch
-    '';
   };
 
   programs.fastfetch = {
