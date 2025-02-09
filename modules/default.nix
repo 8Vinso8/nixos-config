@@ -5,7 +5,7 @@
 }:
 
 {
-  security.sudo.wheelNeedPassword = false;
+  security.sudo.wheelNeedsPassword = false;
 
   boot.loader.efi.canTouchEfiVariables = true;
   programs.neovim.enable = true;
