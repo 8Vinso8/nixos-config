@@ -23,7 +23,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./hosts/vinsopc
           chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
