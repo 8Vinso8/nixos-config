@@ -5,6 +5,9 @@
 }:
 
 {
+  imports = [ 
+    ./home/hypr
+  ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
   home.packages = with pkgs; [
@@ -18,13 +21,6 @@
     vlc
     htop
   ];
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    systemd.enable = false;
-    extraConfig = builtins.readFile ../../configs/hypr/hyprland.conf;
-    settings = { };
-  };
 
   xdg.configFile."autostart/" = {
     source = ../../configs/autostart;
