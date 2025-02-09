@@ -9,7 +9,7 @@
     ../../home/hypr
     ../../home/autostart
     ../../home/programs/neovim
-    ../../home/programs/kitty
+    ../../home/programs/kitty.nix
     ../../home/shells/fish
   ];
 
