@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/default.nix
+    ../../modules/silentBoot.nix
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
     ../../modules/services/pipewire.nix
@@ -21,20 +22,8 @@
         configurationLimit = 5;
         editor = false;
       };
-      timeout = 0;
-      efi.canTouchEfiVariables = true;
-    };
-    consoleLogLevel = 0;
-    initrd = {
-      verbose = false;
     };
     kernelParams = [
-      "quiet"
-      "splash"
-      "loglevel=3"
-      "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
     ];
     plymouth.enable = true;
   };
@@ -78,10 +67,6 @@
     };
   };
 
-  security = {
-    sudo.wheelNeedsPassword = false;
-  };
-
   users.users.vinso = {
     isNormalUser = true;
     extraGroups = [
@@ -105,20 +90,7 @@
       enable = true;
       withUWSM = true;
     };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
-    steam = {
-      enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: [ pkgs.kdePackages.breeze ];
-      };
-      protontricks.enable = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
-    };
+    steam.enable = true;
     dconf.enable = true;
     fish.enable = true;
     adb.enable = true;

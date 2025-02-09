@@ -5,6 +5,22 @@
 }:
 
 {
+  security.sudo.wheelNeedPassword = false;
+
+  loader.efi.canTouchEfiVariables = true;
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
+
+  programs.steam = {
+    package = pkgs.steam.override {
+      extraPkgs = pkgs: [ ];
+    };
+    protontricks.enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
   services.openssh = {
     enable = true;
     startWhenNeeded = true;
