@@ -8,7 +8,6 @@
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
   home.packages = with pkgs; [
-    vscode
     qbittorrent
     inputs.zen-browser.packages."${system}".default
     telegram-desktop
@@ -17,6 +16,7 @@
       withVencord = true;
     })
     vlc
+    htop
   ];
 
   wayland.windowManager.hyprland = {
@@ -24,6 +24,12 @@
     systemd.enable = false;
     settings = { };
   };
+
+  xdg.configFile."autostart/" = {
+    source = ./configs/autostart;
+    recursive = true;
+  };
+
   programs.neovim = {
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
@@ -35,9 +41,11 @@
       nixfmt-rfc-style
       nixd
     ];
+    plugins = with pkgs.vimPlugins; [
+      autoclose-nvim
+    ];
     extraLuaConfig = builtins.readFile ./configs/neovim/init.lua;
   };
-
   programs.kitty = {
     enable = true;
     shellIntegration.enableFishIntegration = true;
@@ -115,14 +123,16 @@
       rsw = "sudo nixos-rebuild switch";
       flup = "sudo nix flake update --flake /etc/nixos";
     };
-    preferAbbrs = true;
-    loginShellInit = '''';
-    shellInit = ''
-      ;
-            if uwsm check may-start; and test -z $DISPLAY; and test (tty) = "/dev/tty1" 
-              exec uwsm start hyprland
-            end
+
+    loginShellInit = ''
+      if uwsm check may-start -q; 
+        and test (tty) = /dev/tty1;
+        and test -z $DISPLAY;
+        exec uwsm start hyprland-uwsm.desktop
+      end
     '';
+
+    preferAbbrs = true;
     interactiveShellInit = ''
       set fish_greeting 
       fastfetch

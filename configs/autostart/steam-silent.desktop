@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=steam-silent
+Exec=steam -silent %U
