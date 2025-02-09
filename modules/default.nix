@@ -5,6 +5,11 @@
 }:
 
 {
+  environment.systemPackages = with pkgs; [
+    git
+    wget
+  ];
+
   security.sudo.wheelNeedsPassword = false;
 
   boot.loader.efi.canTouchEfiVariables = true;
