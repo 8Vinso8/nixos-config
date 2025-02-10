@@ -11,14 +11,16 @@
       mainBar = {
         layer = "top";
         position = "top";
-        modules-left = [ "hyprland/workspaces" ];
-        modules-center = [ "hyprland/window" ];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
+        modules-center = [ "clock" ];
         modules-right = [
           "cpu"
-          "clock"
+          "memory"
           "disk"
           "hyprland/language"
-          "memory"
           "tray"
         ];
         "hyprland/workspaces" = {
@@ -32,6 +34,14 @@
         };
         cpu = {
           format = "CPU:{usage}%";
+        };
+        disk = {
+          format = "ROM:{specific_free}/{specific_total}GB";
+          unit = "GB";
+        };
+        memory = {
+          format = "RAM:{percentage}%|SWAP:{swapPercentage}%";
+          tooltip = false;
         };
         clock = {
           format = "{:%Y.%m.%d %H:%M}";
