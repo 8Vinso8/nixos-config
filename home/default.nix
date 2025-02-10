@@ -3,6 +3,9 @@
 }:
 
 {
+  xdg.configFile."wall1.jpg" = {
+    source = ./wall1.jpg;
+  };
   programs.starship.enable = true;
   programs.fastfetch = {
     enable = true;

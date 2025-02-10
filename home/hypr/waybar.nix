@@ -11,9 +11,9 @@
       mainBar = {
         layer = "top";
         position = "top";
-        modules-left = [];
-        modules-center = [];
-        modules-right = [];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "hyprland/window" ];
+        modules-right = [ "cpu" "clock" "disk" "hyprland/language" "memory" "tray" ];
       };
     };
   };
