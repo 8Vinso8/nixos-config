@@ -26,7 +26,7 @@
         " , preferred, auto, 1"
       ];
       exec-once = [
-        "uwsm app -- waybar"
+        #"uwsm app -- waybar"
       ];
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
       "$mainMod" = "SUPER";
