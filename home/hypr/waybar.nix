@@ -28,23 +28,27 @@
             "*" = 8;
           };
         };
-        "hyprland-language" = {
-          "format-en" = "EN";
-          "format-ru" = "RU";
+        "hyprland/language" = {
+          format-en = "EN";
+          format-ru = "RU";
         };
         cpu = {
           format = "CPU: {usage}%";
         };
         disk = {
-          format = "DISK (/): {specific_used} GiB / {specific_total} GiB ({percentage_used}%)";
+          format = "DISK (/): {specific_used:0.2f} GiB / {specific_total:0.2f} GiB ({percentage_used}%)";
           unit = "GiB";
+          tooltip = false;
         };
         memory = {
-          format = "RAM: {used} / {total} ({percentage}%)";
-          tooltip-format = "{swapUsed} / {swapTotal} ({swapPercentage}%)";
+          format = "RAM: {used} GiB / {total} GiB ({percentage}%)";
+          tooltip-format = "{swapUsed} GiB / {swapTotal} GiB ({swapPercentage}%)";
+        };
+        tray = {
+         spacing = 5;
         };
         clock = {
-          format = "{:%Y.%m.%d %H:%M}";
+          format = "{:%H:%M %d.%m.%y}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
             mode = "year";

@@ -15,7 +15,23 @@
   '';
 
   programs.kitty.enable = true;
-  programs.fuzzel.enable = true;
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        use-bold = "yes";
+        anchor = "top";
+        lines = 5;
+        width = 25;
+        tabs = 2;
+        horizontal-pad = 10;
+        vertical-pad = 5;
+      };
+      colors = {
+        background = "00000022";
+      };
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
