@@ -5,6 +5,7 @@
   imports = [
     ./waybar.nix
   ];
+
   programs.fish.loginShellInit = ''
     if uwsm check may-start -q;
       and test (tty) = /dev/tty1;
@@ -69,10 +70,21 @@
         vrr = 2;
         key_press_enables_dpms = true;
       };
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
+      ];
       windowrulev2 = [
         "suppressevent maximize, class:.*"
-        "workspace 8 silent,class:discord"
-        "workspace 9 silent,class:spotify"
+        "workspace 8 silent, class:discord"
+        "workspace 9 silent, class:spotify"
+        "float, class:kitty"
+        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        # no gaps when only
+        "bordersize 0, floating:0, onworkspace:w[tv1]"
+        "rounding 0, floating:0, onworkspace:w[tv1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
       ];
     };
   };
