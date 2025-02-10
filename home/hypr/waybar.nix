@@ -33,15 +33,15 @@
           "format-ru" = "RU";
         };
         cpu = {
-          format = "CPU:{usage}%";
+          format = "CPU: {usage}%";
         };
         disk = {
-          format = "ROM:{specific_free}/{specific_total}GB";
-          unit = "GB";
+          format = "DISK (/): {specific_used} GiB / {specific_total} GiB ({percentage_used}%)";
+          unit = "GiB";
         };
         memory = {
-          format = "RAM:{percentage}%|SWAP:{swapPercentage}%";
-          tooltip = false;
+          format = "RAM: {used} / {total} ({percentage}%)";
+          tooltip-format = "{swapUsed} / {swapTotal} ({swapPercentage}%)";
         };
         clock = {
           format = "{:%Y.%m.%d %H:%M}";
