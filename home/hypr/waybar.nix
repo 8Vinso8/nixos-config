@@ -9,7 +9,7 @@
     style = ./configs/style.css;
     settings = {
       mainBar = {
-        layer = "top";
+        layer = "bottom";
         position = "top";
         modules-left = [
           "hyprland/workspaces"

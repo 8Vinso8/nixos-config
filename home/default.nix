@@ -1,9 +1,24 @@
 {
+  pkgs,
   ...
 }:
 
 {
-  xdg.configFile."wall1.jpg" = {
+  home.pointerCursor = {
+    gtk.enable = true;
+    size = 24;
+    hyprcursor = {
+      enable = true;
+      size = 24;
+    };
+    x11.enable = true;
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
+  };
+  gtk = {
+    enable = true;
+  };
+    xdg.configFile."wall1.jpg" = {
     source = ./wall1.jpg;
   };
   programs.starship.enable = true;

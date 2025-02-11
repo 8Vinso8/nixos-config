@@ -96,8 +96,7 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "workspace 8 silent, class:discord"
-        "workspace 9 silent, class:spotify"
-        "float, class:kitty"
+        "workspace 7 silent, class:spotify"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         # no gaps when only
         "bordersize 0, floating:0, onworkspace:w[tv1]"
