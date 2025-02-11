@@ -17,8 +17,16 @@
   };
   gtk = {
     enable = true;
+    theme = {
+      package = pkgs.gnome-themes-extra;
+      name = "Adwaita-dark";
+    };
   };
-    xdg.configFile."wall1.jpg" = {
+  qt = {
+    enable = true;
+    style.name = "adwaita-dark";
+  };
+  xdg.configFile."wall1.jpg" = {
     source = ./wall1.jpg;
   };
   programs.starship.enable = true;

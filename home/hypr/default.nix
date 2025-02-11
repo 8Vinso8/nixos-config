@@ -1,10 +1,18 @@
 {
+  pkgs,
   ...
 }:
 {
   imports = [
     ./waybar.nix
   ];
+
+  home.packages = with pkgs; [ 
+    playerctl
+    wev
+  ];
+
+  services.playerctld.enable = true;
 
   programs.fish.loginShellInit = ''
     if uwsm check may-start -q;
@@ -36,7 +44,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = false;
-    settings = { 
+    settings = {
       monitor = [
         "DP-1, 2560x1440@165, 0x0, 1"
         " , preferred, auto, 1"
@@ -123,7 +131,7 @@
         "$mainMod, W, workspace, 6"
         "$mainMod, E, workspace, 7"
         "$mainMod, R, workspace, 8"
-        
+
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
         "$mainMod SHIFT, 3, movetoworkspace, 3"
@@ -132,6 +140,11 @@
         "$mainMod SHIFT, W, movetoworkspace, 6"
         "$mainMod SHIFT, E, movetoworkspace, 7"
         "$mainMod SHIFT, R, movetoworkspace, 8"
+      ];
+      bindi = [
+          " , XF86AudioPlay, exec, playerctl play-pause"
+          " , XF86AudioNext, exec, playerctl next"
+          " , XF86AudioPrev, exec, playerctl previous"
       ];
       bindm = [
         "$mainMod, mouse:272, movewindow"
