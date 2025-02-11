@@ -105,7 +105,8 @@
         "suppressevent maximize, class:.*"
         "workspace 8 silent, class:discord"
         "workspace 7 silent, class:spotify"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
+        "float,class:kitty"
         # no gaps when only
         "bordersize 0, floating:0, onworkspace:w[tv1]"
         "rounding 0, floating:0, onworkspace:w[tv1]"

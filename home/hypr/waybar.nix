@@ -11,6 +11,7 @@
       mainBar = {
         layer = "bottom";
         position = "top";
+        spacing = 10;
         modules-left = [
           "hyprland/workspaces"
           "hyprland/window"
@@ -42,7 +43,7 @@
         };
         memory = {
           format = "RAM: {used} GiB / {total} GiB ({percentage}%)";
-          tooltip-format = "{swapUsed} GiB / {swapTotal} GiB ({swapPercentage}%)";
+          tooltip-format = "SWAP: {swapUsed} GiB / {swapTotal} GiB ({swapPercentage}%)";
         };
         tray = {
          spacing = 5;
