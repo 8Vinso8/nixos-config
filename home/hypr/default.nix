@@ -10,7 +10,7 @@
     if uwsm check may-start -q;
       and test (tty) = /dev/tty1;
       and test -z $DISPLAY;
-      exec uwsm start hyprland-uwsm.desktop
+      exec uwsm start -S hyprland-uwsm.desktop 
     end
   '';
 
@@ -48,7 +48,7 @@
       "$mainMod" = "SUPER";
       general = {
         border_size = 2;
-        no_border_on_floating = true;
+        no_border_on_floating = false;
         gaps_in = 5;
         gaps_out = 10;
         "col.inactive_border" = "rgba(595959aa)";
