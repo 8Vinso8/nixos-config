@@ -5,6 +5,7 @@
 {
   imports = [
     ./waybar.nix
+    ./hyprpaper.nix
   ];
 
   home.packages = with pkgs; [ 
@@ -50,7 +51,7 @@
         " , preferred, auto, 1"
       ];
       exec-once = [
-        #"uwsm app -- waybar"
+        "systemctl --user start hyprpaper.service"
       ];
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
       "$mainMod" = "SUPER";
