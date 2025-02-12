@@ -9,6 +9,10 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     secrets.url = "git+ssh://git@github.com/8Vinso8/secrets.git";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

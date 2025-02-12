@@ -2,12 +2,16 @@
   ...
 }:
 {
+  imports = [
+    ./memreserver.nix
+  ];
   hardware = {
     amdgpu.initrd.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
     };
+    memreserver.enable = true;
   };
 
   services.xserver.videoDrivers = [ "amdgpu" ];

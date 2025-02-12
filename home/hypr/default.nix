@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   ...
 }:
@@ -11,6 +12,7 @@
   home.packages = with pkgs; [ 
     playerctl
     wev
+    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
   ];
 
   services.playerctld.enable = true;
@@ -119,6 +121,7 @@
         "$mainMod, C, killactive,"
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, $menu"
+        " , Print, exec, grimblast --freeze copy area"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
