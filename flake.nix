@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +18,6 @@
     {
       nixpkgs,
       home-manager,
-      chaotic,
       ...
     }@inputs:
     {
@@ -28,7 +26,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/firewake
-          chaotic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
