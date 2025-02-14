@@ -6,7 +6,6 @@
 {
   imports = [
     ./waybar.nix
-    ./hyprpaper.nix
     ../programs/mako
   ];
 
