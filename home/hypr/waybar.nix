@@ -49,7 +49,7 @@
          spacing = 5;
         };
         clock = {
-          format = "{:%H:%M %d.%m.%y}";
+          format = "{:%H:%M  %d.%m.%y}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
             mode = "year";

@@ -55,7 +55,6 @@
         " , preferred, auto, 1"
       ];
       exec-once = [
-        "systemctl --user start hyprpaper.service"
         "systemctl --user start hyprpolkitagent.service"
       ];
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
