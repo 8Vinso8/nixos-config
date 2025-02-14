@@ -7,6 +7,7 @@
   imports = [
     ./waybar.nix
     ./hyprpaper.nix
+    ../programs/mako
   ];
 
   home.packages = with pkgs; [ 
