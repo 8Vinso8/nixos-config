@@ -19,5 +19,26 @@
     plugins = with pkgs.vimPlugins; [
     ];
     extraLuaConfig = builtins.readFile ./init.lua;
+    coc = {
+      enable = true;
+      settings = {
+        languageserver = {
+          nix = {
+            command = "nixd";
+            filetypes = [ "nix" ];
+            rootPatterns = [
+              "flake.nix"
+            ];
+            settings = {
+              nixd = {
+                formatting = {
+                  command = [ "nixfmt" ];
+                };
+              };
+            };
+          };
+        };
+      };
+    };
   };
 }
