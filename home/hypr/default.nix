@@ -13,6 +13,7 @@
     playerctl
     wev
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    hyprpolkitagent
   ];
 
   services.playerctld.enable = true;
@@ -54,6 +55,7 @@
       ];
       exec-once = [
         "systemctl --user start hyprpaper.service"
+        "systemctl --user start hyprpolkitagent.service"
       ];
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
       "$mainMod" = "SUPER";
