@@ -17,7 +17,6 @@
       nixd
     ];
     plugins = with pkgs.vimPlugins; [
-      autoclose-nvim
     ];
     extraLuaConfig = builtins.readFile ./init.lua;
   };
