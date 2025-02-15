@@ -3,16 +3,17 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.number = true;
+vim.opt.updatetime = 500;
 
+vim.api.nvim_create_autocmd({"CursorHold"}, {
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.open_float()
+  end
+})
 
 vim.keymap.set("n", "ff", vim.lsp.buf.format, { remap = false })
 
-vim.diagnostic.config({
-  virtual_text = true,
-  signs = false,
-  float = true,
-  update_in_insert = true
-})
 vim.lsp.config['nixd'] = {
   cmd = { 'nixd' },
   filetypes = { 'nix' },
