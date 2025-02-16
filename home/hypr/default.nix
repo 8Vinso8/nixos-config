@@ -7,6 +7,7 @@
   imports = [
     ./waybar.nix
     ../programs/mako
+    ./hypridle.nix
   ];
 
   home.packages = with pkgs; [ 

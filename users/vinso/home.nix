@@ -27,6 +27,7 @@
     })
     vlc
     htop
+    starsector
   ];
 
   home.stateVersion = "24.11";
