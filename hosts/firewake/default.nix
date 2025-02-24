@@ -38,6 +38,7 @@
   };
 
   services = {
+    hardware.openrgb.enable = true;
     getty.autologinUser = "vinso";
     pipewire.configPackages = [
       (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
@@ -63,7 +64,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = "yes";
-      ExecStart = "/bin/sh -c 'echo GPP0 > /proc/acpi/wakeup'";
+      ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
     };
   };
 

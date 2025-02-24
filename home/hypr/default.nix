@@ -83,7 +83,6 @@
       input = {
         kb_layout = "us,ru";
         kb_options = "grp:caps_toggle";
-        numlock_by_default = true;
         repeat_rate = 35;
         repeat_delay = 450;
         sensitivity = 0.0;
