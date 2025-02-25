@@ -60,12 +60,12 @@
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
       "$mainMod" = "SUPER";
       general = {
-        border_size = 2;
+        border_size = 3;
         no_border_on_floating = false;
         gaps_in = 5;
         gaps_out = 10;
-        "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = "rgba(00000000)";
+        "col.active_border" = "rgba(33ccffee)";
         layout = "master";
       };
       decoration = {
