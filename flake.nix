@@ -27,6 +27,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/firewake
+            ./users/vinso
             {
               # For ddcutil brightness control
               hardware.i2c.enable = true;

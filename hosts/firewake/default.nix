@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 
@@ -14,6 +13,7 @@
     ../../modules/programs/corectrl.nix
     ../../modules/services/pipewire.nix
     ../../modules/features/bluetooth
+    ../../modules/sing-box.nix
   ];
 
   boot = {
@@ -35,10 +35,6 @@
         builtins.readFile ./10-split-input.conf
       ))
     ];
-    sing-box = {
-      enable = true;
-      settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
-    };
   };
 
   environment = {
@@ -56,16 +52,6 @@
       RemainAfterExit = "yes";
       ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
     };
-  };
-
-  users.users.vinso = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "adbusers"
-    ];
-    shell = pkgs.fish;
   };
 
   fonts = {
