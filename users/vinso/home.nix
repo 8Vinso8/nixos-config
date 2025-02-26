@@ -7,8 +7,6 @@
 {
   imports = [ 
     ../../home
-    ../../home/hypr
-    ../../home/autostart
     ../../home/programs/neovim
     ../../home/programs/kitty.nix
     ../../home/shells/fish
@@ -27,7 +25,6 @@
     })
     vlc
     htop
-    starsector
   ];
 
   home.stateVersion = "24.11";

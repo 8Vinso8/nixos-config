@@ -38,6 +38,8 @@
               home-manager.users.vinso = {
                 imports = [
                   ./users/vinso/home.nix
+                  ./home/hypr
+                  ./home/autostart
                 ];
               };
               home-manager.extraSpecialArgs = { inherit inputs; };
