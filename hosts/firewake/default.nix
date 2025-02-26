@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/default.nix
+    ../../nodules/sdboot
     ../../modules/silentBoot.nix
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
@@ -17,15 +18,6 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 5;
-        editor = false;
-      };
-    };
-    kernelParams = [
-    ];
     plymouth.enable = true;
   };
 
