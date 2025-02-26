@@ -1,6 +1,4 @@
 {
-  pkgs,
-  inputs,
   ...
 }:
 
@@ -15,17 +13,6 @@
 
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
-  home.packages = with pkgs; [
-    qbittorrent
-    inputs.zen-browser.packages."${system}".default
-    telegram-desktop
-    spotify
-    (discord.override {
-      withVencord = true;
-    })
-    vlc
-  ];
-
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
