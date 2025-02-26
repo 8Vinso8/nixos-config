@@ -48,13 +48,13 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd = {
+      enable = true;
+      enableXdgAutostart = true;
+    };
     settings = {
       exec-once = [
         "systemctl --user start hyprpolkitagent.service"
-        "corectrl"
-        "discord"
-        "spotify"
-        "steam -silent"
       ];
       "$menu" = "fuzzel";
       "$mainMod" = "SUPER";
