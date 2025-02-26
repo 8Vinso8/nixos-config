@@ -12,7 +12,8 @@
   wayland.windowManager.hyprland = {
     settings = {
       bind = [
-        "$mainMod, [, exec, ddcutil setvcp 10 + 10"
+        "$mainMod, ], exec, ddcutil setvcp 10 + 10"
+        "$mainMod, [, exec, ddcutil setvcp 10 - 10"
       ];
     };
   };
