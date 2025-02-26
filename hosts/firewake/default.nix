@@ -30,7 +30,6 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  hardware.i2c.enable = true;
 
   networking = {
     hostName = "firewake";

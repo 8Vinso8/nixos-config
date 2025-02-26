@@ -21,19 +21,29 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.firewake = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/firewake
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.vinso = import ./users/vinso/home.nix;
-            home-manager.extraSpecialArgs = { inherit inputs; };
-          }
-        ];
+      nixosConfigurations = {
+        firewake = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/firewake
+            {
+              # For ddcutil brightness control
+              hardware.i2c.enable = true;
+            }
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.vinso = {
+                imports = [
+                  ./users/vinso/home.nix
+                ];
+              };
+              home-manager.extraSpecialArgs = { inherit inputs; };
+            }
+          ];
+        };
       };
     };
 }
