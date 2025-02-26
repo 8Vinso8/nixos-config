@@ -12,6 +12,7 @@
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
     ../../modules/services/pipewire.nix
+    ../../modules/features/bluetooth
   ];
 
   boot = {
@@ -27,9 +28,6 @@
     ];
     plymouth.enable = true;
   };
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
 
   networking = {
     hostName = "firewake";

@@ -12,10 +12,8 @@
 
   home.packages = with pkgs; [ 
     playerctl
-    wev
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     hyprpolkitagent
-    ddcutil
   ];
 
   services.playerctld.enable = true;
@@ -52,7 +50,6 @@
     systemd.enable = false;
     settings = {
       monitor = [
-        "DP-1, 2560x1440@165, 0x0, 1"
         " , preferred, auto, 1"
       ];
       exec-once = [
