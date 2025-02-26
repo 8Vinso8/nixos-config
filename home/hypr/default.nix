@@ -15,6 +15,7 @@
     wev
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     hyprpolkitagent
+    ddcutil
   ];
 
   services.playerctld.enable = true;
@@ -147,6 +148,8 @@
         "$mainMod SHIFT, W, movetoworkspace, 6"
         "$mainMod SHIFT, E, movetoworkspace, 7"
         "$mainMod SHIFT, R, movetoworkspace, 8"
+
+        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic MIC \"$(wpctl get-volume @DEFAULT_SOURCE@)\""
       ];
       bindi = [
           " , XF86AudioPlay, exec, playerctl play-pause"
