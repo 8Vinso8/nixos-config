@@ -8,7 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/default.nix
-    ../../nodules/sdboot
+    ../../modules/sdboot
     ../../modules/silentBoot.nix
     ../../modules/amdgpu
     ../../modules/programs/corectrl.nix
