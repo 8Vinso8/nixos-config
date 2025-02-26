@@ -40,6 +40,7 @@
                   ./users/vinso/home.nix
                   ./home/hypr
                   ./home/autostart
+                  ./home/packages
                 ];
               };
               home-manager.extraSpecialArgs = { inherit inputs; };

@@ -24,7 +24,6 @@
       withVencord = true;
     })
     vlc
-    htop
   ];
 
   home.stateVersion = "24.11";
