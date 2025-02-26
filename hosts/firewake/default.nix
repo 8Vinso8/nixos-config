@@ -65,7 +65,6 @@
   programs = {
     hyprland = {
       enable = true;
-      withUWSM = true;
     };
     steam.enable = true;
     dconf.enable = true;

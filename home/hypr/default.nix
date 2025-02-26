@@ -14,15 +14,16 @@
     playerctl
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     hyprpolkitagent
+    wev
+    libnotify
   ];
 
   services.playerctld.enable = true;
 
   programs.fish.loginShellInit = ''
-    if uwsm check may-start -q;
-      and test (tty) = /dev/tty1;
+    if test (tty) = /dev/tty1;
       and test -z $DISPLAY;
-      exec uwsm start -S hyprland-uwsm.desktop 
+      exec Hyprland
     end
   '';
 
@@ -47,15 +48,15 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = false;
     settings = {
-      monitor = [
-        " , preferred, auto, 1"
-      ];
       exec-once = [
         "systemctl --user start hyprpolkitagent.service"
+        "corectrl"
+        "discord"
+        "spotify"
+        "steam -silent"
       ];
-      "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
+      "$menu" = "fuzzel";
       "$mainMod" = "SUPER";
       general = {
         border_size = 3;
@@ -117,7 +118,7 @@
         "rounding 0, floating:0, onworkspace:f[1]"
       ];
       bind = [
-        "$mainMod, RETURN, exec, uwsm app -- kitty"
+        "$mainMod, RETURN, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, $menu"

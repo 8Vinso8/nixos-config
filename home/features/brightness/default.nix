@@ -12,8 +12,8 @@
   wayland.windowManager.hyprland = {
     settings = {
       bind = [
-        "$mainMod, ], exec, ddcutil setvcp 10 + 10"
-        "$mainMod, [, exec, ddcutil setvcp 10 - 10"
+        "$mainMod, bracketright, exec, ddcutil setvcp 10 + 10 && notify-send -h string:x-canonical-private-synchronous:brightness Brightness \"$(ddcutil getvcp 10 | grep -oP 'current value =\\s*\\K\\d+')\""
+        "$mainMod, bracketleft, exec, ddcutil setvcp 10 - 10 && notify-send -h string:x-canonical-private-synchronous:brightness Brightness \"$(ddcutil getvcp 10 | grep -oP 'current value =\\s*\\K\\d+')\""
       ];
     };
   };
