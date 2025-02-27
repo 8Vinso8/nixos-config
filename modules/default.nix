@@ -9,28 +9,18 @@
     git
     wget
   ];
-
   security.sudo.wheelNeedsPassword = false;
-
-  boot.loader.efi.canTouchEfiVariables = true;
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
-
   programs.fish.enable = true;
-
   zramSwap.enable = true;
-
   networking.networkmanager.enable = true;
   services.resolved.enable = true;
-
   console = {
     packages = [ pkgs.terminus_font ];
     font = "ter-c32b";
-    useXkbConfig = true;
   };
-
   time.timeZone = "Asia/Vladivostok";
-
   i18n = {
     defaultLocale = "ru_RU.UTF-8";
     extraLocaleSettings = {
@@ -45,7 +35,6 @@
       LC_TIME = "ru_RU.UTF-8";
     };
   };
-
   nixpkgs.config.allowUnfree = true;
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
