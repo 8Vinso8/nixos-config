@@ -10,6 +10,7 @@
     ../../modules/sdboot
     ../../modules/silentBoot.nix
     ../../modules/sing-box.nix
+    ../../modules/fonts
     ../../modules/features/bluetooth
     ../../modules/services/pipewire.nix
   ];

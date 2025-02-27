@@ -11,6 +11,7 @@
     ../../modules/silentBoot.nix
     ../../modules/amdgpu
     ../../modules/sing-box.nix
+    ../../modules/fonts
     ../../modules/features/openssh
     ../../modules/features/bluetooth
     ../../modules/features/wayland
@@ -46,13 +47,6 @@
       RemainAfterExit = "yes";
       ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
     };
-  };
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      jetbrains-mono
-      nerd-fonts.jetbrains-mono
-    ];
   };
   programs.adb.enable = true;
   system.stateVersion = "24.11";
