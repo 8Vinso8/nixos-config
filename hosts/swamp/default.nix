@@ -16,5 +16,11 @@
   ];
   boot.kernelPackages = pkgs.linuxPackages_zen;
   networking.hostName = "swamp";
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  environment.systemPackages = with pkgs; [
+    kdePackages.sddm-kcm
+  ];
   system.stateVersion = "24.11";
 }

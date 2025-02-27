@@ -37,6 +37,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.vinso = {
                 imports = [
                   ./users/vinso/home.nix
@@ -53,7 +54,6 @@
                   };
                 };
               };
-              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };
@@ -62,10 +62,18 @@
           specialArgs = { inherit inputs; };
           modules = [
             .hosts/swamp
+            .users/axe
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.axe = {
+                imports = [
+                  ./users/axe/home/nix
+                  ./home/packages/normie.nix
+                ];
+              };
             }
           ];
         };
