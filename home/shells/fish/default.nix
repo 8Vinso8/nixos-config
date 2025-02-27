@@ -8,6 +8,10 @@
   programs.starship.enableFishIntegration = true;
   programs.starship.enableTransience = true;
   programs.yazi.enableFishIntegration = true;
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   home.packages = with pkgs; [
     eza
   ];
