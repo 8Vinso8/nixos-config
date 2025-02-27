@@ -7,9 +7,10 @@
 {
   programs.starship.enableFishIntegration = true;
   programs.starship.enableTransience = true;
-
   programs.yazi.enableFishIntegration = true;
-
+  home.packages = with pkgs; [
+    eza
+  ];
   programs.fish = {
     enable = true;
     plugins = [
@@ -21,6 +22,10 @@
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";
+      "ls" = "eza -al --color=always --group-directories-first";
+      "la" = "eza -a --color=always --group-directories-firs";
+      "ll" = "eza -l --color=always --group-directories-first";
+      "lt" = "eza -aT --color=always --group-directories-first";
     };
     shellAbbrs = {
       vps = "ssh root@${inputs.secrets.vpsIp}";
