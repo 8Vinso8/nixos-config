@@ -31,6 +31,7 @@
             {
               # For ddcutil brightness control
               hardware.i2c.enable = true;
+              users.users.vinso.extraGroups = [ "adbusers" ];
             }
             home-manager.nixosModules.home-manager
             {

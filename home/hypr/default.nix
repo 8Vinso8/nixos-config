@@ -93,7 +93,6 @@
         force_default_wallpaper = 0;
         background_color = "0x000000";
         vrr = 2;
-        key_press_enables_dpms = true;
       };
       master = {
         mfact = 0.70;
@@ -123,6 +122,7 @@
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, $menu"
         " , Print, exec, grimblast --freeze copy area"
+        "$mainMod, L, exec, hyprctl dispatch dpms toggle"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

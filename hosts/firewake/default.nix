@@ -14,6 +14,9 @@
     ../../modules/services/pipewire.nix
     ../../modules/features/bluetooth
     ../../modules/sing-box.nix
+    ../../modules/programs/steam.nix
+    ../../modules/programs/hyprland.nix
+    ../../modules/features/openssh.nix
   ];
 
   boot = {
@@ -63,11 +66,6 @@
   };
 
   programs = {
-    hyprland = {
-      enable = true;
-    };
-    steam.enable = true;
-    dconf.enable = true;
     fish.enable = true;
     adb.enable = true;
   };
