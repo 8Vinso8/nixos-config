@@ -10,7 +10,7 @@
     ./hypridle.nix
   ];
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     playerctl
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     hyprpolkitagent
@@ -146,13 +146,12 @@
         "$mainMod SHIFT, W, movetoworkspace, 6"
         "$mainMod SHIFT, E, movetoworkspace, 7"
         "$mainMod SHIFT, R, movetoworkspace, 8"
-
-        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic MIC \"$(wpctl get-volume @DEFAULT_SOURCE@)\""
+        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic MIC \"\$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print (\$3 == \"[MUTED]\") ? \"MUTED\" : \"UNMUTED\"}')\""
       ];
       bindi = [
-          " , XF86AudioPlay, exec, playerctl play-pause"
-          " , XF86AudioNext, exec, playerctl next"
-          " , XF86AudioPrev, exec, playerctl previous"
+        " , XF86AudioPlay, exec, playerctl play-pause"
+        " , XF86AudioNext, exec, playerctl next"
+        " , XF86AudioPrev, exec, playerctl previous"
       ];
       bindm = [
         "$mainMod, mouse:272, movewindow"
