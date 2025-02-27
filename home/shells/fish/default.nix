@@ -23,7 +23,7 @@
       ".." = "cd ..";
       "..." = "cd ../..";
       "ls" = "eza -al --color=always --group-directories-first";
-      "la" = "eza -a --color=always --group-directories-firs";
+      "la" = "eza -a --color=always --group-directories-first";
       "ll" = "eza -l --color=always --group-directories-first";
       "lt" = "eza -aT --color=always --group-directories-first";
     };
