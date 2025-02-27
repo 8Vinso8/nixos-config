@@ -7,7 +7,7 @@
   programs.steam = {
     enable = true;
     protontricks.enable = true;
-    extraCompatPakcages = with pkgs; [
+    extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
   };

@@ -16,7 +16,7 @@
     ../../modules/sing-box.nix
     ../../modules/programs/steam.nix
     ../../modules/programs/hyprland.nix
-    ../../modules/features/openssh.nix
+    ../../modules/features/openssh
   ];
 
   boot = {
