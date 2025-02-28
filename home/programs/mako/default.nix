@@ -13,5 +13,9 @@
     defaultTimeout = 2000;
     layer = "top";
     maxVisible = 2;
+    extraConfig = ''
+      [summary=" "]
+      format=%b
+    '';
   };
 }

@@ -146,7 +146,7 @@
         "$mainMod SHIFT, W, movetoworkspace, 6"
         "$mainMod SHIFT, E, movetoworkspace, 7"
         "$mainMod SHIFT, R, movetoworkspace, 8"
-        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic \"\" \"\$(wpctl get-volume @DEFAULT_SOURCE@ | awk '{print (\$3 == \"[MUTED]\") ? \"<span color='red'>MUTED</span>\" : \"<span color='green'>UNMUTED</span>\"}')\""
+        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic ' ' \"$(wpctl get-volume @DEFAULT_SOURCE@ | grep -q '[MUTED]' && echo 'MUTED' || echo 'UNMUTED' )\"" 
       ];
       bindi = [
         " , XF86AudioPlay, exec, playerctl play-pause"
