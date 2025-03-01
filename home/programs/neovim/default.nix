@@ -18,6 +18,7 @@
       nixd
       # Python
       basedpyright
+      ruff
     ];
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig

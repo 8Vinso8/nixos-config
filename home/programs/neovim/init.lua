@@ -31,5 +31,6 @@ vim.keymap.set("n", "ff", vim.lsp.buf.format, { remap = false })
 local lspconfig = require("lspconfig")
 lspconfig.basedpyright.setup{}
 lspconfig.nixd.setup{}
+lspconfig.ruff.setup{}
 
 require("autoclose").setup()
