@@ -20,6 +20,7 @@
       basedpyright
     ];
     plugins = with pkgs.vimPlugins; [
+      nvim-lspconfig
       autoclose-nvim
     ];
     extraLuaConfig = builtins.readFile ./init.lua;

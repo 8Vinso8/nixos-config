@@ -28,34 +28,8 @@ vim.api.nvim_create_autocmd({"CursorHold"}, {
 
 vim.keymap.set("n", "ff", vim.lsp.buf.format, { remap = false })
 
-vim.lsp.config['nixd'] = {
-  cmd = { 'nixd' },
-  filetypes = { 'nix' },
-  root_markers = { 'flake.nix' },
-  settings = {
-    nixd = {
-      formatting = {
-        command = { 'nixfmt' },
-      },
-    },
-  },
-}
+local lspconfig = require("lspconfig")
+lspconfig.basedpyright.setup{}
+lspconfig.nixd.setup{}
 
-vim.lsp.config['basedpyright'] = {
-  cmd = { "basedpyright-langserver", "--stdio" },
-  filetypes = { "python" },
-  root_markers = { 'main.py', 'requirements.txt', '.git' },
-  settings = {
-    basedpyright = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        useLibraryCodeForTypes = true
-      }
-    }
-  }
-}
-
-vim.lsp.enable('nixd')
-vim.lsp.enable('basedpyright')
 require("autoclose").setup()
