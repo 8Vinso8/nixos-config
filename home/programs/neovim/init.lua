@@ -33,4 +33,6 @@ lspconfig.basedpyright.setup{}
 lspconfig.nixd.setup{}
 lspconfig.ruff.setup{}
 
+vim.cmd 'colorscheme material'
+
 require("autoclose").setup()
