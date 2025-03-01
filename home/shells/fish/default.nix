@@ -12,7 +12,6 @@
     enable = true;
     enableFishIntegration = true;
   };
-  programs.direnv.enableFishIntegration = true;
   home.packages = with pkgs; [
     eza
   ];

@@ -41,5 +41,21 @@ vim.lsp.config['nixd'] = {
   },
 }
 
+vim.lsp.config['basedpyright'] = {
+  cmd = { "basedpyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = { 'main.py', 'requirements.txt', '.git' },
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true
+      }
+    }
+  }
+}
+
 vim.lsp.enable('nixd')
+vim.lsp.enable('basedpyright')
 require("autoclose").setup()

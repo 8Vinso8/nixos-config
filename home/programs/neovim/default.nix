@@ -13,8 +13,11 @@
     vimAlias = true;
     vimdiffAlias = true;
     extraPackages = with pkgs; [
+      # Nix
       nixfmt-rfc-style
       nixd
+      # Python
+      basedpyright
     ];
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
