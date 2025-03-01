@@ -45,6 +45,7 @@
                   ./home/autostart
                   ./home/packages
                   ./home/features/brightness
+                  ./home/dev/direnv
                 ];
                 wayland.windowManager.hyprland = {
                   settings = {
