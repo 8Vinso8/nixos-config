@@ -22,7 +22,7 @@
     ];
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
-      material-vim
+      vscode-nvim
       autoclose-nvim
     ];
     extraLuaConfig = builtins.readFile ./init.lua;
