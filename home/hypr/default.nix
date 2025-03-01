@@ -123,6 +123,8 @@
         "$mainMod, D, exec, $menu"
         " , Print, exec, grimblast --freeze copy area"
         "$mainMod, L, exec, hyprctl dispatch dpms toggle"
+        # Toggle waybar hide
+        "$mainMod, B, exec, pkill -SIGUSR1 waybar"
 
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
