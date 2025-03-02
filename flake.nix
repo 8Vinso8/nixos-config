@@ -44,7 +44,7 @@
                   ./home/hypr
                   ./home/autostart
                   ./home/packages
-                  ./home/features/brightness
+                  ./home/features/brightness/ddcutil.nix
                   ./home/dev/direnv
                 ];
                 wayland.windowManager.hyprland = {
