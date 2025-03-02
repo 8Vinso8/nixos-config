@@ -24,6 +24,12 @@
       nvim-lspconfig
       vscode-nvim
       autoclose-nvim
+      nvim-cmp
+      cmp-buffer
+      cmp-path
+      cmp-nvim-lsp
+      cmp-cmdline
+      cmp-nvim-lsp-signature-help
     ];
     extraLuaConfig = builtins.readFile ./init.lua;
   };

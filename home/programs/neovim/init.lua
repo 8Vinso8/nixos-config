@@ -28,10 +28,39 @@ vim.api.nvim_create_autocmd({"CursorHold"}, {
 
 vim.keymap.set("n", "ff", vim.lsp.buf.format, { remap = false })
 
+local cmp = require("cmp")
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.snippet.expand(args.body)
+    end
+  },
+  sources = {
+    { name = "nvim_lsp_signature_help"},
+    { name = "nvim_lsp"},
+    { name = "buffer"},
+    { name = "path"}
+  },
+  mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+})
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 local lspconfig = require("lspconfig")
-lspconfig.basedpyright.setup{}
-lspconfig.nixd.setup{}
-lspconfig.ruff.setup{}
+lspconfig.basedpyright.setup{
+  capabilities = capabilities
+}
+lspconfig.nixd.setup{
+  capabilities = capabilities
+}
+lspconfig.ruff.setup{
+  capabilities = capabilities
+}
 
 vim.cmd 'colorscheme vscode'
 
