@@ -14,5 +14,6 @@
     telegram-desktop
     inputs.zen-browser.packages."${system}".default
     spotify
+    light 
   ];
 }

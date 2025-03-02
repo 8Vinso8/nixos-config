@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 
@@ -22,6 +23,8 @@
   ];
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
+    kernelModules = [ "ddcci" ];
     plymouth.enable = true;
   };
   networking = {

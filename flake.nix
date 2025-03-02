@@ -29,8 +29,6 @@
             ./hosts/firewake
             ./users/vinso
             {
-              # For ddcutil brightness control
-              hardware.i2c.enable = true;
               users.users.vinso.extraGroups = [ "adbusers" ];
             }
             home-manager.nixosModules.home-manager
@@ -44,7 +42,6 @@
                   ./home/hypr
                   ./home/autostart
                   ./home/packages
-                  ./home/features/brightness/ddcutil.nix
                   ./home/dev/direnv
                 ];
                 wayland.windowManager.hyprland = {
