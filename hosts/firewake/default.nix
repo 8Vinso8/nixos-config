@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   ...
 }:
 
@@ -16,6 +15,7 @@
     ../../modules/features/openssh
     ../../modules/features/bluetooth
     ../../modules/features/wayland
+    ../../modules/features/brightness
     ../../modules/services/pipewire.nix
     ../../modules/programs/hyprland.nix
     ../../modules/programs/corectrl.nix
@@ -23,8 +23,6 @@
   ];
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    extraModulePackages = with config.boot.kernelPackages; [ ddcci-driver ];
-    kernelModules = [ "ddcci" ];
     plymouth.enable = true;
   };
   networking = {
