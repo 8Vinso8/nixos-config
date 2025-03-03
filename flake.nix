@@ -40,6 +40,7 @@
                 imports = [
                   ./users/vinso/home.nix
                   ./home/hypr
+                  ./home/features/brightness/ddcutil.nix
                   ./home/autostart
                   ./home/packages
                   ./home/dev/direnv
