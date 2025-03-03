@@ -71,6 +71,15 @@ lspconfig.lua_ls.setup {
     }
   }
 }
+lspconfig.html.setup {
+  capabilities = capabilities
+}
+lspconfig.cssls.setup {
+  capabilities = capabilities
+}
+lspconfig.jsonls.setup {
+  capabilities = capabilities
+}
 
 vim.cmd 'colorscheme vscode'
 

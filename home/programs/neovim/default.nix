@@ -21,6 +21,8 @@
       ruff
       # Lua
       lua-language-server
+      # Html/Css/Json/ESLint
+      vscode-langservers-extracted
     ];
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
