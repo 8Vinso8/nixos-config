@@ -59,7 +59,7 @@
       "$menu" = "fuzzel";
       "$mainMod" = "SUPER";
       general = {
-        border_size = 3;
+        border_size = 2;
         no_border_on_floating = false;
         gaps_in = 5;
         gaps_out = 10;
@@ -88,6 +88,7 @@
         accel_profile = "flat";
       };
       misc = {
+        key_press_enables_dpms = true;
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         force_default_wallpaper = 0;
@@ -122,7 +123,7 @@
         "$mainMod, V, togglefloating"
         "$mainMod, D, exec, $menu"
         " , Print, exec, grimblast --freeze copy area"
-        "$mainMod, L, exec, hyprctl dispatch dpms toggle"
+        "$mainMod, L, exec, sleep .5 && hyprctl dispatch dpms toggle"
         # Toggle waybar hide
         "$mainMod, B, exec, pkill -SIGUSR1 waybar"
 
