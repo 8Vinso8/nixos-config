@@ -8,7 +8,7 @@ vim.opt.updatetime = 250;
 vim.diagnostic.config {
   update_in_insert = true,
   underline = true,
-  float = { 
+  float = {
     border = "single",
     header = "",
     source = "always",
@@ -16,7 +16,7 @@ vim.diagnostic.config {
   }
 }
 
-vim.api.nvim_create_autocmd({"CursorHold"}, {
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
   pattern = "*",
   callback = function()
     local opts = {
@@ -36,30 +36,40 @@ cmp.setup({
     end
   },
   sources = {
-    { name = "nvim_lsp_signature_help"},
-    { name = "nvim_lsp"},
-    { name = "buffer"},
-    { name = "path"}
+    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" }
   },
   mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+  }),
 })
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lspconfig = require("lspconfig")
-lspconfig.basedpyright.setup{
+lspconfig.basedpyright.setup {
   capabilities = capabilities
 }
-lspconfig.nixd.setup{
+lspconfig.nixd.setup {
   capabilities = capabilities
 }
-lspconfig.ruff.setup{
+lspconfig.ruff.setup {
   capabilities = capabilities
+}
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
 }
 
 vim.cmd 'colorscheme vscode'

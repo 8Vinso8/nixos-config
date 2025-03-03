@@ -19,6 +19,8 @@
       # Python
       basedpyright
       ruff
+      # Lua
+      lua-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       nvim-lspconfig
