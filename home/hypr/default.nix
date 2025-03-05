@@ -51,14 +51,12 @@
     systemd = {
       enable = true;
     };
-    extraConfig = ''
-      exec-once=corectrl
-      exec-once=discord
-      exec-once=spotify
-    '';
     settings = {
       exec-once = [
         "systemctl --user start hyprpolkitagent.service"
+        "corectrl"
+        "steam -silent"
+        "discord"
       ];
       "$menu" = "fuzzel";
       "$mainMod" = "SUPER";

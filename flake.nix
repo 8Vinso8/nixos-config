@@ -44,6 +44,7 @@
                   ./home/autostart
                   ./home/packages
                   ./home/dev/direnv
+                  ./home/programs/spotify-player
                 ];
                 wayland.windowManager.hyprland = {
                   settings = {
