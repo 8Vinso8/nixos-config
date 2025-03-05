@@ -50,8 +50,12 @@
     enable = true;
     systemd = {
       enable = true;
-      enableXdgAutostart = true;
     };
+    extraConfig = ''
+      exec-once=corectrl
+      exec-once=discord
+      exec-once=spotify
+    '';
     settings = {
       exec-once = [
         "systemctl --user start hyprpolkitagent.service"
