@@ -3,7 +3,8 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.number = true;
-vim.opt.updatetime = 250;
+vim.opt.updatetime = 250
+vim.opt.clipboard = "unnamedplus"
 
 vim.diagnostic.config {
   update_in_insert = true,
