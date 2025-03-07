@@ -35,7 +35,10 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { 
+                inherit inputs;
+                hostname = "firewake";
+              };
               home-manager.users.vinso = {
                 imports = [
                   ./users/vinso/home.nix
