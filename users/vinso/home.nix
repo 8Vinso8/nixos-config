@@ -10,6 +10,7 @@
     ../../home/programs/kitty.nix
     ../../home/shells/fish
     ../../home/programs/yazi.nix
+    ../../home/programs/helix
   ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
