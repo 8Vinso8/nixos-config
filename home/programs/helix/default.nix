@@ -19,7 +19,21 @@
     themes = {
       my_theme = {
         inherits = "catppuccin_mocha";
-        "ui.background" = "none";
+        "ui.background" = {
+          bg = "none";
+        };
+        "ui.cursor.primary.normal" = {
+          fg = "#000000";
+          bg = "#FFFFFF";
+        };
+        "ui.cursor.primary.insert" = {
+          fg = "#000000";
+          bg = "#00FF00";
+        };
+        "ui.cursor.primary.select" = {
+          fg = "#000000";
+          bg = "#FF0000";
+        };
       };
     };
     languages = {
@@ -33,8 +47,10 @@
         }
         {
           name = "python";
-          language-servers = [ "basedpyright" "ruff" ];
-
+          language-servers = [
+            "basedpyright"
+            "ruff"
+          ];
         }
       ];
       language-server = {
