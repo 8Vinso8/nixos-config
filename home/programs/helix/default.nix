@@ -23,6 +23,27 @@
         color-modes = true;
         popup-border = "all";
         true-color = true;
+        file-picker = {
+          hidden = false;
+        };
+        indent-guides = {
+          render = true;
+          character = "╎";
+        };
+        gutters = {
+          layout = [
+            "line-numbers"
+            "diagnostics"
+          ];
+          line-numbers.min-width = 1;
+        };
+        soft-wrap = {
+          enable = true;
+        };
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "warning";
+        };
       };
     };
     themes = {
