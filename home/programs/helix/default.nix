@@ -15,6 +15,15 @@
     ];
     settings = {
       theme = "my_theme";
+      editor = {
+        cursorline = true;
+        completion-timeout = 5;
+        completion-replace = true;
+        rulers = [ 80 ];
+        color-modes = true;
+        popup-border = "all";
+        true-color = true;
+      };
     };
     themes = {
       my_theme = {
