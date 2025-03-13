@@ -102,7 +102,7 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
         "workspace 8 silent, class:discord"
-        "workspace 7 silent, class:spotify"
+        "workspace 7 silent, class:[S,s]potify"
         "nofocus, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0"
         "float,class:kitty"
         # no gaps when only
