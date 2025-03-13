@@ -32,6 +32,7 @@
   services = {
     hardware.openrgb.enable = true;
     getty.autologinUser = "vinso";
+    getty.autologinOnce = true;
     pipewire.configPackages = [
       (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
         builtins.readFile ./10-split-input.conf
