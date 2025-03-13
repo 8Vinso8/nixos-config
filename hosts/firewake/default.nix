@@ -14,10 +14,11 @@
     ../../modules/fonts
     ../../modules/features/openssh
     ../../modules/features/bluetooth
+    ../../modules/features/brightness
     ../../modules/services/pipewire.nix
     ../../modules/programs/corectrl.nix
     ../../modules/programs/steam.nix
-    ../../modules/plasma
+    ../../modules/programs/hyprland.nix
   ];
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;

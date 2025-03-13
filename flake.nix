@@ -45,6 +45,8 @@
                   ./home/autostart
                   ./home/packages
                   ./home/dev/direnv
+                  ./home/hypr
+                  ./home/features/brightness/ddcutil.nix
                 ];
                 wayland.windowManager.hyprland = {
                   settings = {
