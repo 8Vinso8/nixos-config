@@ -4,6 +4,7 @@
 }:
 
 {
+  home.file.".config/wall.jpg".source = ./wall.jpg;
   home.pointerCursor = {
     gtk.enable = true;
     size = 24;

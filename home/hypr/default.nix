@@ -20,7 +20,7 @@
     if uwsm check may-start; then
       exec uwsm start hyprland-uwsm.desktop
     fi
-  ''; 
+  '';
   services.playerctld.enable = true;
   programs.kitty.enable = true;
   programs.fuzzel = {
@@ -38,6 +38,18 @@
       colors = {
         background = "000000EE";
       };
+    };
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "~/.config/wall.jpg"
+      ];
+      wallpaper = [
+        " , ~/.config/wall.jpg"
+      ];
     };
   };
 
@@ -143,7 +155,7 @@
         "$mainMod SHIFT, W, movetoworkspace, 6"
         "$mainMod SHIFT, E, movetoworkspace, 7"
         "$mainMod SHIFT, R, movetoworkspace, 8"
-        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic ' ' \"$(wpctl get-volume @DEFAULT_SOURCE@ | grep -q '[MUTED]' && echo '<span color=\"red\">MUTED</span>' || echo '<span color=\"green\">UNMUTED</span>' )\"" 
+        "$mainMod, XF86AudioMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle && notify-send -h string:x-canonical-private-synchronous:mic ' ' \"$(wpctl get-volume @DEFAULT_SOURCE@ | grep -q '[MUTED]' && echo '<span color=\"red\">MUTED</span>' || echo '<span color=\"green\">UNMUTED</span>' )\""
       ];
       bindi = [
         " , XF86AudioPlay, exec, playerctl play-pause"
