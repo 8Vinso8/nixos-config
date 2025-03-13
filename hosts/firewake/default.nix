@@ -14,7 +14,6 @@
     ../../modules/fonts
     ../../modules/features/openssh
     ../../modules/features/bluetooth
-    ../../modules/features/wayland
     ../../modules/services/pipewire.nix
     ../../modules/programs/corectrl.nix
     ../../modules/programs/steam.nix
