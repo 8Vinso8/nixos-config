@@ -1,5 +1,4 @@
 {
-  pkgs,
   ...
 }:
 
@@ -10,6 +9,5 @@
       "wheel"
       "networkmanager"
     ];
-    shell = pkgs.fish;
   };
 }
