@@ -15,11 +15,10 @@
     ../../modules/features/openssh
     ../../modules/features/bluetooth
     ../../modules/features/wayland
-    ../../modules/features/brightness
     ../../modules/services/pipewire.nix
-    ../../modules/programs/hyprland.nix
     ../../modules/programs/corectrl.nix
     ../../modules/programs/steam.nix
+    ../../modules/plasma
   ];
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;

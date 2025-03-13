@@ -13,6 +13,7 @@
     });
     settings = {
       default_device = "${hostname}";
+      playback_refresh_duration_in_ms = 1000;
       device = {
         audio_cache = true;
         volume = 100;

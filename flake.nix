@@ -35,19 +35,16 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { 
+              home-manager.extraSpecialArgs = {
                 inherit inputs;
                 hostname = "firewake";
               };
               home-manager.users.vinso = {
                 imports = [
                   ./users/vinso/home.nix
-                  ./home/hypr
-                  ./home/features/brightness/ddcutil.nix
                   ./home/autostart
                   ./home/packages
                   ./home/dev/direnv
-                  ./home/programs/spotify-player
                 ];
                 wayland.windowManager.hyprland = {
                   settings = {
