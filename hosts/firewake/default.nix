@@ -21,7 +21,7 @@
     ../../modules/programs/hyprland.nix
   ];
   boot = {
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
     plymouth.enable = true;
   };
   networking = {
