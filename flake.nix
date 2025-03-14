@@ -12,12 +12,14 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
+      chaotic,
       ...
     }@inputs:
     {
@@ -28,6 +30,7 @@
           modules = [
             ./hosts/firewake
             ./users/vinso
+            chaotic.nixosModules.default
             {
               users.users.vinso.extraGroups = [ "adbusers" ];
             }
