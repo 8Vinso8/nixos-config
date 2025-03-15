@@ -294,11 +294,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1741911010,
-        "narHash": "sha256-CIKnxI//A8J3N0cUXQ8HMqwpo/1igU89H8eIOrlrNts=",
+        "lastModified": 1741997831,
+        "narHash": "sha256-tXKyAFC5dNEPrSFxjcApyqQfZAZJoz6oyYnKjd0aYQU=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "6b175fb7c9d12ff039dc3e7f944256522658581d",
+        "rev": "fe31af14006b75ecaceb6f38e80dc62577a1ad11",
         "type": "github"
       },
       "original": {
@@ -310,11 +310,11 @@
     "neovim-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1741907753,
-        "narHash": "sha256-T8iwRFgFGQyENPRm/RIIpjDxP+GDIwTlYuFcY1LexQ8=",
+        "lastModified": 1741954637,
+        "narHash": "sha256-kdLre/oVxg9fJa88qbNEhIVpY7jz2xNpXnBXsFNSia8=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "4f6196e91d23f17e6b25ea7356d5bbc5b87d95b6",
+        "rev": "f1422a313fa57c8c7045163aa209a9fd9166fe5a",
         "type": "github"
       },
       "original": {
@@ -440,11 +440,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1741426762,
-        "narHash": "sha256-uHyInezv7INSJD9rZXOgeqij/AtPvMJ1vVGFWU5lYpI=",
+        "lastModified": 1742034366,
+        "narHash": "sha256-ISnB27w2SuRRpzg11pphTjbrbAxdyGSm4AUfbvbvs3Q=",
         "ref": "refs/heads/master",
-        "rev": "26c75a90d07de104f106a16081633d17ab104d24",
-        "revCount": 35,
+        "rev": "b24dc83a04dd228d2739d57259fb120f58ed2f94",
+        "revCount": 36,
         "type": "git",
         "url": "ssh://git@github.com/8Vinso8/secrets.git"
       },
@@ -479,11 +479,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1741554872,
-        "narHash": "sha256-A/Iim9o0hHJjDJVynwtLzkox7NquvPc8CsJ/8OB4dDw=",
+        "lastModified": 1742020525,
+        "narHash": "sha256-UMRzJNmCkl3zqwdaJm+G8z9z1M5Pk5KyLk9wvvggOks=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "a4408170c5a2168bb79abcf587c5072e2ee5fb90",
+        "rev": "b6b61a5d3671313c8d19e577f60f0d42ff64fc15",
         "type": "github"
       },
       "original": {

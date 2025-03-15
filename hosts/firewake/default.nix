@@ -38,6 +38,7 @@
         builtins.readFile ./10-split-input.conf
       ))
     ];
+    scx.enable = true;
   };
   systemd.services.BiosSleepFix = {
     enable = true;
