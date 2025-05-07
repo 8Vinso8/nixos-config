@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  pkgs-unstable,
   ...
 }:
 
@@ -20,8 +19,23 @@
   ];
   zramSwap.enable = true;
   # Bootloader.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  services.scx.enable = true;
+
+  systemd.services.BiosSleepFix = {
+    enable = true;
+    description = "Gigabyte B550 F12 bios sleep bug workaround";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = "yes";
+      ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
+    };
+  };
 
   networking.hostName = "firewake"; # Define your hostname.
 
@@ -60,11 +74,7 @@
     variant = "";
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -74,6 +84,12 @@
     jack.enable = true;
   };
 
+  services.pipewire.configPackages = [
+    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
+      builtins.readFile ./10-split-input.conf
+    ))
+  ];
+
   users.users.vinso = {
     isNormalUser = true;
     description = "Vinso";
@@ -81,18 +97,13 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [
-      zed-editor
-      nixd
-      nixfmt-rfc-style
-    ];
   };
+  security.sudo.wheelNeedsPassword = false;
 
-  programs.firefox.enable = true;
+  programs.adb.enable = true;
 
   services.sing-box = {
     enable = true;
-    package = pkgs-unstable.sing-box;
     settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
   };
 
@@ -104,7 +115,10 @@
   ];
   environment.systemPackages = with pkgs; [
     git
+    lact
   ];
+  systemd.packages = [ pkgs.lact ];
+  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
 
   networking.firewall.enable = false;
 

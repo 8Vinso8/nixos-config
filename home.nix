@@ -26,6 +26,14 @@
     };
   };
 
+  programs.zed-editor = {
+    enable = true;
+    extraPackages = with pkgs; [
+      nixd
+      nixfmt-rfc-style
+    ];
+  };
+
   home.stateVersion = "24.11";
 
   programs.home-manager.enable = true;
