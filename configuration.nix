@@ -101,7 +101,15 @@
   security.sudo.wheelNeedsPassword = false;
 
   programs.adb.enable = true;
-
+  programs.steam = {
+    enable = true;
+    package = pkgs.steam.override {
+      extraPkgs =
+        pkgs: with pkgs; [
+          kdePackages.breeze
+        ];
+    };
+  };
   services.sing-box = {
     enable = true;
     settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
@@ -119,6 +127,15 @@
   ];
   systemd.packages = [ pkgs.lact ];
   systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  environment.variables = {
+    VDPAU_DRIVER = "radeonsi";
+  };
 
   networking.firewall.enable = false;
 
