@@ -23,6 +23,7 @@
   boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/efi";
 
   services.scx.enable = true;
 
