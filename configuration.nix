@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -7,7 +6,6 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -18,37 +16,101 @@
     }
   ];
   zramSwap.enable = true;
-  # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelParams = [ "amdgpu.ppfeaturemask=0xfffd7fff" ];
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/efi";
 
-  services.scx.enable = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [
+      "amdgpu.ppfeaturemask=0xfffd7fff"
+      "video=DP-1:2560x1440@165"
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+    ];
+    loader = {
+      timeout = 0;
+      systemd-boot = {
+        enable = true;
+        consoleMode = "max";
+        configurationLimit = 5;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/efi";
+      };
+    };
+    plymouth = {
+      enable = true;
+      theme = "bgrt";
+    };
+    initrd.systemd.enable = true;
+  };
 
-  systemd.services.BiosSleepFix = {
-    enable = true;
-    description = "Gigabyte B550 F12 bios sleep bug workaround";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = "yes";
-      ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
     };
   };
 
-  networking.hostName = "firewake"; # Define your hostname.
+  networking = {
+    hostName = "firewake";
+    networkmanager.enable = true;
+    timeServers = [ "openwrt.lan" ];
+    firewall.enable = false;
+  };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  services = {
+    resolved.enable = true;
+    scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+    };
+    xserver = {
+      enable = true;
+      xkb.layout = "us,ru";
+      videoDrivers = [ "amdgpu" ];
+    };
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      configPackages = [
+        (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
+          builtins.readFile ./10-split-input.conf
+        ))
+      ];
+    };
+    sing-box = {
+      enable = true;
+      settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
+    };
+  };
 
-  # Set your time zone.
+  systemd = {
+    packages = [ pkgs.lact ];
+    services = {
+      BiosSleepFix = {
+        enable = true;
+        description = "Gigabyte B550 F12 bios sleep bug workaround";
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = "yes";
+          ExecStart = "/bin/sh -c 'if grep 'GPP0' /proc/acpi/wakeup | grep -q 'enabled'; then echo 'GPP0' > /proc/acpi/wakeup; fi'";
+        };
+      };
+      lactd.wantedBy = [ "multi-user.target" ];
+    };
+  };
+
   time.timeZone = "Asia/Vladivostok";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "ru_RU.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
     LC_IDENTIFICATION = "ru_RU.UTF-8";
@@ -61,36 +123,6 @@
     LC_TIME = "ru_RU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "ru";
-    variant = "";
-  };
-
-  # Enable sound with pipewire.
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
-  services.pipewire.configPackages = [
-    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/10-split-input.conf" (
-      builtins.readFile ./10-split-input.conf
-    ))
-  ];
-
   users.users.vinso = {
     isNormalUser = true;
     description = "Vinso";
@@ -99,47 +131,56 @@
       "wheel"
     ];
   };
-  security.sudo.wheelNeedsPassword = false;
 
-  programs.adb.enable = true;
-  programs.steam = {
-    enable = true;
-    package = pkgs.steam.override {
-      extraPkgs =
-        pkgs: with pkgs; [
-          kdePackages.breeze
-        ];
-    };
+  security = {
+    rtkit.enable = true;
+    sudo.wheelNeedsPassword = false;
   };
-  services.sing-box = {
-    enable = true;
-    settings = builtins.fromJSON (inputs.secrets.singBoxConfig);
+
+  programs = {
+    adb.enable = true;
+    steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+      extraPackages = with pkgs; [
+        kdePackages.breeze
+      ];
+    };
+    fish.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  environment.systemPackages = with pkgs; [
-    git
-    lact
-  ];
-  systemd.packages = [ pkgs.lact ];
-  systemd.services.lactd.wantedBy = [ "multi-user.target" ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  environment.variables = {
-    VDPAU_DRIVER = "radeonsi";
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+    optimise = {
+      automatic = true;
+      dates = [ "daily" ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 
-  networking.firewall.enable = false;
+  environment = {
+    variables = {
+      VDPAU_DRIVER = "radeonsi";
+    };
+    systemPackages = with pkgs; [
+      git
+      lact
+      kdePackages.sddm-kcm
+    ];
+    plasma6.excludePackages = with pkgs.kdePackages; [
+      konsole
+    ];
+  };
 
   system.stateVersion = "24.11";
-
 }
