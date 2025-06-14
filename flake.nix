@@ -9,9 +9,13 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, secrets, home-manager, nixvim, ... }@inputs: {
     nixosConfigurations = {
       nixvm = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
