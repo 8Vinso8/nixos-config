@@ -20,25 +20,48 @@
   };
   programs.fish = {
     enable = true;
-    interactiveShellInit = ''
-      set fish_greeting 
-    '';
+    functions = {
+      fish_greeting = "";
+      starship_transient_prompt_func = "starship module character";
+    };
   };
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
     enableTransience = true;
     settings = {
-      format = "$username$hostname$directory$git_branch$git_commit$git_state$git_status$cmd_duration$line_break$character";
-      git_commit.tag_symbol = " tag ";
+      format = "($username$hostname )$directory$git_branch$git_status$line_break$character";
       git_status = {
+        format = "([\\[$all_status$ahead_behind\\]]($style))";
+        style = "cyan";
         ahead = ">";
         behind = "<";
         diverged = "<>";
         renamed = "r";
         deleted = "x";
       };
-      git_branch.symbol = "git ";
+      git_branch = {
+        format = "\\[[$branch(:$remote_branch)]($style)\\]";
+        style = "bright-black";
+      };
+      username = {
+        format = "\\[[$user]($style)\\]";
+        style_root = "bold red";
+        style_user = "bold green";
+      };
+      hostname = {
+        format = "\\[[$hostname]($style)\\]";
+        style = "green";
+      };
+      directory = {
+        style = "cyan";
+        truncate_to_repo = false;
+        read_only = "[RO]";
+      };
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[X](bold red)";
+      };
     };
   };
   programs.fzf = {
