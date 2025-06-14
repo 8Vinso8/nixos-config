@@ -10,7 +10,9 @@
   ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
-  home.packages = with pkgs; [ ];
+  home.packages = with pkgs; [
+    fd
+  ];
   programs.git = {
     enable = true;
     userName = "Vinso";
@@ -30,6 +32,9 @@
   programs.fzf = {
     enable = true;
     enableFishIntegration = true;
+    changeDirWidgetCommand = "fd --type d --exclude .git --follow --hidden"; # Alt-c
+    defaultCommand = "fd --type f --exclude .git --follow --hidden"; # Default
+    fileWidgetCommand = "fd --type f --exclude .git --follow --hidden"; # ctrl-t
   };
   programs.nixvim = {
     enable = true;
