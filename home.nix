@@ -35,6 +35,15 @@
       enable = true;
       settings.flavour = "mocha";
     };
+    diagnostic.settings = {
+      virtual_lines = {
+        current_line = true;
+      };
+      virtual_text = false;
+    };
+    plugins.lspconfig.enable = true;
+    lsp.inlayHints.enable = true;
+    lsp.servers.nixd.enable = true;
   };
   home.stateVersion = "25.05";
 }
