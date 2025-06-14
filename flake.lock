@@ -1,0 +1,43 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1749727998,
+        "narHash": "sha256-mHv/yeUbmL91/TvV95p+mBVahm9mdQMJoqaTVTALaFw=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "fd487183437963a59ba763c0cc4f27e3447dd6dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "secrets": "secrets"
+      }
+    },
+    "secrets": {
+      "locked": {
+        "lastModified": 1749820965,
+        "narHash": "sha256-HMIVvAtSTKrX34VXXmquxhqP5VawO0LkMiiAFaCJdj4=",
+        "ref": "refs/heads/master",
+        "rev": "6e91f466c92d0f0da15157897efff41b0e4bbbd0",
+        "revCount": 41,
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
