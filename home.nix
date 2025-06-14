@@ -28,6 +28,18 @@
     enable = true;
     enableFishIntegration = true;
     enableTransience = true;
+    settings = {
+      format = "$username$hostname$directory$git_branch$git_commit$git_state$git_status$cmd_duration$line_break$character";
+      git_commit.tag_symbol = " tag ";
+      git_status = {
+        ahead = ">";
+        behind = "<";
+        diverged = "<>";
+        renamed = "r";
+        deleted = "x";
+      };
+      git_branch.symbol = "git ";
+    };
   };
   programs.fzf = {
     enable = true;
