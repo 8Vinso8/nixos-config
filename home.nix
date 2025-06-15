@@ -3,6 +3,7 @@
 {
   imports = [
     ./home/shell
+    ./home/de/niri
   ];
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
