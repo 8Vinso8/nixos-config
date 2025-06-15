@@ -8,6 +8,7 @@
 {
   networking.hostName = "${hostname}";
   networking.networkmanager.enable = true;
+  networking.timeServers = [ "openwrt.lan" ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

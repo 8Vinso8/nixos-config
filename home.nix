@@ -110,7 +110,6 @@
         "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}))";
         "<CR>" = "cmp.mapping.confirm({ select = true })";
       };
-      settings.preselect = "cmp.PreselectMode.None";
     };
     lsp.inlayHints.enable = true;
     lsp.servers.nixd.enable = true;
