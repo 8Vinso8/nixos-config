@@ -15,22 +15,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, secrets, home-manager, nixvim, ... }@inputs: {
-    nixosConfigurations = {
-      nixvm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-	specialArgs = { inherit inputs; };
-	modules = [
-          ./configuration.nix
-	  home-manager.nixosModules.home-manager
-	  {
-            home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.extraSpecialArgs = { inherit inputs; };
-	    home-manager.users.vinso = import ./home.nix;
-	  }
-	];
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    {
+      nixosConfigurations = {
+        nixvm = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/nixvm
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.users.vinso = import ./home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }
