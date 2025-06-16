@@ -9,9 +9,11 @@
       nixfmt-rfc-style
     ];
     settings = {
-      theme = "mocha";
+      theme = "catppuccin_mocha";
+      editor = {
+        true-color = true;
+      };
     };
-    themes.mocha = lib.importTOML ./mocha.toml;
     languages.language = [
       {
         name = "nix";
