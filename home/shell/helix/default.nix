@@ -8,6 +8,10 @@
       nil
       nixfmt-rfc-style
     ];
+    settings = {
+      theme = "mocha";
+    };
+    themes.mocha = lib.importTOML ./mocha.toml;
     languages.language = [
       {
         name = "nix";
