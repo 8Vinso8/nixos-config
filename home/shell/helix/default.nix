@@ -11,7 +11,11 @@
     settings = {
       theme = "catppuccin_mocha";
       editor = {
+        cursorline = true;
+        preview-completion-insert = false;
         true-color = true;
+        rulers = [ 120 ];
+        popup-border = "all";
       };
     };
     languages.language = [
