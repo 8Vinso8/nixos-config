@@ -6,5 +6,6 @@
     ./starship.nix
     ./fzf.nix
     ./nixvim.nix
+    ./helix.nix
   ];
 }
