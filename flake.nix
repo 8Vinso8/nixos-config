@@ -9,10 +9,12 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secrets.url = "git+ssh://git@github.com/8Vinso8/secrets.git";
   };
 
-  outputs = { nixpkgs, home-manager, zen-browser, ... }@inputs: {
+  outputs = { nixpkgs, secrets, home-manager, zen-browser, ... }@inputs: {
     nixosConfigurations.nixvm = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit secrets; };
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager

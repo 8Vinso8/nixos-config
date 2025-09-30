@@ -61,7 +61,23 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "secrets": "secrets",
         "zen-browser": "zen-browser"
+      }
+    },
+    "secrets": {
+      "locked": {
+        "lastModified": 1759191592,
+        "narHash": "sha256-QO2YivXBsxQ5x+IIv4wq5F3MoIAqP4u9OfUO6ttGQZA=",
+        "ref": "refs/heads/master",
+        "rev": "8d6a62d3fc235d87983a3ddd82f8ff88fb0bedf4",
+        "revCount": 43,
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/8Vinso8/secrets.git"
       }
     },
     "zen-browser": {
