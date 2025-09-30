@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, secrets, ... }:
 
 {
   imports =
@@ -49,6 +49,11 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+
+  services.sing-box = {
+    enable = true;
+    settings = secrets.singBoxConfig;
   };
 
   users.users.vinso = {
