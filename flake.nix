@@ -12,19 +12,35 @@
     secrets.url = "git+ssh://git@github.com/8Vinso8/secrets.git";
   };
 
-  outputs = { nixpkgs, secrets, home-manager, zen-browser, ... }@inputs: {
-    nixosConfigurations.nixvm = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit secrets; };
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
+  outputs =
+    {
+      nixpkgs,
+      secrets,
+      home-manager,
+      zen-browser,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations.nixvm = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          hostname = "nixvm";
+          inherit secrets;
+        };
+        modules = [
+          ./hosts/nixvm
+          home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.vinso = import ./home.nix;
-            home-manager.extraSpecialArgs = { inherit zen-browser; };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                hostname = "nixvm";
+                inherit zen-browser;
+              };
+              users.vinso = import ./home.nix;
+            };
           }
-      ];
+        ];
+      };
     };
-  };
 }

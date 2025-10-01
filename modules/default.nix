@@ -1,23 +1,24 @@
-{ pkgs, secrets, ... }:
+{ pkgs, hostname, secrets, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "nixvm";
-
+  networking.hostName = hostname;
   networking.networkmanager.enable = true;
+  services.resolved.enable = true;
+  networking.firewall.enable = false;
+  
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      configurationLimit = 5;
+    };
+    efi.canTouchEfiVariables = true;
+    timeout = 5;
+  };
+
   time.timeZone = "Asia/Vladivostok";
 
   i18n.defaultLocale = "ru_RU.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "ru_RU.UTF-8";
     LC_IDENTIFICATION = "ru_RU.UTF-8";
@@ -29,19 +30,23 @@
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
   };
-
-  services.xserver.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
-  services.xserver.xkb = {
-    layout = "ru";
-    variant = "";
+  
+  security.sudo.wheelNeedsPassword = false;
+  users.users.vinso = {
+    isNormalUser = true;
+    description = "vinso";
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  services.printing.enable = true;
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+  ];
 
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -49,6 +54,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   services.sing-box = {
@@ -56,31 +62,8 @@
     settings = secrets.singBoxConfig;
   };
 
-  users.users.vinso = {
-    isNormalUser = true;
-    description = "vinso";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    nixd
-  ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  networking.firewall.enable = false;
 
   system.stateVersion = "25.05";
-
 }
