@@ -38,6 +38,19 @@
       builtins.readFile "${pkgs.starship}/share/starship/presets/pure-preset.toml"
     );
   };
+  programs.fd.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+    defaultCommand = "fd --type f";
+    fileWidgetCommand = "fd --type f";
+    changeDirWidgetCommand = "fd --type d";
+  };
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
