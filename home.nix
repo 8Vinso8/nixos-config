@@ -1,12 +1,16 @@
 {
   pkgs,
   zen-browser,
+  catppuccin,
   hostname,
   ...
 }:
 
 {
-  imports = [ zen-browser.homeModules.beta ];
+  imports = [
+    zen-browser.homeModules.beta
+    catppuccin.homeModules.catppuccin
+  ];
 
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
@@ -14,7 +18,26 @@
   home.packages = with pkgs; [
   ];
 
+  catppuccin = {
+    flavor = "mocha";
+    accent = "mauve";
+    fish.enable = true;
+    fzf.enable = true;
+    helix.enable = true;
+    kitty.enable = true;
+    starship.enable = true;
+    yazi.enable = true;
+  };
+
   programs.fish.enable = true;
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    enableTransience = true;
+    settings = builtins.fromTOML (
+      builtins.readFile "${pkgs.starship}/share/starship/presets/pure-preset.toml"
+    );
+  };
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -23,7 +46,6 @@
       nixfmt
     ];
     settings = {
-      theme = "catppuccin_mocha";
       editor = {
         cursorline = true;
         preview-completion-insert = false;

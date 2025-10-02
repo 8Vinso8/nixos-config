@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     secrets.url = "git+ssh://git@github.com/8Vinso8/secrets.git";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
@@ -18,6 +19,7 @@
       secrets,
       home-manager,
       zen-browser,
+      catppuccin,
       ...
     }@inputs:
     {
@@ -35,7 +37,7 @@
               useUserPackages = true;
               extraSpecialArgs = {
                 hostname = "nixvm";
-                inherit zen-browser;
+                inherit zen-browser catppuccin;
               };
               users.vinso = import ./home.nix;
             };
