@@ -55,6 +55,15 @@
     enable = true;
     enableFishIntegration = true;
   };
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = true;
+    git = true;
+    extraOptions = [
+      "--all"
+      "--group-directories-first"
+    ];
+  };
 
   programs.helix = {
     enable = true;
