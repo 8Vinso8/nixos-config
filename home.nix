@@ -29,7 +29,12 @@
     yazi.enable = true;
   };
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    functions = {
+      fish_greeting = "";
+    };
+  };
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
