@@ -11,6 +11,7 @@
 
   hardware.amdgpu.overdrive.enable = true;
   hardware.amdgpu.initrd.enable = true;
+  services.lact.enable = true;
 
   hardware.i2c.enable = true;
 
