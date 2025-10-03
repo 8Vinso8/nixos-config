@@ -16,6 +16,7 @@
   home.homeDirectory = "/home/vinso";
 
   home.packages = with pkgs; [
+    spotify
   ];
 
   programs.vesktop.enable = true;
