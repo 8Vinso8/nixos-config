@@ -23,26 +23,49 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.nixvm = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          hostname = "nixvm";
-          inherit secrets;
-        };
-        modules = [
-          ./hosts/nixvm
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                hostname = "nixvm";
-                inherit zen-browser catppuccin;
+      nixosConfigurations = {
+        nixvm = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            hostname = "nixvm";
+            inherit secrets;
+          };
+          modules = [
+            ./hosts/nixvm
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  hostname = "nixvm";
+                  inherit zen-browser catppuccin;
+                };
+                users.vinso = import ./home.nix;
               };
-              users.vinso = import ./home.nix;
-            };
-          }
-        ];
+            }
+          ];
+        };
+        firewake = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            hostname = "firewake";
+            inherit secrets;
+          };
+          modules = [
+            ./hosts/firewake
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = {
+                  hostname = "firewake";
+                  inherit zen-browser catppuccin;
+                };
+                users.vinso = import ./home.nix;
+              };
+            }
+          ];
+        };
       };
     };
 }

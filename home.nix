@@ -18,6 +18,8 @@
   home.packages = with pkgs; [
   ];
 
+  programs.vesktop.enable = true;
+
   catppuccin = {
     flavor = "mocha";
     accent = "mauve";
