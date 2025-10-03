@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/plasma.nix
   ];
 
   hardware.amdgpu.overdrive.enable = true;

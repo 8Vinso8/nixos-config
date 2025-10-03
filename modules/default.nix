@@ -70,11 +70,6 @@
     vim
   ];
 
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.compositor = "kwin";
-  services.displayManager.sddm.wayland.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
