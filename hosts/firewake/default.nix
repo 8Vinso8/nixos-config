@@ -9,6 +9,9 @@
     ../../modules
   ];
 
+  hardware.amdgpu.overdrive.enable = true;
+  hardware.amdgpu.initrd.enable = true;
+
   systemd.services.sleep-fix = {
     enable = true;
     description = "Disable GPP0 to fix gigabyte b550 sleep bug";
