@@ -12,14 +12,31 @@
   networking.firewall.enable = false;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [
+    "nowatchdog"
+    "quiet"
+    "udev.log_level=3"
+  ];
+  boot.consoleLogLevel = 0;
+  boot.blacklistedKernelModules = [
+    "iTCO_wdt"
+    "sp5100_tco"
+  ];
+  boot.initrd.systemd.enable = true;
   boot.loader = {
     systemd-boot = {
       enable = true;
       configurationLimit = 5;
     };
     efi.canTouchEfiVariables = true;
-    timeout = 5;
+    timeout = 0;
   };
+
+  networking.timeServers = [
+    "10.0.0.1"
+    "time.google.com"
+    "time.cloudflare.com"
+  ];
 
   fonts = {
     enableDefaultPackages = true;

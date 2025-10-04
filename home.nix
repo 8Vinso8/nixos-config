@@ -19,6 +19,14 @@
     spotify
   ];
 
+  gtk = {
+    enable = true;
+    font = {
+      name = "Roboto";
+      size = 12;
+    };
+  };
+
   programs.vesktop.enable = true;
 
   catppuccin = {
