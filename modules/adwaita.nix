@@ -13,14 +13,10 @@ let
   cfg = config.custom.adwaitaTheme;
 in
 {
-  options = {
-    custom.adwaitaTheme = {
-      enable = mkEnableOption "adwaitaTheme";
-    };
-  };
+  options.custom.adwaitaTheme.enable = mkEnableOption "adwaita theme";
 
   config = mkIf cfg.enable {
-    home-manmager.users.vinso = {
+    home-manager.users.vinso = {
       home.pointerCursor = {
         enable = true;
         package = pkgs.adwaita-icon-theme;
