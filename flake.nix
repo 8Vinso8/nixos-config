@@ -27,7 +27,6 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.vinso = ./home.nix;
             };
           }
         ];
