@@ -9,6 +9,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules
   ];
 
   boot.loader = {
@@ -108,6 +109,8 @@
   ];
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+  custom.adwaitaTheme.enable = true;
+
   home-manager.users.vinso = {
     home.username = "vinso";
     home.homeDirectory = "/home/vinso";
@@ -122,28 +125,6 @@
         user.name = "Vinso";
         user.email = "8vinso8@gmail.com";
       };
-    };
-
-    home.pointerCursor = {
-      enable = true;
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-      gtk.enable = true;
-      x11.enable = true;
-    };
-
-    gtk = {
-      enable = true;
-      colorScheme = "dark";
-      theme = {
-        name = "Adwaita-dark";
-        package = pkgs.gnome-themes-extra;
-      };
-    };
-
-    qt = {
-      enable = true;
-      style.name = "adwaita-dark";
     };
 
     programs.kitty = {
