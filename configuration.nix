@@ -13,6 +13,7 @@
     ./modules/fonts.nix
 
     ./modules/shell
+    ./modules/wm/scripts
   ];
 
   boot.loader = {
@@ -94,7 +95,7 @@
   security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "i2c" "network" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -110,6 +111,7 @@
     playerctl
     libnotify
     inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
+    wev
   ];
 
   #Niri and deps
@@ -122,6 +124,7 @@
     "nix-command"
     "flakes"
   ];
+  nixpkgs.config.allowUnfree = true;
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   home-manager.users.vinso = {
@@ -135,6 +138,7 @@
       pcmanfm-qt
       telegram-desktop
       gimp
+      spotify
     ];
 
     programs.git = {
