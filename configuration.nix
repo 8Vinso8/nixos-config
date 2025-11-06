@@ -98,10 +98,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    helix
-    nixd
-    nixfmt
-
     git
     wget
 
@@ -113,10 +109,6 @@
     ddcutil
     playerctl
     libnotify
-
-    # to test polkitagent
-    gparted
-
     inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
   ];
 
@@ -139,7 +131,6 @@
     home.packages = with pkgs; [
       hyprpolkitagent
       qbittorrent
-      fd
       waybar
       pcmanfm-qt
       telegram-desktop
