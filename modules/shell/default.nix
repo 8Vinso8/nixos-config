@@ -9,5 +9,6 @@
     ./yazi
     ./btop
     ./helix
+    ./kitty
   ];
 }

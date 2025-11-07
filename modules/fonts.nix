@@ -8,8 +8,6 @@
 
       roboto
       roboto-mono
-
-      nerd-fonts.jetbrains-mono
     ];
     fontconfig = {
       enable = true;

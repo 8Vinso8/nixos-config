@@ -13,7 +13,9 @@
     ./modules/fonts.nix
 
     ./modules/shell
+
     ./modules/wm/scripts
+    ./modules/wm/waybar
   ];
 
   boot.loader = {
@@ -95,7 +97,11 @@
   security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "i2c" "network" ];
+    extraGroups = [
+      "wheel"
+      "i2c"
+      "network"
+    ];
   };
 
   environment.systemPackages = with pkgs; [
