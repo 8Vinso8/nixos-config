@@ -139,6 +139,9 @@
       telegram-desktop
       gimp
       spotify
+      (discord.override {
+        withVencord = true;
+      })
     ];
 
     programs.git = {
