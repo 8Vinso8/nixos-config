@@ -1,17 +1,18 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   home-manager.users.vinso = {
     programs.tofi = {
       enable = true;
       settings = {
+        terminal = "kitty -e";
         anchor = "top";
         width = "100%";
         height = 30;
         horizontal = true;
         font-size = 14;
         prompt-text = " run: ";
-        font = "monospace";
+        font = "${pkgs.roboto-mono}/share/fonts/truetype/RobotoMono-Regular.ttf";
         outline-width = 0;
         border-width = 0;
         background-color = "#000000";

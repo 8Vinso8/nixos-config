@@ -130,7 +130,7 @@ binds {
     XF86AudioMute { spawn "toggle-microphone"; }
 
     Mod+Q { spawn "kitty"; }
-    Mod+D { spawn "tofi"; }
+    Mod+D { spawn "sh" "-c" "tofi-drun | xargs niri msg action spawn --"; }
 
     Mod+Tab repeat=false { toggle-overview; }
 
