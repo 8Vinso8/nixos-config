@@ -8,7 +8,7 @@
 
         main = {
           terminal = "kitty -e";
-          match-mode = "fuzzy";
+          match-mode = "exact";
           font = "monospace:size=14";
           use-bold = "yes";
           icons-enabled = "no";
