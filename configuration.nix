@@ -14,8 +14,7 @@
 
     ./modules/shell
 
-    ./modules/wm/scripts
-    ./modules/wm/waybar
+    ./modules/wm/niri
   ];
 
   boot.loader = {
@@ -108,22 +107,12 @@
     git
     wget
 
-    # Niri
-    fuzzel
-    mako
-    xwayland-satellite
-    pavucontrol
+    # brightness control
     ddcutil
-    playerctl
-    libnotify
-    inputs.zen-browser.packages."${stdenv.hostPlatform.system}".default
-    wev
+
   ];
 
-  #Niri and deps
-  programs.niri.enable = true;
-  security.polkit.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  # To control brightness with ddcutil
   hardware.i2c.enable = true;
 
   nix.settings.experimental-features = [
@@ -133,22 +122,35 @@
   nixpkgs.config.allowUnfree = true;
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        user = "greeter";
+        command = "${pkgs.tuigreet}/bin/tuigreet -r --remember-session";
+      };
+    };
+  };
+
   home-manager.users.vinso = {
+    imports = [
+      inputs.zen-browser.homeModules.beta
+    ];
+
     home.username = "vinso";
     home.homeDirectory = "/home/vinso";
 
     home.packages = with pkgs; [
-      hyprpolkitagent
       qbittorrent
-      waybar
-      pcmanfm-qt
       telegram-desktop
-      gimp
       spotify
       (discord.override {
         withVencord = true;
       })
+      pavucontrol
     ];
+
+    programs.zen-browser.enable = true;
 
     programs.git = {
       enable = true;
