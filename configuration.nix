@@ -132,6 +132,13 @@
     };
   };
 
+  programs.steam = {
+    enable = true;
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
+
   home-manager.users.vinso = {
     imports = [
       inputs.zen-browser.homeModules.beta

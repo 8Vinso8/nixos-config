@@ -5,7 +5,7 @@
     ../waybar
     ../scripts
     ../mako
-    ../tofi
+    ../fuzzel
   ];
 
   programs.niri.enable = true;

@@ -74,7 +74,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Steam" at-startup=true
+    match app-id="steam" at-startup=true
 
     open-maximized true
     open-on-workspace "games"
@@ -130,7 +130,7 @@ binds {
     XF86AudioMute { spawn "toggle-microphone"; }
 
     Mod+Q { spawn "kitty"; }
-    Mod+D { spawn "sh" "-c" "tofi-drun | xargs niri msg action spawn --"; }
+    Mod+D { spawn "fuzzel"; }
 
     Mod+Tab repeat=false { toggle-overview; }
 
