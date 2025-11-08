@@ -4,11 +4,13 @@
   home-manager.users.vinso = {
     programs.waybar = {
       enable = true;
+      style = ./style.css;
       settings = {
         mainBar = {
           layer = "bottom";
           position = "bottom";
-          spacing = 4;
+          spacing = 0;
+          height = 16;
 
           modules-left = [
             "niri/workspaces"
@@ -20,15 +22,13 @@
             "niri/language"
             "hyprland/language"
             "pulseaudio"
-            "cpu"
-            "memory"
             "custom/brightness"
             "tray"
           ];
 
           "custom/brightness" = {
             exec = "cat ~/.config/last_brightness";
-            format = "br:{}%";
+            format = "bri:{}%";
             interval = 5;
           };
 
@@ -37,7 +37,9 @@
             tooltip = false;
           };
 
-          tray.spacing = 5;
+          tray = {
+            spacing = 10;
+          };
 
           clock = {
             format = "{:L%H:%M  %a %d.%m.%Y}";
@@ -63,25 +65,16 @@
             };
           };
 
-          cpu = {
-            format = "cpu:{usage}%";
-            tooltip = false;
-          };
-
-          memory = {
-            format = "mem:{}%";
-          };
-
           pulseaudio = {
             format = "{format_source}";
             format-source = "mic";
-            format-source-muted = "MIC";
+            format-source-muted = "mic";
             tooltip = false;
           };
 
           "niri/language" = {
-            format-en = "EN";
-            format-ru = "RU";
+            format-en = "en";
+            format-ru = "ru";
           };
         };
       };
