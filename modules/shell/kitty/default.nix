@@ -5,8 +5,8 @@
     programs.kitty = {
       enable = true;
       font = {
-        package = pkgs.monaspace;
-        name = "Monaspace Neon Frozen";
+        package = pkgs.jetbrains-mono;
+        name = "JetBrains Mono";
         size = 12;
       };
       settings = {

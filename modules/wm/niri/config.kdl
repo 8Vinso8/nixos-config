@@ -91,7 +91,7 @@ window-rule {
     match app-id=r#"^steam_app_\d+$"#
 
     open-fullscreen true
-    variable-refresh-rate true
+    // variable-refresh-rate true
 }
 
 spawn-at-startup "waybar"

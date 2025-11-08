@@ -15,6 +15,8 @@
   home-manager.users.vinso = {
     xdg.configFile."niri/config.kdl".source = ./config.kdl;
     home.packages = with pkgs; [
+      # required for file picker dialogues
+      nautilus
       # polkit agent
       hyprpolkitagent
       # media control
