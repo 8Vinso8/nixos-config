@@ -49,8 +49,10 @@
 
   services.scx = {
     enable = true;
-    scheduler = "scx_lavd";
+    scheduler = "scx_bpfland";
   };
+
+  services.power-profiles-daemon.enable = true;
 
   # GPP0 disable to fix sleep
   services.udev.extraRules = ''
