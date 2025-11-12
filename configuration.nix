@@ -98,6 +98,14 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    extraConfig.pipewire = {
+      # Fix for audio crackling under high cpu load
+      "99-min-quantum.conf" = {
+        "context.properties" = {
+          "default.clock.min-quantum" = 1024;
+        };
+      };
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;

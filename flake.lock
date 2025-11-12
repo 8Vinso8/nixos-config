@@ -67,11 +67,11 @@
     },
     "secrets": {
       "locked": {
-        "lastModified": 1762398077,
-        "narHash": "sha256-gHZ3CYKDK6J3VNQd2/W+f+izLh+IIRUqk2e9kHg8pLI=",
+        "lastModified": 1762819788,
+        "narHash": "sha256-VqC5GjdAiYEVs8KjTdIHIF5j9wunW0TfjFkfpURRkOs=",
         "ref": "refs/heads/master",
-        "rev": "f39a1ffe0c7613b6818b4c00a64a9ff8a0746c7c",
-        "revCount": 48,
+        "rev": "3374e2f02976faf0042e1e6f8b8c60aee160803e",
+        "revCount": 49,
         "type": "git",
         "url": "ssh://git@github.com/8Vinso8/secrets"
       },
