@@ -2,7 +2,7 @@ input {
     keyboard {
         xkb {
             layout "us,ru"
-            options "grp:alt_shift_toggle"
+            options "grp:alt_shift_toggle,caps:none"
         }
 
         track-layout "window"
