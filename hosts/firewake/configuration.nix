@@ -30,7 +30,7 @@
   hardware.amdgpu.initrd.enable = true;
 
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="pci", KERNEL="0000:00:01.1", ATTR{power/wakeup}="disabled"
+    ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
     ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sdb", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb"
   '';
 
