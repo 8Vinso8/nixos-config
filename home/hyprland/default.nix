@@ -29,4 +29,6 @@ in
       ", XF86AudioMute, exec, ${lib.getExe scripts.toggle-audio}"
     ];
   };
+
+  programs.bash.enable = true;
 }

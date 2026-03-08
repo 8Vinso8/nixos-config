@@ -22,6 +22,9 @@
     })
     goverlay
     vlc
+
+    pcmanfm
+    kdePackages.ark
   ];
 
   programs.fastfetch.enable = true;

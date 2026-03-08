@@ -72,4 +72,7 @@
   programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
+  
+  # Automount usb in pcmanfm
+  services.gvfs.enable = true;
 }
