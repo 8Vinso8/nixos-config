@@ -50,6 +50,8 @@
     '';
   };
 
+  users.users.vinso.extraGroups = [ "i2c" ];
+
   systemd.services.restore-ddc = {
     description = "Restore ddc brightness after sleep";
     after = [
