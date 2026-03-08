@@ -21,6 +21,7 @@
       withVencord = true;
     })
     goverlay
+    vlc
   ];
 
   programs.fastfetch.enable = true;

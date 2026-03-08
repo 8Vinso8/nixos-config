@@ -21,6 +21,34 @@
   boot.consoleLogLevel = 3;
   boot.blacklistedKernelModules = [ "sp5100_tco" ];
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  services.lact.enable = true;
+  hardware.amdgpu.initrd.enable = true;
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="pci", KERNEL="0000:00:01.1", ATTR{power/wakeup}="disabled"
+    ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sdb", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb"
+  '';
+
+  systemd.services.hdparm = {
+    description = "Apply hdd params after sleep";
+    wantedBy = [ "post-resume.target" ];
+    after = [ "post-resume.target" ];
+    script = ''
+      ${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb
+    '';
+    serviceConfig.Type = "simple";
+  };
+
+  programs.throne = {
+    enable = true;
+    tunMode.enable = true;
+  };
+
   programs.hyprland.enable = true;
 
   services.greetd = {
