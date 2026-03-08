@@ -5,6 +5,7 @@ let
     hypr-change-layout = pkgs.callPackage ./scripts/hypr-change-layout.nix { };
     toggle-microphone = pkgs.callPackage ./scripts/toggle-microphone.nix { };
     toggle-audio = pkgs.callPackage ./scripts/toggle-audio.nix { };
+    ddc-brightness = pkgs.callPackage ./scripts/ddc-brightness.nix { };
   };
 in
 {
@@ -27,6 +28,8 @@ in
       "$mainMod, L, exec, ${lib.getExe scripts.hypr-change-layout}"
       "$mainMod, XF86AudioMute, exec, ${lib.getExe scripts.toggle-microphone}"
       ", XF86AudioMute, exec, ${lib.getExe scripts.toggle-audio}"
+      ", XF86MonBrightnessUp, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} up"
+      ", XF86MonBrightnessDown, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} down"
     ];
   };
 

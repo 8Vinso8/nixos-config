@@ -43,9 +43,9 @@ button {
 
 #idle_inhibitor,
 #language,
-#custom-brightness,
 #pulseaudio,
-#tray {
+#tray,
+#custom-ddc-brightness {
   padding: 0 5px;
   color: #ffffff;
   margin: 0;

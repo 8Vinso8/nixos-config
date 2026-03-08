@@ -13,6 +13,7 @@
       modules-left = [ "hyprland/workspaces" ];
       modules-center = [ "clock" ];
       modules-right = [
+        "custom/ddc-brightness"
         "idle_inhibitor"
         "hyprland/language"
         "pulseaudio"
@@ -63,6 +64,12 @@
       "hyprland/language" = {
         format-en = "en";
         format-ru = "ru";
+      };
+
+      "custom/ddc-brightness" = {
+        exec = "cat /home/vinso/.config/last_brightness";
+        format = "{}";
+        signal = 8;
       };
     };
   };

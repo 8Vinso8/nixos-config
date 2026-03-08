@@ -25,11 +25,21 @@
 
     pcmanfm
     kdePackages.ark
+
+    pavucontrol
+
+    ddcutil
+
+    hdparm
   ];
 
   programs.fastfetch.enable = true;
 
   programs.zen-browser.enable = true;
+
+  services.syncthing.enable = true;
+
+  programs.btop.enable = true;
 
   home.stateVersion = "${stateVersion}";
 }

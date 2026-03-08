@@ -36,12 +36,34 @@
 
   systemd.services.hdparm = {
     description = "Apply hdd params after sleep";
-    wantedBy = [ "post-resume.target" ];
-    after = [ "post-resume.target" ];
+    after = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+    ];
+    wantedBy = [
+      "sleep.target"
+    ];
+    serviceConfig.Type = "simple";
     script = ''
       ${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb
     '';
+  };
+
+  systemd.services.restore-ddc = {
+    description = "Restore ddc brightness after sleep";
+    after = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+    ];
+    wantedBy = [
+      "sleep.target"
+    ];
     serviceConfig.Type = "simple";
+    script = ''
+      sleep 3; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness)
+    '';
   };
 
   programs.throne = {
@@ -72,7 +94,9 @@
   programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
-  
+
   # Automount usb in pcmanfm
   services.gvfs.enable = true;
+
+  hardware.i2c.enable = true;
 }
