@@ -12,5 +12,7 @@
     ./waybar
     ./fuzzel.nix
     ./mako.nix
+    ./hyprpaper
+    ./hypridle.nix
   ];
 }

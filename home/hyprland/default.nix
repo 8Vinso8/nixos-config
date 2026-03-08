@@ -17,6 +17,7 @@ in
     libnotify
     wev
     playerctl
+    hyprshot
   ];
 
   services.hyprpolkitagent.enable = true;
