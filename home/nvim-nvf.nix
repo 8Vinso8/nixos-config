@@ -35,6 +35,7 @@
         };
       };
       setupOpts.actions.open_file.resize_window = true;
+      setupOpts.git.enable = true;
     };
 
     ui.noice.enable = true;
