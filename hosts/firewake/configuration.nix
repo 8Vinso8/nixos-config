@@ -1,12 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ../../system
   ];
-
-  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   boot.initrd.verbose = false;
   boot.initrd.systemd.enable = true;

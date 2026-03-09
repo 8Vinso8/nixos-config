@@ -24,6 +24,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "realtime"
     ];
   };
 

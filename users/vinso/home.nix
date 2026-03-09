@@ -31,6 +31,8 @@
     ddcutil
 
     hdparm
+
+    balatro-mod-manager
   ];
 
   programs.fastfetch.enable = true;
