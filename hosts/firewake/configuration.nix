@@ -6,6 +6,12 @@
     ../../system
   ];
 
+  nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  # Binary cache fof cachy kernel
+  nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
+  nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
+
   boot.initrd.verbose = false;
   boot.initrd.systemd.enable = true;
 
@@ -26,6 +32,7 @@
 
   services.lact.enable = true;
   hardware.amdgpu.initrd.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
@@ -99,4 +106,6 @@
   services.gvfs.enable = true;
 
   hardware.i2c.enable = true;
+
+  services.power-profiles-daemon.enable = true;
 }

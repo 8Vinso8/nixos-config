@@ -43,18 +43,6 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs hostname stateVersion; };
             modules = [
-              (
-                { pkgs, ... }:
-                {
-                  nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
-                    boot.kernelPackages = pkgs.cachyosKernels.linux-cachyos-latest-x86_64-v3;
-                    #boot.kernelPackages = pkgs.linuxPackages_latest;
-
-                  # Binary cache
-                    #nix.settings.substituters = [ "https://attic.xuyh0120.win/lantian" ];
-                    #nix.settings.trusted-public-keys = [ "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" ];
-                }
-              )
               ./hosts/firewake/configuration.nix
               home-manager.nixosModules.home-manager
               {
