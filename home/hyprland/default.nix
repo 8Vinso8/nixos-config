@@ -18,6 +18,7 @@ in
     wev
     playerctl
     hyprshot
+    hyprland-per-window-layout
   ];
 
   services.hyprpolkitagent.enable = true;
@@ -31,6 +32,10 @@ in
       ", XF86AudioMute, exec, ${lib.getExe scripts.toggle-audio}"
       ", XF86MonBrightnessUp, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} up"
       ", XF86MonBrightnessDown, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} down"
+    ];
+
+    exec-once = [
+      "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
     ];
   };
 
