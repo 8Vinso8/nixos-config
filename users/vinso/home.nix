@@ -33,6 +33,8 @@
     hdparm
 
     balatro-mod-manager
+
+    mpv
   ];
 
   programs.fastfetch.enable = true;

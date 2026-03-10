@@ -34,5 +34,6 @@ in
     ];
   };
 
+  # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
 }
