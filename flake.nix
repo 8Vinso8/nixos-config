@@ -56,28 +56,6 @@
             ];
           };
 
-        nixvm =
-          let
-            hostname = "nixvm";
-            # Change if fresh install
-            stateVersion = "25.11";
-          in
-          nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs hostname stateVersion; };
-            modules = [
-              ./hosts/nixvm/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs hostname stateVersion; };
-                  users.vinso = import ./users/vinso-vm/home.nix;
-                };
-              }
-            ];
-          };
-
       };
     };
 }
