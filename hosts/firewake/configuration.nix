@@ -9,17 +9,12 @@
   nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
-  boot.initrd.verbose = false;
   boot.initrd.systemd.enable = true;
 
   boot.kernelParams = [
-    "quiet"
-    "udev.log_level=3"
-    "systemd.show_status=auto"
     "nowatchdog"
   ];
 
-  boot.consoleLogLevel = 3;
   boot.blacklistedKernelModules = [ "sp5100_tco" ];
 
   hardware.graphics = {
