@@ -36,8 +36,7 @@
         firewake =
           let
             hostname = "firewake";
-            # Change if fresh install
-            stateVersion = "25.11";
+            stateVersion = "26.05";
           in
           nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
