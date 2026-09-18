@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, stateVersion, ... }:
 
 {
   imports = [
@@ -54,8 +54,6 @@
     '';
   };
 
-  users.users.vinso.extraGroups = [ "i2c" ];
-
   systemd.services.restore-ddc = {
     description = "Restore ddc brightness after sleep";
     after = [
@@ -107,4 +105,46 @@
   hardware.i2c.enable = true;
 
   services.power-profiles-daemon.enable = true;
+
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
+  };
+
+  time.timeZone = "Asia/Vladivostok";
+
+  i18n.defaultLocale = "ru_RU.UTF-8";
+
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+  ];
+
+  programs.fish.enable = true;
+  users.users.vinso = {
+    isNormalUser = true;
+    shell = pkgs.fish;
+    description = "vinso";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "realtime"
+      "i2c"
+    ];
+  };
+
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    jack.enable = true;
+  };
+
+  documentation.nixos.enable = false;
+
+  system.stateVersion = "${stateVersion}";
 }
