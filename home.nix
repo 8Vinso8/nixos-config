@@ -12,7 +12,7 @@
   imports = [
     ./home/hyprland
     ./home/hyprpaper
-    ./home/shell
+    ./home/fish.nix
     ./home/waybar
     ./home/fuzzel.nix
     ./home/git.nix
