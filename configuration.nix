@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ./system/amdgpu.nix
     ./system/boot.nix
+    ./system/ddc-restore.nix
     ./system/fonts.nix
     ./system/hdd-sleep.nix
     ./system/hyprland.nix
@@ -35,22 +36,6 @@
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
   '';
-
-  systemd.services.restore-ddc = {
-    description = "Restore ddc brightness after sleep";
-    after = [
-      "suspend.target"
-      "hybrid-sleep.target"
-      "hibernate.target"
-    ];
-    wantedBy = [
-      "sleep.target"
-    ];
-    serviceConfig.Type = "simple";
-    script = ''
-      sleep 3; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness)
-    '';
-  };
 
   programs.steam = {
     enable = true;
@@ -85,10 +70,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "vinso";
-    extraGroups = [
-      "wheel"
-      "i2c"
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   documentation.nixos.enable = false;
