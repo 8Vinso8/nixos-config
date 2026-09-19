@@ -1,12 +1,20 @@
-{ pkgs, inputs, stateVersion, ... }:
+{
+  pkgs,
+  inputs,
+  stateVersion,
+  ...
+}:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ./system/amdgpu.nix
     ./system/boot.nix
     ./system/fonts.nix
-    ./network.nix
-    ./nix-settings.nix
+    ./system/hyprland.nix
+    ./system/network.nix
+    ./system/nix-settings.nix
+    ./system/swap.nix
   ];
 
   nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
@@ -19,22 +27,6 @@
   ];
 
   boot.blacklistedKernelModules = [ "sp5100_tco" ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  services.lact.enable = true;
-  hardware.amdgpu.initrd.enable = true;
-  hardware.amdgpu.overdrive.enable = true;
-
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024; # 16 GiB
-    }
-  ];
 
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
@@ -73,24 +65,6 @@
     '';
   };
 
-  programs.throne = {
-    enable = true;
-    tunMode.enable = true;
-  };
-
-  programs.hyprland.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "start-hyprland &> /dev/null";
-        user = "vinso";
-      };
-      default_session = initial_session;
-    };
-  };
-
   programs.steam = {
     enable = true;
     extraCompatPackages = with pkgs; [
@@ -108,11 +82,6 @@
   hardware.i2c.enable = true;
 
   services.power-profiles-daemon.enable = true;
-
-  zramSwap = {
-    enable = true;
-    memoryPercent = 100;
-  };
 
   time.timeZone = "Asia/Vladivostok";
 
