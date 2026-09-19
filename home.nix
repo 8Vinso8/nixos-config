@@ -10,7 +10,17 @@
   home.homeDirectory = "/home/vinso";
 
   imports = [
-    ./home
+    ./home/hyprland
+    ./home/hyprpaper
+    ./home/shell
+    ./home/waybar
+    ./home/fuzzel.nix
+    ./home/git.nix
+    ./home/hypridle.nix
+    ./home/kitty.nix
+    ./home/mako.nix
+    ./home/nvim-nvf.nix
+    ./home/theme.nix
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -20,20 +30,11 @@
     (discord.override {
       withVencord = true;
     })
-    goverlay
-    vlc
-
     pcmanfm
     kdePackages.ark
-
     pavucontrol
-
     ddcutil
-
     hdparm
-
-    balatro-mod-manager
-
     mpv
   ];
 
@@ -52,7 +53,10 @@
 
   programs.fastfetch.enable = true;
 
-  programs.zen-browser.enable = true;
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+  };
 
   programs.btop.enable = true;
 
