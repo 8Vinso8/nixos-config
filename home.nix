@@ -37,6 +37,19 @@
     mpv
   ];
 
+  xdg.userDirs = {
+    enable = true;
+    desktop = "Desktop";
+    documents = "Documents";
+    download = "Downloads";
+    music = "Music";
+    pictures = "Pictures";
+    projects = "Projects";
+    publicShare = "Public";
+    templates = "Templates";
+    videos = "Videos";
+  };
+
   programs.fastfetch.enable = true;
 
   programs.zen-browser.enable = true;
