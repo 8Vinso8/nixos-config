@@ -100,7 +100,6 @@
     shell = pkgs.fish;
     description = "vinso";
     extraGroups = [
-      "networkmanager"
       "wheel"
       "i2c"
     ];
