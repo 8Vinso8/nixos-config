@@ -6,9 +6,6 @@
 }:
 
 {
-  home.username = "vinso";
-  home.homeDirectory = "/home/vinso";
-
   imports = [
     ./home/hyprland
     ./home/hyprpaper
@@ -19,6 +16,7 @@
     ./home/hypridle.nix
     ./home/kitty.nix
     ./home/mako.nix
+    ./home/mpv.nix
     ./home/nvim-nvf.nix
     ./home/theme.nix
     inputs.zen-browser.homeModules.beta
@@ -35,8 +33,18 @@
     pavucontrol
     ddcutil
     hdparm
-    mpv
   ];
+
+  programs.fastfetch.enable = true;
+
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+  };
+
+  programs.btop.enable = true;
+
+  services.syncthing.enable = true;
 
   xdg.userDirs = {
     enable = true;
@@ -51,16 +59,8 @@
     videos = "Videos";
   };
 
-  programs.fastfetch.enable = true;
-
-  programs.zen-browser = {
-    enable = true;
-    setAsDefaultBrowser = true;
-  };
-
-  programs.btop.enable = true;
-
-  services.syncthing.enable = true;
+  home.username = "vinso";
+  home.homeDirectory = "/home/vinso";
 
   home.stateVersion = "${stateVersion}";
 }
