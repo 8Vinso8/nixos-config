@@ -25,14 +25,10 @@
   home.packages = with pkgs; [
     strawberry
     qbittorrent
-    (discord.override {
-      withVencord = true;
-    })
+    discord
     pcmanfm
     kdePackages.ark
     pavucontrol
-    ddcutil
-    hdparm
   ];
 
   programs.fastfetch.enable = true;
