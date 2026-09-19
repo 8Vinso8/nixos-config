@@ -39,6 +39,12 @@
     extraGroups = [ "wheel" ];
   };
 
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+  ];
+
   programs.steam = {
     enable = true;
     extraCompatPackages = with pkgs; [
@@ -54,15 +60,9 @@
 
   services.power-profiles-daemon.enable = true;
 
-  i18n.defaultLocale = "ru_RU.UTF-8";
-
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-  ];
-
   documentation.nixos.enable = false;
+
+  i18n.defaultLocale = "ru_RU.UTF-8";
 
   system.stateVersion = "${stateVersion}";
 }
