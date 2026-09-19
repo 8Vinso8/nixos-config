@@ -14,6 +14,7 @@
     ./system/hyprland.nix
     ./system/network.nix
     ./system/nix-settings.nix
+    ./system/pipewire.nix
     ./system/swap.nix
   ];
 
@@ -101,20 +102,11 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "realtime"
       "i2c"
     ];
   };
 
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
+
 
   documentation.nixos.enable = false;
 
