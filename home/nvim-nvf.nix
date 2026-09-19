@@ -17,7 +17,6 @@
   programs.nvf.enable = true;
 
   programs.nvf.settings.vim = {
-
     autocomplete.blink-cmp = {
       enable = true;
       setupOpts.cmdline.keymap.preset = "default";
@@ -94,23 +93,11 @@
     languages.lua = {
       enable = true;
       format.enable = true;
-      lsp = {
-        enable = true;
-        servers = [ "lua_ls" ];
-
-        setupOpts = {
-          Lua = {
-            workspace = {
-              library = [
-                "/run/current-system/sw/share/hypr/stubs"
-              ];
-              checkThirdParty = false;
-            };
-          };
-        };
-      };
-
+      lsp.enable = true;
       treesitter.enable = true;
+    };
+    lsp.servers.lua-language-server.settings.Lua = {
+      workspace.library = [ "/run/current-system/sw/share/hypr/stubs" ];
     };
 
     options = {
