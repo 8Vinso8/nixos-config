@@ -91,6 +91,28 @@
       };
     };
 
+    languages.lua = {
+      enable = true;
+      format.enable = true;
+      lsp = {
+        enable = true;
+        servers = [ "lua_ls" ];
+
+        setupOpts = {
+          Lua = {
+            workspace = {
+              library = [
+                "/run/current-system/sw/share/hypr/stubs"
+              ];
+              checkThirdParty = false;
+            };
+          };
+        };
+      };
+
+      treesitter.enable = true;
+    };
+
     options = {
       shiftwidth = 2;
       tabstop = 2;
