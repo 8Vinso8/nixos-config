@@ -3,10 +3,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../system/boot.nix
-    ../../system/fonts.nix
-    ../../network.nix
-    ../../nix-settings.nix
+    ./system/boot.nix
+    ./system/fonts.nix
+    ./network.nix
+    ./nix-settings.nix
   ];
 
   nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];

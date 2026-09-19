@@ -42,14 +42,14 @@
             system = "x86_64-linux";
             specialArgs = { inherit inputs hostname stateVersion; };
             modules = [
-              ./hosts/firewake/configuration.nix
+              ./configuration.nix
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
                   extraSpecialArgs = { inherit inputs hostname stateVersion; };
-                  users.vinso = import ./users/vinso/home.nix;
+                  users.vinso = import ./home.nix;
                 };
               }
             ];

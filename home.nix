@@ -10,7 +10,7 @@
   home.homeDirectory = "/home/vinso";
 
   imports = [
-    ../../home
+    ./home
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -41,9 +41,9 @@
 
   programs.zen-browser.enable = true;
 
-  services.syncthing.enable = true;
-
   programs.btop.enable = true;
+
+  services.syncthing.enable = true;
 
   home.stateVersion = "${stateVersion}";
 }
