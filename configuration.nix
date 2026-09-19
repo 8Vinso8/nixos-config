@@ -54,8 +54,6 @@
 
   services.power-profiles-daemon.enable = true;
 
-
-
   i18n.defaultLocale = "ru_RU.UTF-8";
 
   environment.systemPackages = with pkgs; [
