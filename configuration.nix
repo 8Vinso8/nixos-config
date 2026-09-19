@@ -16,6 +16,7 @@
     ./system/hyprland.nix
     ./system/network.nix
     ./system/nix-settings.nix
+    ./system/nowatchdog.nix
     ./system/pipewire.nix
     ./system/swap.nix
   ];
@@ -24,13 +25,6 @@
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
   boot.initrd.systemd.enable = true;
-
-  boot.kernelParams = [
-    "nowatchdog"
-  ];
-
-  boot.blacklistedKernelModules = [ "sp5100_tco" ];
-
 
   # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
