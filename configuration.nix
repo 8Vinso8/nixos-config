@@ -11,6 +11,7 @@
     ./system/amdgpu.nix
     ./system/boot.nix
     ./system/fonts.nix
+    ./system/hdd-sleep.nix
     ./system/hyprland.nix
     ./system/network.nix
     ./system/nix-settings.nix
@@ -29,26 +30,11 @@
 
   boot.blacklistedKernelModules = [ "sp5100_tco" ];
 
+
+  # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
-    ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sdb", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb"
   '';
-
-  systemd.services.hdparm = {
-    description = "Apply hdd params after sleep";
-    after = [
-      "suspend.target"
-      "hybrid-sleep.target"
-      "hibernate.target"
-    ];
-    wantedBy = [
-      "sleep.target"
-    ];
-    serviceConfig.Type = "simple";
-    script = ''
-      ${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb
-    '';
-  };
 
   systemd.services.restore-ddc = {
     description = "Restore ddc brightness after sleep";
@@ -104,8 +90,6 @@
       "i2c"
     ];
   };
-
-
 
   documentation.nixos.enable = false;
 
