@@ -23,7 +23,7 @@
   ];
 
   home.packages = with pkgs; [
-    strawberry
+    fooyin
     qbittorrent
     discord
     pcmanfm
