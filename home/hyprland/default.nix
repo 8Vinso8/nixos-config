@@ -10,7 +10,6 @@ let
 in
 {
   wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.extraConfig = builtins.readFile ./hyprland.conf;
 
   home.packages = with pkgs; [
     wl-clipboard
@@ -18,26 +17,17 @@ in
     wev
     playerctl
     hyprshot
-    hyprland-per-window-layout
   ];
 
   services.hyprpolkitagent.enable = true;
 
-  wayland.windowManager.hyprland.settings = {
-    "$mainMod" = "SUPER";
-
-    bind = [
-      "$mainMod, L, exec, ${lib.getExe scripts.hypr-change-layout}"
-      "$mainMod, XF86AudioMute, exec, ${lib.getExe scripts.toggle-microphone}"
-      ", XF86AudioMute, exec, ${lib.getExe scripts.toggle-audio}"
-      ", XF86MonBrightnessUp, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} up"
-      ", XF86MonBrightnessDown, exec, pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} down"
-    ];
-
-    exec-once = [
-      "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
-    ];
-  };
+  wayland.windowManager.hyprland.extraConfig = ''
+    hl.bind("SUPER + L", hl.dsp.exec_cmd("${lib.getExe scripts.hypr-change-layout}"))
+    hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("${lib.getExe scripts.toggle-microphone}"))
+    hl.bind("XF86AudioMute", hl.dsp.exec_cmd("${lib.getExe scripts.toggle-audio}"))
+    hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} up"))
+    hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} down"))
+  '';
 
   # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
