@@ -31,7 +31,7 @@ in
   '';
 
   wayland.windowManager.hyprland.extraLuaFiles = {
-    "main".content = ./configs/main.lua;
+    "config".content = ./configs/config.lua;
     "autostart".content = ./configs/autostart.lua;
     "windowrules".content = ./configs/windowrules.lua;
     "animations".content = ./configs/animations.lua;
