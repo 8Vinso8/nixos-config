@@ -44,6 +44,18 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("playerctl -p fooyin volume 0.05
 
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot --mode region --freeze --clipboard-only"))
 
+hl.bind(mainMod .. " + L", function()
+  local ws = hl.get_active_workspace()
+  if not ws then return end
+
+  local layout = ws.tiled_layout == "master" and "scrolling" or "master"
+
+  hl.workspace_rule({
+    workspace = tostring(ws.id),
+    layout = layout,
+  })
+end)
+
 local function layout_bind(bind_table)
   return function()
     local workspace = hl.get_active_special_workspace() or
