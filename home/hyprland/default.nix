@@ -22,6 +22,7 @@ in
   # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
   services.hyprpolkitagent.enable = true;
+  services.hyprlauncher.enable = true;
 
   wayland.windowManager.hyprland.enable = true;
 

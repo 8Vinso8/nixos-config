@@ -1,9 +1,8 @@
 hl.monitor({
   output   = "DP-1",
   mode     = "2560x1440@165",
-  position = "0",
+  position = "0x0",
   scale    = "1",
-  vrr      = "1",
 })
 
 hl.monitor({ output = "" }) -- Fallback rule
@@ -26,7 +25,7 @@ hl.config({
       enabled      = true,
       range        = 4,
       render_power = 3,
-      color        = 0xee1a1a1a,
+      color        = "rgba(26,26,26,0.933)",
     },
     blur     = {
       enabled  = true,

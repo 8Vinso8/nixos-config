@@ -22,19 +22,23 @@
       setupOpts.cmdline.keymap.preset = "default";
     };
 
+    visuals.nvim-web-devicons.enable = true;
     filetree.nvimTree = {
       enable = true;
-
-      setupOpts.view = {
-        signcolumn = "no";
-        width = {
-          max = -1;
-          min = -1;
-          padding = 1;
-        };
+      setupOpts = {
+        view = {
+          signcolumn = "no";
+          width = {
+            max = -1;
+            min = -1;
+            padding = 1;
+          };
+        }; 
+        actions.open_file.resize_window = true;
+        git.enable = true;
+        filters.dotfiles = true;
+        renderer.icons.show.git = true;
       };
-      setupOpts.actions.open_file.resize_window = true;
-      setupOpts.git.enable = true;
     };
 
     ui.noice.enable = true;

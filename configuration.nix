@@ -17,13 +17,14 @@
     ./system/network.nix
     ./system/nix-settings.nix
     ./system/nowatchdog.nix
-    .system/time.nix
+    ./system/time.nix
     ./system/pipewire.nix
     ./system/swap.nix
   ];
 
   nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.systemd.enable = true;
 
   # Fix sleep on Gigabyte B550 mb
@@ -61,6 +62,13 @@
   services.power-profiles-daemon.enable = true;
 
   documentation.nixos.enable = false;
+
+  fileSystems = {
+    "/".options = [ "compress=zstd" "noatime" ];
+    "/home".options = [ "compress=zstd" "noatime" ];
+    "/nix".options = [ "compress=zstd" "noatime" ];
+    "/swap".options = [ "noatime" ];
+  };
 
   i18n.defaultLocale = "ru_RU.UTF-8";
 

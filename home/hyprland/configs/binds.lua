@@ -8,7 +8,7 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("hyprlauncher"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-hl.bind(mainMod .. " + F", hl.disp.window.fullscreen())
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen())
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + A", hl.dsp.focus({ direction = "left" }))
@@ -44,11 +44,11 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("playerctl -p fooyin volume 0.05
 
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot --mode region --freeze --clipboard-only"))
 
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("toggle-audio"))
-hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("toggle-microphone"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("toggle-audio.sh"))
+hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("toggle-microphone.sh"))
 
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness up"))
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness down"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness.sh up"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness.sh down"))
 
 hl.bind(mainMod .. " + L", function()
   local ws = hl.get_active_workspace()

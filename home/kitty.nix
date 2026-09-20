@@ -1,9 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.kitty = {
     enable = true;
-    font.name = "monospace";
+    font.name = "JetBrainsMono Nerd Font";
+    font.package = pkgs.nerd-fonts.jetbrains-mono;
     font.size = 11;
     settings = {
       tab_bar_style = "powerline";
