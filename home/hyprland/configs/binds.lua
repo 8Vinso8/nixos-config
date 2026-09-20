@@ -44,6 +44,14 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("playerctl -p fooyin volume 0.05
 
 hl.bind("Print", hl.dsp.exec_cmd("hyprshot --mode region --freeze --clipboard-only"))
 
+hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("toggle-microphone"))
+
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("toggle-audio"))
+
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness up"))
+
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("pkill ddc-brightness; ddc-brightness down"))
+
 hl.bind(mainMod .. " + L", function()
   local ws = hl.get_active_workspace()
   if not ws then return end

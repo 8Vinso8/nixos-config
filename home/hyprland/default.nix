@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 let
   scripts = {
@@ -15,18 +15,15 @@ in
     playerctl
     hyprshot
     ddcutil
+    scripts.toggle-microphone
+    scripts.toggle-audio
+    scripts.ddc-brightness
   ];
   # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
   services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland.enable = true;
-  wayland.windowManager.hyprland.extraConfig = ''
-    hl.bind("SUPER + XF86AudioMute", hl.dsp.exec_cmd("${lib.getExe scripts.toggle-microphone}"))
-    hl.bind("XF86AudioMute", hl.dsp.exec_cmd("${lib.getExe scripts.toggle-audio}"))
-    hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} up"))
-    hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("pkill ddc-brightness; ${lib.getExe scripts.ddc-brightness} down"))
-  '';
 
   wayland.windowManager.hyprland.extraLuaFiles = {
     "config".content = ./configs/config.lua;
