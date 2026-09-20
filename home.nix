@@ -26,7 +26,7 @@
     fooyin
     qbittorrent
     discord
-    pcmanfm
+    kdePackages.dolphin
     kdePackages.ark
     pavucontrol
   ];
