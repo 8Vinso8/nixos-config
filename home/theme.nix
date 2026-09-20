@@ -37,9 +37,22 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
+    style.name = "kvantum";
+    kvantum = {
+      enable = true;
+      themes = with pkgs; [
+        (catppuccin-kvantum.override {
+          variant = "mocha";
+          accent = "mauve";
+        })
+      ];
+      settings.General = {
+        theme = "catppuccin-mocha-mauve";
+      };
+    };
     qt6ctSettings = {
       Appearance = {
-        style = "Adwaita-dark";
+        style = "kvantum";
         icon_theme = "breeze-dark";
         standard_dialogs = "xdgdesktopportal";
       };
@@ -50,7 +63,7 @@
     };
     qt5ctSettings = {
       Appearance = {
-        style = "Adwaita-dark";
+        style = "kvantum";
         icon_theme = "breeze-dark";
         standard_dialogs = "xdgdesktopportal";
       };
@@ -64,7 +77,7 @@
   xdg.desktopEntries = {
     qt5ct = {
       name = "Qt5 configuration tool";
-      noDisplay = true; 
+      noDisplay = true;
     };
     qt6ct = {
       name = "Qt6 configuration tool";
