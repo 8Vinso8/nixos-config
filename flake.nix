@@ -21,6 +21,8 @@
     };
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    nixpkgs-throne.url = "github:NixOS/nixpkgs/pull/550661/head";
   };
 
   outputs =
@@ -28,6 +30,7 @@
       nixpkgs,
       home-manager,
       nix-cachyos-kernel,
+      nixpkgs-throne,
       ...
     }@inputs:
     {
