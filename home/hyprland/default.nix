@@ -35,5 +35,6 @@ in
     "autostart".content = ./configs/autostart.lua;
     "windowrules".content = ./configs/windowrules.lua;
     "animations".content = ./configs/animations.lua;
+    "binds".content = ./configs/binds.lua;
   };
 }
