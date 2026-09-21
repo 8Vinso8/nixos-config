@@ -2,20 +2,30 @@
 
 {
   fonts = {
+    enableDefaultPackages = false;
     packages = with pkgs; [
       noto-fonts
       jetbrains-mono
 
       noto-fonts-cjk-sans
-      noto-fonts-color-emoji
+      twitter-color-emoji
     ];
 
     fontconfig = {
       defaultFonts = {
-        serif = [ "Noto Serif" ];
-        sansSerif = [ "Noto Sans" ];
-        monospace = [ "JetBrains Mono" ];
-        emoji = [ "Noto Color Emoji" ];
+        serif = [
+          "Noto Serif"
+          "emoji"
+        ];
+        sansSerif = [
+          "Noto Sans"
+          "emoji"
+        ];
+        monospace = [
+          "JetBrains Mono"
+          "emoji"
+        ];
+        emoji = [ "Twitter Color Emoji" ];
       };
     };
   };
