@@ -29,6 +29,8 @@
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
+
+    inputs.optiscaler-client.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   programs.fastfetch.enable = true;

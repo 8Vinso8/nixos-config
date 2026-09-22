@@ -137,22 +137,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-throne": {
-      "locked": {
-        "lastModified": 1786236773,
-        "narHash": "sha256-1cYpunLVYJBBD94XmfLOXzFvJ319F3VoYFqHGfXV9kI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "62fae0242370ae97c3721003a32366a0cba3a96e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "pull/550661/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1789785513,
@@ -191,14 +175,68 @@
         "type": "github"
       }
     },
+    "optiscaler-client": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1789998676,
+        "narHash": "sha256-XYq5+lzwWX3ilBxBG+rnojT4G6VZs7Ys9z5OITIYp1Y=",
+        "owner": "Optiscaler-Client",
+        "repo": "Optiscaler-Client",
+        "rev": "cffc3c1285a6878dae3394806ef7598bd0cc689f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Optiscaler-Client",
+        "repo": "Optiscaler-Client",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-throne": "nixpkgs-throne",
         "nvf": "nvf",
+        "optiscaler-client": "optiscaler-client",
         "zen-browser": "zen-browser"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     },
     "zen-browser": {

@@ -5,8 +5,11 @@
     gnome-themes-extra
     adwaita-icon-theme
     kdePackages.breeze-icons
-    adwaita-qt
-    adwaita-qt6
+    
+    libsForQt5.qt5ct
+    qt6Packages.qt6ct
+    kdePackages.qtstyleplugin-kvantum
+    qt6Packages.qtstyleplugin-kvantum
   ];
 
   home.pointerCursor = {
@@ -37,7 +40,6 @@
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
     kvantum = {
       enable = true;
       themes = with pkgs; [

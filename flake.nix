@@ -20,9 +20,12 @@
       };
     };
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    optiscaler-client = {
+      url = "github:Optiscaler-Client/Optiscaler-Client";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    nixpkgs-throne.url = "github:NixOS/nixpkgs/pull/550661/head";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs =
@@ -30,7 +33,7 @@
       nixpkgs,
       home-manager,
       nix-cachyos-kernel,
-      nixpkgs-throne,
+      optiscaler-client,
       ...
     }@inputs:
     {
