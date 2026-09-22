@@ -11,6 +11,7 @@
     ./home/hyprpaper
     ./home/fish.nix
     ./home/waybar
+    ./home/fastfetch.nix
     ./home/fuzzel.nix
     ./home/git.nix
     ./home/hypridle.nix
@@ -32,12 +33,7 @@
     inputs.optiscaler-client.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
-  programs.fastfetch.enable = true;
-
-  programs.zen-browser = {
-    enable = true;
-    setAsDefaultBrowser = true;
-  };
+  programs.zen-browser.enable = true;
 
   programs.btop.enable = true;
 
