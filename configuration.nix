@@ -10,9 +10,7 @@
     ./hardware-configuration.nix
     ./system/amdgpu.nix
     ./system/boot.nix
-    ./system/ddc-restore.nix
     ./system/fonts.nix
-    ./system/hdd-sleep.nix
     ./system/hyprland.nix
     ./system/network.nix
     ./system/nix-settings.nix
@@ -27,9 +25,17 @@
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.systemd.enable = true;
 
+  hardware.i2c.enable = true;
+
   # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
+    ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sdb", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb"
+  '';
+
+  powerManagement.resumeCommands = ''
+    ${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb
+    sleep 3; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness) 
   '';
 
   programs.fish.enable = true;
@@ -37,7 +43,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "vinso";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "i2c" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -64,9 +70,18 @@
   documentation.nixos.enable = false;
 
   fileSystems = {
-    "/".options = [ "compress=zstd" "noatime" ];
-    "/home".options = [ "compress=zstd" "noatime" ];
-    "/nix".options = [ "compress=zstd" "noatime" ];
+    "/".options = [
+      "compress=zstd"
+      "noatime"
+    ];
+    "/home".options = [
+      "compress=zstd"
+      "noatime"
+    ];
+    "/nix".options = [
+      "compress=zstd"
+      "noatime"
+    ];
     "/swap".options = [ "noatime" ];
   };
 
