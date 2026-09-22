@@ -25,7 +25,6 @@
   home.packages = with pkgs; [
     fooyin
     qbittorrent
-    discord
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
