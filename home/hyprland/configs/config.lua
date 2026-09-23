@@ -65,5 +65,6 @@ hl.config({
   },
   scrolling = {
     column_width = 0.9,
+    focus_fit_method = 0,
   },
 })
