@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  hddSerial = "WDC_WD10EZEX-60WN4A0_WD-WCC6Y6ED6DH9";
+  hddPath = "/dev/disk/by-id/ata-WDC_WD10EZEX-60WN4A0_WD-WCC6Y6ED6DH9";
 {
   imports = [
     ./hardware-configuration.nix
@@ -20,8 +23,6 @@
     ./system/swap.nix
   ];
 
-  nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
-  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.systemd.enable = true;
 
@@ -29,13 +30,17 @@
 
   # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
+    # Fix sleep on Gigabyte B550 motherboard
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
-    ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sdb", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb"
+
+    # Allow hdd to sleep
+    ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_SERIAL}=="${hddSerial}", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/%k"
   '';
 
   powerManagement.resumeCommands = ''
-    ${pkgs.hdparm}/bin/hdparm -B 127 /dev/sdb
-    sleep 3; ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness) 
+    ${pkgs.hdparm}/bin/hdparm -B 127 "${hddPath}"
+    sleep 3
+    ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness) 
   '';
 
   programs.fish.enable = true;
