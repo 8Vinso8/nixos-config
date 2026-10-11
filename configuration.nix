@@ -8,6 +8,7 @@
 let
   hddSerial = "WDC_WD10EZEX-60WN4A0_WD-WCC6Y6ED6DH9";
   hddPath = "/dev/disk/by-id/ata-WDC_WD10EZEX-60WN4A0_WD-WCC6Y6ED6DH9";
+in
 {
   imports = [
     ./hardware-configuration.nix
