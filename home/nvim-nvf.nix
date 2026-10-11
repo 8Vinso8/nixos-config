@@ -17,28 +17,38 @@
   programs.nvf.enable = true;
 
   programs.nvf.settings.vim = {
+
+    mini.icons.enable = true;
+    luaConfigPost = ''
+      require("mini.icons").mock_nvim_web_devicons()
+    '';
+
     autocomplete.blink-cmp = {
       enable = true;
       setupOpts.cmdline.keymap.preset = "default";
     };
 
-    visuals.nvim-web-devicons.enable = true;
-    filetree.nvimTree = {
+    utility.oil-nvim = {
       enable = true;
-      setupOpts = {
-        view = {
-          signcolumn = "no";
-          width = {
-            max = -1;
-            min = -1;
-            padding = 1;
+      gitStatus.enable = true;
+      setupOpts.view_options.show_hidden = true;
+    };
+
+    autopairs.nvim-autopairs.enable = true;
+
+    telescope = {
+      enable = true;
+      extensions = [
+        {
+          name = "fzf";
+          packages = [ pkgs.vimPlugins.telescope-fzf-native-nvim ];
+          setup = {
+            fzf = {
+              fuzzy = true;
+            };
           };
-        }; 
-        actions.open_file.resize_window = true;
-        git.enable = true;
-        filters.dotfiles = true;
-        renderer.icons.show.git = true;
-      };
+        }
+      ];
     };
 
     ui.noice.enable = true;
@@ -53,6 +63,10 @@
         action = "<cmd>nohlsearch<CR>";
         silent = true;
         desc = "Hide search highlight";
+      };
+      "-" = {
+        action = "<cmd>Oil<CR>";
+        desc = "launch oil";
       };
     };
 
@@ -105,13 +119,30 @@
     };
 
     options = {
-      shiftwidth = 2;
+      number = true;
+      relativenumber = true;
+
       tabstop = 2;
+      softtabstop = 2;
+      shiftwidth = 2;
       expandtab = true;
       smartindent = true;
-      relativenumber = false;
-      showmode = false;
+
+      ignorecase = true;
+      smartcase = true;
+
+      termguicolors = true;
+      cursorline = true;
+      signcolumn = "yes";
+      wrap = false;
+      scrolloff = 8;
+      splitright = true;
+      splitbelow = true;
+      numberwidth = 1;
+
       cmdheight = 0;
+      showmode = false;
+      laststatus = 3;
     };
 
     diagnostics = {
