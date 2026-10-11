@@ -11,7 +11,6 @@
     ./home/fish.nix
     ./home/waybar
     ./home/fastfetch.nix
-    ./home/fuzzel.nix
     ./home/git.nix
     ./home/kitty.nix
     ./home/mako.nix
