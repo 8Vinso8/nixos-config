@@ -80,15 +80,6 @@ in
       "compress=zstd"
       "noatime"
     ];
-    "/home".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/nix".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-    "/swap".options = [ "noatime" ];
   };
 
   i18n.defaultLocale = "ru_RU.UTF-8";

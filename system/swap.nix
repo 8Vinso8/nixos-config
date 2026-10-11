@@ -9,8 +9,8 @@
 
   swapDevices = [
     {
-      device = "/swap/swapfile";
-      size = 16 * 1024; # 16 GiB
+      device = "/swapfile";
+      size = 8 * 1024; # 16 GiB
       priority = 10;
     }
   ];
