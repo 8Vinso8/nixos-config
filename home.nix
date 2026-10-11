@@ -8,13 +8,11 @@
 {
   imports = [
     ./home/hyprland
-    ./home/hyprpaper
     ./home/fish.nix
     ./home/waybar
     ./home/fastfetch.nix
     ./home/fuzzel.nix
     ./home/git.nix
-    ./home/hypridle.nix
     ./home/kitty.nix
     ./home/mako.nix
     ./home/mpv.nix
