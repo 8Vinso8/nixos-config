@@ -24,15 +24,12 @@
       url = "github:Optiscaler-Client/Optiscaler-Client";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
-      nix-cachyos-kernel,
       optiscaler-client,
       ...
     }@inputs:
