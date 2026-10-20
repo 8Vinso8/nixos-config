@@ -1,8 +1,10 @@
 { pkgs, inputs, ... }:
 
 let
-  myNeovim = inputs.wrappers.lib.evalPackage ({ wlib, pkgs, ... }: {
+  myNeovim = inputs.wrappers.lib.evalPackage ({ wlib, ... }: {
     imports = [ wlib.wrapperModules.neovim ];
+
+    inherit pkgs;
 
     # Startup plugins pre-compiled and provided from nixpkgs
     specs.general = with pkgs.vimPlugins; [
