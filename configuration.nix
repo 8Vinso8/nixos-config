@@ -68,6 +68,7 @@ in
   };
 
   programs.fish.enable = true;
+  security.sudo.wheelNeedsPassword = false;
   users.users.vinso = {
     isNormalUser = true;
     shell = pkgs.fish;
@@ -95,15 +96,9 @@ in
   services.gvfs.enable = true;
 
   services.power-profiles-daemon.enable = true;
+  services.fstrim.enable = true;
 
   documentation.nixos.enable = false;
-
-  fileSystems = {
-    "/".options = [
-      "compress=zstd"
-      "noatime"
-    ];
-  };
 
   i18n.defaultLocale = "ru_RU.UTF-8";
 

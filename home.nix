@@ -17,7 +17,7 @@
     ./home/mako.nix
     ./home/mpv.nix
     ./home/rofi
-    ./home/nvim-nvf.nix
+    ./home/nvim
     ./home/theme.nix
     inputs.zen-browser.homeModules.beta
   ];
