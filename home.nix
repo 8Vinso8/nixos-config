@@ -7,6 +7,7 @@
 
 {
   imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
     ./home/hyprland
     ./home/fish.nix
     ./home/waybar
@@ -15,12 +16,15 @@
     ./home/kitty.nix
     ./home/mako.nix
     ./home/mpv.nix
+    ./home/rofi
     ./home/nvim-nvf.nix
     ./home/theme.nix
     inputs.zen-browser.homeModules.beta
   ];
 
   home.packages = with pkgs; [
+    antigravity-cli
+    boxflat
     fooyin
     qbittorrent
     kdePackages.dolphin

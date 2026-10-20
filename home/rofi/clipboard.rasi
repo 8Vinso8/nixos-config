@@ -1,0 +1,67 @@
+@theme "dmenu"
+
+* {
+    font: "JetBrainsMono Nerd Font 13";
+    background-color: #1e1e2e;
+    text-color: #cdd6f4;
+    border-color: #cba6f7;
+}
+
+window {
+    width: 50%;
+    location: north;
+    anchor: north;
+    y-offset: 10;
+    border: 2px;
+    border-radius: 10px;
+    padding: 8px;
+    children: [mainbox];
+}
+
+mainbox {
+    orientation: vertical;
+    children: [inputbar, message, listview];
+    spacing: 6px;
+}
+
+inputbar {
+    children: [entry];
+    padding: 8px 10px;
+    border-radius: 6px;
+    background-color: #181825;
+}
+
+entry {
+    placeholder: "Search clipboard...";
+    placeholder-color: #6c7086;
+    padding: 2px;
+    background-color: transparent;
+}
+
+listview {
+    columns: 1;
+    lines: 10;
+    fixed-height: false;
+    layout: vertical;
+    scrollbar: true;
+    spacing: 4px;
+    background-color: transparent;
+}
+
+element {
+    padding: 8px 10px;
+    border-radius: 6px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    cursor: inherit;
+}
+
+element selected {
+    background-color: #313244;
+    text-color: #cba6f7;
+}

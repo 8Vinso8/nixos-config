@@ -24,6 +24,10 @@ in
     ./system/swap.nix
   ];
 
+  nixpkgs.overlays = [
+    (import ./pkgs)
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.initrd.systemd.enable = true;
 
@@ -36,13 +40,32 @@ in
 
     # Allow hdd to sleep
     ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_SERIAL}=="${hddSerial}", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 /dev/%k"
+
+    # Moza Racing - disable fuzz and deadzone for raw 0-100% precision
+    ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", ENV{ID_INPUT_JOYSTICK}=="1", ATTRS{idVendor}=="346e", ATTRS{idProduct}=="0004", RUN+="${pkgs.linuxConsoleTools}/bin/evdev-joystick --evdev %E{DEVNAME} --fuzz 0 --deadzone -0"
   '';
 
-  powerManagement.resumeCommands = ''
-    ${pkgs.hdparm}/bin/hdparm -B 127 "${hddPath}"
-    sleep 3
-    ${pkgs.ddcutil}/bin/ddcutil setvcp 10 $(cat /home/vinso/.config/last_brightness) 
-  '';
+  systemd.services.hdparm-resume = {
+    description = "Reapply hdparm APM setting after sleep";
+    after = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    wantedBy = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+      ExecStart = "${pkgs.hdparm}/bin/hdparm -B 127 ${hddPath}";
+    };
+  };
+
+  systemd.services.ddc-restore = {
+    description = "Restore monitor brightness after sleep";
+    after = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    wantedBy = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "vinso";
+      ExecStart = "${pkgs.ddc-brightness}/bin/ddc-brightness restore";
+    };
+  };
 
   programs.fish.enable = true;
   users.users.vinso = {

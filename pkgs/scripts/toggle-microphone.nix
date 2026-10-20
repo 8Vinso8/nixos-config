@@ -2,12 +2,14 @@
   writeShellApplication,
   libnotify,
   wireplumber,
+  gnugrep,
 }:
 writeShellApplication {
-  name = "toggle-microphone.sh";
+  name = "toggle-microphone";
   runtimeInputs = [
     libnotify
     wireplumber
+    gnugrep
   ];
   text = ''
     wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle

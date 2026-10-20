@@ -1,98 +1,155 @@
+@define-color base rgba(24, 24, 37, 0.85);
+@define-color text #cdd6f4;
+@define-color subtext #a6adc8;
+@define-color mauve #cba6f7;
+@define-color surface #313244;
 @define-color red #f38ba8;
+@define-color blue #89b4fa;
+@define-color teal #94e2d5;
+@define-color yellow #f9e2af;
 
 * {
-  /* `otf-font-awesome` is required to be installed for icons */
-  font-family: Noto;
+  font-family: "JetBrainsMono Nerd Font", Noto, sans-serif;
   font-weight: bold;
   font-size: 13px;
-
   min-height: 0;
 }
 
 window#waybar {
-  background-color: #000000;
-  color: #ffffff;
-  transition-property: background-color;
-  transition-duration: .5s;
+  background-color: transparent;
+  color: @text;
+}
+
+/* Контейнеры-обертки */
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: transparent;
+  border: none;
+  padding: 0;
 }
 
 button {
   border: none;
-  border-radius: 0;
+  border-radius: 6px;
 }
 
+/* Островок воркспейсов */
+#workspaces {
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 4px;
+  margin-right: 6px;
+}
 
 #workspaces button {
-  padding: 0 5px;
+  padding: 0 8px;
+  margin: 3px 2px;
   background-color: transparent;
-  color: #ffffff;
-}
-
-#workspaces button.empty {
-  opacity: 0.2;
+  color: @text;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 #workspaces button.active {
-  color: @red;
-  opacity: 1;
+  background-color: @mauve;
+  color: #11111b;
+  font-weight: bold;
 }
+
+#workspaces button.empty {
+  opacity: 0.4;
+}
+
 #workspaces button:hover {
-  background-color: #101010;
-  opacity: 1;
+  background-color: @surface;
+  color: @text;
 }
 
-#idle_inhibitor,
-#language,
-#pulseaudio,
-#tray,
-#custom-ddc-brightness {
-  padding: 0 5px;
-  color: #ffffff;
-  margin: 0;
+/* Отдельный островок для заголовка окна */
+#window {
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 10px;
+  color: @subtext;
+  font-weight: normal;
 }
 
+window#waybar.empty #window {
+  background-color: transparent;
+  border: none;
+}
+
+/* Центральный модуль (часы) */
 #clock {
-  margin: 0;
-  color: #ffffff;
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 10px;
+  color: @text;
 }
 
-#workspaces {
-  margin: 0;
+/* Островок музыкального трека (fooyin) */
+#mpris {
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 10px;
+  margin-right: 8px;
+  color: @text;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
-  margin-left: 0;
+#mpris.stopped {
+  background-color: transparent;
+  border: none;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
-  margin-right: 0;
+/* Островок системы */
+#system {
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 8px;
+  margin-right: 8px;
 }
 
-/* #pulseaudio.source-muted { */
-/*   color: @red; */
-/* } */
+/* Правые модули */
+#idle_inhibitor {
+  padding: 0 6px;
+  color: @mauve;
+}
 
 #idle_inhibitor.activated {
   color: @red;
-  opacity: 1;
 }
 
-#tray {
-  min-width: 20px;
-}
-
-/* Style the tray menu (the pop-up window) */
-#tray menu {
-  padding: 2px;
-}
-
-/* Style individual menu items within the tray menu */
-#tray menu menuitem {
-  padding: 5px 0;
+#custom-ddc-brightness,
+#language,
+#pulseaudio {
+  color: @text;
+  padding: 0 6px;
 }
 
 #language {
   min-width: 16px;
+}
+
+/* Островок трея */
+#tray {
+  background-color: @base;
+  border: 1px solid rgba(203, 166, 247, 0.2);
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+#tray menu {
+  padding: 2px;
+  background-color: @base;
+  color: @text;
+}
+
+#tray menu menuitem {
+  padding: 4px 8px;
 }

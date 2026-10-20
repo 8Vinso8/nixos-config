@@ -6,6 +6,7 @@
     packages = with pkgs; [
       noto-fonts
       jetbrains-mono
+      nerd-fonts.jetbrains-mono
 
       noto-fonts-cjk-sans
       twitter-color-emoji
@@ -22,6 +23,7 @@
           "emoji"
         ];
         monospace = [
+          "JetBrainsMono Nerd Font"
           "JetBrains Mono"
           "emoji"
         ];
