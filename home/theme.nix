@@ -18,6 +18,8 @@ in
 {
   home.packages = [
     catppuccinIcons
+    pkgs.kdePackages.qtstyleplugin-kvantum
+    pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
   dconf.settings = {
