@@ -57,4 +57,6 @@
         on-timeout = systemctl suspend
     }
   '';
+
+  xdg.configFile."cliphist/config".text = "preview-width 120\n";
 }
