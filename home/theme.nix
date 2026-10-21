@@ -20,6 +20,15 @@ in
     catppuccinIcons
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "catppuccin-mocha-mauve-standard";
+      icon-theme = "Papirus-Dark";
+      cursor-theme = "Adwaita";
+    };
+  };
+
   home.pointerCursor = {
     enable = true;
     name = "Adwaita";
@@ -61,7 +70,6 @@ in
   qt = {
     enable = true;
     platformTheme.name = "qtct";
-    style.name = "kvantum";
     kvantum = {
       enable = true;
       themes = [ catppuccinKvantum ];
@@ -88,6 +96,30 @@ in
     active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff45475a, #ff181825, #ff181825, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff181825, #ff1e1e2e, #ff000000, #4dcba6f7, #ffcdd6f4, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff181825, #ffcdd6f4, #80cdd6f4, #ff308cc6
     disabled_colors=#ff585b70, #ff313244, #ff45475a, #ff45475a, #ff181825, #ff181825, #ff585b70, #ffffffff, #ff585b70, #ff181825, #ff1e1e2e, #ff000000, #4dcba6f7, #66cdd6f4, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff181825, #ffcdd6f4, #80cdd6f4, #ff919191
     inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff45475a, #ff181825, #ff181825, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff181825, #ff1e1e2e, #ff000000, #4dcba6f7, #ffcdd6f4, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff181825, #ffcdd6f4, #80cdd6f4, #ff308cc6
+  '';
+
+  # Настройки KDE/Dolphin из dotfiles
+  xdg.configFile."kdeglobals".text = ''
+    [General]
+    TerminalApplication=kitty
+
+    [Icons]
+    Theme=Papirus-Dark
+  '';
+
+  xdg.configFile."dolphinrc".text = ''
+    [General]
+    Version=202
+
+    [KFileDialog Settings]
+    Places Icons Auto-resize=false
+    Places Icons Static Size=22
+
+    [MainWindow]
+    MenuBar=Disabled
+
+    [UiSettings]
+    ColorScheme=BreezeDark
   '';
 
   # Иконки приложений (boxflat, throne)
