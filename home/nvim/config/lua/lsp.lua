@@ -25,5 +25,26 @@ vim.lsp.config("*", {
   capabilities = capabilities,
 })
 
+vim.lsp.config("nixd", {
+  settings = {
+    nixd = {
+      nixpkgs = {
+        expr = 'import (builtins.getFlake ("git+file://" + toString /etc/nixos)).inputs.nixpkgs { }',
+      },
+      formatting = {
+        command = { "nixfmt" },
+      },
+      options = {
+        nixos = {
+          expr = '(builtins.getFlake ("git+file://" + toString /etc/nixos)).nixosConfigurations.firewake.options',
+        },
+        ["home-manager"] = {
+          expr = '((builtins.getFlake ("git+file://" + toString /etc/nixos)).nixosConfigurations.firewake.options.home-manager.users.type.getSubOptions [] )',
+        },
+      },
+    },
+  },
+})
+
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nixd")
