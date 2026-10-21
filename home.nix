@@ -18,6 +18,7 @@
     ./home/rofi
     ./home/nvim
     ./home/theme.nix
+    ./home/btop.nix
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -35,9 +36,14 @@
 
   programs.zen-browser.enable = true;
 
-  programs.btop.enable = true;
-
   services.syncthing.enable = true;
+
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = [ "org.kde.dolphin.desktop" ];
+    };
+  };
 
   xdg.userDirs = {
     enable = true;
