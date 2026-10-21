@@ -49,8 +49,11 @@
     options = [ "--cmd cd" ];
   };
 
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = false;
+  };
   programs.eza.enable = true;
 
-  home.packages = with pkgs; [ fd ];
+  home.packages = with pkgs; [ fd bat ];
 }
