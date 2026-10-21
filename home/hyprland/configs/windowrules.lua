@@ -26,7 +26,7 @@ hl.layer_rule({
 hl.window_rule({
   name = "scrolling-full-width",
   match = {
-    class = "^zen$",
+    class = "^zen-beta$",
   },
   scrolling_width = 1.0,
 })
