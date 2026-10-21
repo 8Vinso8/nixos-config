@@ -33,6 +33,8 @@ in
 
   hardware.i2c.enable = true;
 
+  services.udev.packages = [ pkgs.boxflat ];
+
   # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
     # Fix sleep on Gigabyte B550 motherboard
