@@ -73,14 +73,22 @@ python3Packages.buildPythonPackage (finalAttrs: {
   ];
 
   preBuild = ''
+    substituteInPlace boxflat/app.py \
+      --replace-fail 'if udev_exists and rules_version >= 2:' 'if udev_exists:'
+
     cat > setup.py << EOF
-    import shutil
     from setuptools import setup
 
     with open("requirements.txt") as f:
         install_requires = f.read().splitlines()
 
-    shutil.copyfile("entrypoint.py", "boxflat/entrypoint.py")
+    with open("entrypoint.py") as f:
+        content = f.read()
+
+    with open("boxflat/entrypoint.py", "w") as f:
+        f.write("def main():\n")
+        for line in content.splitlines():
+            f.write("    " + line + "\n")
 
     setup(
       name="boxflat",
