@@ -1,11 +1,11 @@
--- Default monitor
 hl.monitor({
-  name       = "DP-1",
-  resolution = "1920x1080@240",
-  position   = "0x0",
-  scale      = 1,
-  vrr        = 3,
+  output   = "DP-1",
+  mode     = "2560x1440@165",
+  position = "0x0",
+  scale    = "1",
 })
+
+hl.monitor({ output = "" }) -- Fallback rule
 
 hl.config({
   general = {
@@ -34,10 +34,15 @@ hl.config({
       vibrancy = 0.1696,
     },
   },
+  animations = {
+    enabled = true,
+  },
   input = {
     kb_layout    = "us,ru",
-    kb_options   = "grp:caps_toggle",
-    follow_mouse = 1,
+    kb_options   = "grp:alt_shift_toggle,caps:super",
+    repeat_rate  = 25,
+    repeat_delay = 350,
+    follow_mouse = 2,
     sensitivity  = 0,
   },
   misc = {

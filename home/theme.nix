@@ -1,28 +1,6 @@
 { pkgs, ... }:
 
 {
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "mauve";
-
-    gtk = {
-      enable = true;
-      icon = {
-        enable = true;
-        accent = "mauve";
-        flavor = "mocha";
-      };
-    };
-
-    kvantum = {
-      enable = true;
-      accent = "mauve";
-      flavor = "mocha";
-      apply = true;
-    };
-  };
-
   home.pointerCursor = {
     enable = true;
     name = "Adwaita";

@@ -102,5 +102,7 @@ in
 
   i18n.defaultLocale = "ru_RU.UTF-8";
 
+  fileSystems."/".options = [ "noatime" ];
+
   system.stateVersion = "${stateVersion}";
 }

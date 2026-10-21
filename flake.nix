@@ -24,11 +24,6 @@
       url = "github:Optiscaler-Client/Optiscaler-Client";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

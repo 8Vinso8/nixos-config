@@ -7,7 +7,6 @@
 
 {
   imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
     ./home/hyprland
     ./home/fish.nix
     ./home/waybar

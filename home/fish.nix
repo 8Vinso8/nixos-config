@@ -12,10 +12,6 @@
         name = "fzf-fish";
         src = fzf-fish.src;
       }
-      {
-        name = "catppuccin";
-        src = catppuccin.src;
-      }
     ];
     shellAliases = {
       ls = "eza --icons --group-directories-first";
