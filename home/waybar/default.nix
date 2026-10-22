@@ -1,4 +1,9 @@
-{ config, inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   programs.waybar.enable = true;
@@ -32,7 +37,10 @@
         format = "<span color='#cba6f7'>󰎈</span> {dynamic}";
         format-paused = "<span color='#a6adc8'>󰏤 <i>{dynamic}</i></span>";
         format-stopped = "";
-        dynamic-order = [ "title" "artist" ];
+        dynamic-order = [
+          "title"
+          "artist"
+        ];
         max-length = 60;
         on-click = "play-pause";
         on-click-right = "fooyin & hyprctl dispatch \"hl.dsp.focus({ window = 'class:org.fooyin.fooyin' })\"";
@@ -127,7 +135,12 @@
         exec = "ddc-brightness status";
         return-type = "json";
         format = "<span color='#cba6f7'>{icon}</span> {percentage}%";
-        format-icons = [ "󰃞" "󰃝" "󰃟" "󰃠" ];
+        format-icons = [
+          "󰃞"
+          "󰃝"
+          "󰃟"
+          "󰃠"
+        ];
         signal = 8;
         on-scroll-up = "ddc-brightness up";
         on-scroll-down = "ddc-brightness down";

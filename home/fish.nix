@@ -60,5 +60,8 @@
   };
   programs.eza.enable = true;
   programs.eza.enableBashIntegration = false; # prevents spam in nix-shell
-  home.packages = with pkgs; [ fd bat ];
+  home.packages = with pkgs; [
+    fd
+    bat
+  ];
 }

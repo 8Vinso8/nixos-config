@@ -49,8 +49,18 @@ in
 
   systemd.services.hdparm-resume = {
     description = "Reapply hdparm APM setting after sleep";
-    after = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
-    wantedBy = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    after = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+      "suspend-then-hibernate.target"
+    ];
+    wantedBy = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+      "suspend-then-hibernate.target"
+    ];
     serviceConfig = {
       Type = "oneshot";
       User = "root";
@@ -60,8 +70,18 @@ in
 
   systemd.services.ddc-restore = {
     description = "Restore monitor brightness after sleep";
-    after = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
-    wantedBy = [ "suspend.target" "hybrid-sleep.target" "hibernate.target" "suspend-then-hibernate.target" ];
+    after = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+      "suspend-then-hibernate.target"
+    ];
+    wantedBy = [
+      "suspend.target"
+      "hybrid-sleep.target"
+      "hibernate.target"
+      "suspend-then-hibernate.target"
+    ];
     serviceConfig = {
       Type = "oneshot";
       User = "vinso";
@@ -75,7 +95,10 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     description = "vinso";
-    extraGroups = [ "wheel" "i2c" ];
+    extraGroups = [
+      "wheel"
+      "i2c"
+    ];
   };
 
   environment.systemPackages = with pkgs; [

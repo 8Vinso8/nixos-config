@@ -37,7 +37,9 @@
       nativeBuildInputs = [ makeWrapper ];
       postBuild = ''
         rm $out/bin/OptiscalerClient
-        makeWrapper ${inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default}/bin/OptiscalerClient $out/bin/OptiscalerClient \
+        makeWrapper ${
+          inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default
+        }/bin/OptiscalerClient $out/bin/OptiscalerClient \
           --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ libxcursor ]}
       '';
     })

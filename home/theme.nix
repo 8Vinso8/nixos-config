@@ -64,9 +64,12 @@ in
   };
 
   # Стили для GTK4 / Libadwaita (аналог симлинков из dotfiles/.config/gtk-4.0)
-  xdg.configFile."gtk-4.0/assets".source = "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/assets";
-  xdg.configFile."gtk-4.0/gtk.css".source = "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk.css";
-  xdg.configFile."gtk-4.0/gtk-dark.css".source = "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk-dark.css";
+  xdg.configFile."gtk-4.0/assets".source =
+    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/assets";
+  xdg.configFile."gtk-4.0/gtk.css".source =
+    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk.css";
+  xdg.configFile."gtk-4.0/gtk-dark.css".source =
+    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk-dark.css";
 
   qt = {
     enable = true;
@@ -107,16 +110,19 @@ in
   '';
 
   # Настройки KDE/Dolphin из dotfiles
-  xdg.configFile."kdeglobals".text = (builtins.readFile "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors") + ''
-    [General]
-    TerminalApplication=kitty
+  xdg.configFile."kdeglobals".text =
+    (builtins.readFile "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors")
+    + ''
+      [General]
+      TerminalApplication=kitty
 
-    [Icons]
-    Theme=Papirus-Dark
-  '';
+      [Icons]
+      Theme=Papirus-Dark
+    '';
 
   # Также положим файл схемы в color-schemes, чтобы приложения видели её в списках выбора тем
-  xdg.dataFile."color-schemes/CatppuccinMochaMauve.colors".source = "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors";
+  xdg.dataFile."color-schemes/CatppuccinMochaMauve.colors".source =
+    "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors";
 
   xdg.configFile."dolphinrc".text = ''
     [General]
