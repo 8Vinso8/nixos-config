@@ -77,7 +77,7 @@ in
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
-        color_scheme_path = "${config.xdg.configHome}/qt6ct/style-colors.conf";
+        color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/CatppuccinMochaMauve.conf";
       };
       Fonts = {
         fixed = "\"Monospace,11\"";
@@ -90,7 +90,7 @@ in
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
-        color_scheme_path = "${config.xdg.configHome}/qt6ct/style-colors.conf";
+        color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/CatppuccinMochaMauve.conf";
       };
       Fonts = {
         fixed = "\"Monospace,11\"";
@@ -99,12 +99,11 @@ in
     };
   };
 
-  # Цветовая палитра Catppuccin Mocha для qt6ct из dotfiles
-  xdg.configFile."qt6ct/style-colors.conf".text = ''
+  xdg.configFile."qt6ct/colors/CatppuccinMochaMauve.conf".text = ''
     [ColorScheme]
-    active_colors=#ffcdd6f4, #ff313244, #ff585b70, #ff45475a, #ff1e1e2e, #ff313244, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff181825, #ff1e1e2e, #ff000000, #ffcba6f7, #ff11111b, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff313244, #ffcdd6f4, #80cdd6f4, #ff308cc6
-    disabled_colors=#ffa6adc8, #ff313244, #ff585b70, #ff45475a, #ff1e1e2e, #ff313244, #ffa6adc8, #ffffffff, #ffa6adc8, #ff181825, #ff1e1e2e, #ff000000, #4dcba6f7, #ff11111b, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff313244, #ffa6adc8, #80cdd6f4, #ff919191
-    inactive_colors=#ffcdd6f4, #ff313244, #ff585b70, #ff45475a, #ff1e1e2e, #ff313244, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff181825, #ff1e1e2e, #ff000000, #ffcba6f7, #ff11111b, #ffcba6f7, #ffcbb0f7, #ff181825, #ff000000, #ff313244, #ffcdd6f4, #80cdd6f4, #ff308cc6
+    active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffcdd6f4, #80cdd6f4, #ff313244
+    disabled_colors=#ffa6adc8, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffa6adc8, #ffffffff, #ffa6adc8, #ff1e1e2e, #ff181825, #ff11111b, #4dcba6f7, #ffa6adc8, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffa6adc8, #80cdd6f4, #ff313244
+    inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffcdd6f4, #80cdd6f4, #ff313244
   '';
 
   # Настройки KDE/Dolphin из dotfiles
