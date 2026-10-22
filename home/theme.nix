@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   catppuccinGtk = pkgs.catppuccin-gtk.override {
@@ -83,7 +83,7 @@ in
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
-        color_scheme_path = "/home/vinso/.config/qt6ct/style-colors.conf";
+        color_scheme_path = "${config.xdg.configHome}/qt6ct/style-colors.conf";
       };
       Fonts = {
         fixed = "\"Monospace,11\"";

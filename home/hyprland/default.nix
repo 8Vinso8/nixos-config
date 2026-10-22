@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -37,11 +37,11 @@
   xdg.configFile."wallpapers/gemini.jpg".source = ../wallpapers/gemini.jpg;
 
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = /home/vinso/.config/wallpapers/gemini.jpg
+    preload = ${config.xdg.configHome}/wallpapers/gemini.jpg
 
     wallpaper {
         monitor = DP-1
-        path = /home/vinso/.config/wallpapers/gemini.jpg
+        path = ${config.xdg.configHome}/wallpapers/gemini.jpg
         fit_mode = cover
     }
 

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   programs.waybar.enable = true;
@@ -77,8 +77,8 @@
       tray = {
         spacing = 8;
         icons = {
-          "io.github.lawstorant.boxflat" = "/home/vinso/.config/icons/boxflat/steering-wheel.png";
-          "Boxflat" = "/home/vinso/.config/icons/boxflat/steering-wheel.png";
+          "io.github.lawstorant.boxflat" = "${config.xdg.configHome}/icons/boxflat/steering-wheel.png";
+          "Boxflat" = "${config.xdg.configHome}/icons/boxflat/steering-wheel.png";
         };
       };
 
