@@ -29,6 +29,10 @@
       url = "github:Alexays/Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    };
   };
 
   outputs =
@@ -51,6 +55,7 @@
             specialArgs = { inherit inputs hostname stateVersion; };
             modules = [
               ./configuration.nix
+              inputs.chaotic.nixosModules.default
               home-manager.nixosModules.home-manager
               {
                 home-manager = {

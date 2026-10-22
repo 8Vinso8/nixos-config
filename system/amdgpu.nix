@@ -7,4 +7,6 @@
   };
 
   hardware.amdgpu.initrd.enable = true;
+
+  chaotic.mesa-git.enable = true;
 }
