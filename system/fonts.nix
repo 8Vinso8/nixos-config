@@ -10,6 +10,9 @@
 
       noto-fonts-cjk-sans
       twitter-color-emoji
+
+      # For steam
+      liberation_ttf
     ];
 
     fontconfig = {
