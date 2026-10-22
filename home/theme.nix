@@ -90,6 +90,19 @@ in
         general = "\"Sans Serif,11\"";
       };
     };
+    qt5ctSettings = {
+      Appearance = {
+        style = "kvantum";
+        icon_theme = "Papirus-Dark";
+        standard_dialogs = "xdgdesktopportal";
+        custom_palette = true;
+        color_scheme_path = "${config.xdg.configHome}/qt6ct/style-colors.conf";
+      };
+      Fonts = {
+        fixed = "\"Monospace,11\"";
+        general = "\"Sans Serif,11\"";
+      };
+    };
   };
 
   # Цветовая палитра Catppuccin Mocha для qt6ct из dotfiles
