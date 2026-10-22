@@ -9,7 +9,7 @@
       nerd-fonts.jetbrains-mono
 
       noto-fonts-cjk-sans
-      twitter-color-emoji
+      noto-fonts-color-emoji
 
       # For steam
       liberation_ttf
@@ -30,8 +30,24 @@
           "JetBrains Mono"
           "emoji"
         ];
-        emoji = [ "Twitter Color Emoji" ];
+        emoji = [ "Noto Color Emoji" ];
       };
+
+      localConf = ''
+        <?xml version="1.0"?>
+        <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+        <fontconfig>
+          <selectfont>
+            <rejectfont>
+              <pattern>
+                <patelt name="family">
+                  <string>DejaVu Sans</string>
+                </patelt>
+              </pattern>
+            </rejectfont>
+          </selectfont>
+        </fontconfig>
+      '';
     };
   };
 }
