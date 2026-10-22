@@ -63,7 +63,7 @@ in
     };
   };
 
-  # Стили для GTK4 / Libadwaita (аналог симлинков из dotfiles/.config/gtk-4.0)
+  # GTK4 / Libadwaita styles
   xdg.configFile."gtk-4.0/assets".source =
     "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/assets";
   xdg.configFile."gtk-4.0/gtk.css".source =
@@ -109,7 +109,7 @@ in
     inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
   '';
 
-  # Настройки KDE/Dolphin из dotfiles
+  # KDE / Dolphin settings
   xdg.configFile."kdeglobals".text =
     (builtins.readFile "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors")
     + ''
@@ -120,7 +120,7 @@ in
       Theme=Papirus-Dark
     '';
 
-  # Также положим файл схемы в color-schemes, чтобы приложения видели её в списках выбора тем
+  # Place scheme into color-schemes directory so applications discover it
   xdg.dataFile."color-schemes/CatppuccinMochaMauve.colors".source =
     "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors";
 
@@ -139,6 +139,6 @@ in
     ColorScheme=CatppuccinMochaMauve
   '';
 
-  # Иконки приложений (boxflat, throne)
+  # Application icons (boxflat, throne)
   xdg.configFile."icons".source = ./icons;
 }

@@ -7,7 +7,6 @@ let
 
       inherit pkgs;
 
-      # Startup plugins pre-compiled and provided from nixpkgs
       specs.general = with pkgs.vimPlugins; [
         catppuccin-nvim
         mini-icons
@@ -33,7 +32,6 @@ let
         ]))
       ];
 
-      # External tools that Neovim will find in PATH
       runtimePkgs = with pkgs; [
         lua-language-server
         nixd
@@ -43,7 +41,6 @@ let
         gcc
       ];
 
-      # Directory with your regular Lua configuration
       settings.config_directory = ./config;
     }
   );
@@ -51,7 +48,6 @@ in
 {
   home.packages = [ myNeovim ];
 
-  # Alias nvim as default editor
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";

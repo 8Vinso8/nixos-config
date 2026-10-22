@@ -33,6 +33,8 @@
         emoji = [ "Noto Color Emoji" ];
       };
 
+      # Block DejaVu Sans from font fallback to prevent its monochrome glyphs
+      # from overriding Noto Color Emoji (Nixpkgs issue #172412).
       localConf = ''
         <?xml version="1.0"?>
         <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">

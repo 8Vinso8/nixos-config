@@ -25,16 +25,16 @@
     interactiveShellInit = ''
       set -g fish_greeting
 
-      # Настройка промпта Hydro
+      # Hydro prompt settings
       set -g hydro_symbol_prompt "❯"
       set -gx hydro_color_prompt green
 
       fish_config theme choose catppuccin-mocha
 
-      # Поиск файлов fzf.fish в скрытых папках, исключая .git
+      # Search hidden files in fzf.fish, excluding .git
       set -g fzf_fd_opts --hidden --exclude=.git
 
-      # Цветовая палитра Catppuccin Mocha для FZF
+      # Catppuccin Mocha palette for FZF
       set -gx FZF_DEFAULT_OPTS " \
       --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
       --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \

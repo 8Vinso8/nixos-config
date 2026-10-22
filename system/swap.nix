@@ -16,9 +16,9 @@
   ];
 
   boot.kernel.sysctl = {
-    # Приоритет отдаётся ZRAM перед дисковым swap'ом, агрессивное сжатие
+    # Prioritize ZRAM over disk swap with aggressive swappiness
     "vm.swappiness" = 180;
-    # Отключение readahead страниц подкачки (рекомендовано для ZRAM и SSD)
+    # Disable swap readahead (recommended for ZRAM and SSDs)
     "vm.page-cluster" = 0;
   };
 }

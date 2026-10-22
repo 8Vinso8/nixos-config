@@ -35,7 +35,6 @@ in
 
   services.udev.packages = [ pkgs.boxflat ];
 
-  # Fix sleep on Gigabyte B550 mb
   services.udev.extraRules = ''
     # Fix sleep on Gigabyte B550 motherboard
     ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:01.1", ATTR{power/wakeup}="disabled"
@@ -118,7 +117,7 @@ in
   programs.nix-ld.enable = true;
   programs.dconf.enable = true;
 
-  # Automount usb in pcmanfm
+  # Virtual filesystem and automounting for file managers
   services.gvfs.enable = true;
 
   services.power-profiles-daemon.enable = true;
