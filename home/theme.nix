@@ -101,9 +101,9 @@ in
 
   xdg.configFile."qt6ct/colors/CatppuccinMochaMauve.conf".text = ''
     [ColorScheme]
-    active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffcdd6f4, #80cdd6f4, #ff313244
-    disabled_colors=#ffa6adc8, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffa6adc8, #ffffffff, #ffa6adc8, #ff1e1e2e, #ff181825, #ff11111b, #4dcba6f7, #ffa6adc8, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffa6adc8, #80cdd6f4, #ff313244
-    inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ffcdd6f4, #80cdd6f4, #ff313244
+    active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
+    disabled_colors=#ffa6adc8, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffa6adc8, #ffffffff, #ffa6adc8, #ff1e1e2e, #ff181825, #ff11111b, #4dcba6f7, #ffa6adc8, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffa6adc8, #ff313244
+    inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
   '';
 
   # Настройки KDE/Dolphin из dotfiles
