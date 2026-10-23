@@ -7,6 +7,7 @@
 
 {
   programs.waybar.enable = true;
+  programs.waybar.systemd.enable = true;
   programs.waybar.package = inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
   programs.waybar.style = ./style.css;
   programs.waybar.settings = {
