@@ -1,4 +1,3 @@
-
 hl.window_rule({
   name           = "suppress-maximize-events",
   match          = { class = ".*" },
@@ -95,8 +94,8 @@ hl.window_rule({
 })
 
 local launcher_games = {
-  ["244210"] = "^Assetto Corsa$",     -- Assetto Corsa (Content Manager)
-  ["284160"] = "^BeamNG\\.drive.*$",  -- BeamNG.drive
+  ["244210"] = "^Assetto Corsa$",    -- Assetto Corsa (Content Manager)
+  ["284160"] = "^BeamNG\\.drive.*$", -- BeamNG.drive
 }
 
 local launcher_ids = {}
@@ -130,6 +129,15 @@ for id, title_regex in pairs(launcher_games) do
     tag = "+game",
   })
 end
+
+-- Native games
+hl.window_rule({
+  name = "beamng-native",
+  match = {
+    class = "^BeamNG\\.drive$"
+  },
+  tag = "+game",
+})
 
 hl.window_rule({
   name = "fullscreen-games",
