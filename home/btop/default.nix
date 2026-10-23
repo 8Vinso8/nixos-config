@@ -51,7 +51,7 @@
       shown_gpus = "nvidia amd intel apple";
     };
     themes = {
-      catppuccin_mocha = ./btop/catppuccin_mocha.theme;
+      catppuccin_mocha = ./catppuccin_mocha.theme;
     };
   };
 }

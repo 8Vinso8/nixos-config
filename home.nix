@@ -18,7 +18,7 @@
     ./home/rofi
     ./home/nvim
     ./home/theme.nix
-    ./home/btop.nix
+    ./home/btop
     inputs.zen-browser.homeModules.beta
   ];
 
