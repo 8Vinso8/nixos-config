@@ -30,22 +30,6 @@
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
-
-    (
-      let
-        pkg = inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default;
-      in
-      symlinkJoin {
-        name = "OptiscalerClient";
-        paths = [ pkg ];
-        nativeBuildInputs = [ makeWrapper ];
-        postBuild = ''
-          rm $out/bin/OptiscalerClient
-          makeWrapper ${pkg}/bin/OptiscalerClient $out/bin/OptiscalerClient \
-            --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libxcursor ]}
-        '';
-      }
-    )
   ];
 
   programs.zen-browser.enable = true;
