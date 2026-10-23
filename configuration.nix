@@ -129,5 +129,5 @@ in
 
   fileSystems."/".options = [ "noatime" ];
 
-  system.stateVersion = "${stateVersion}";
+  system.stateVersion = stateVersion;
 }

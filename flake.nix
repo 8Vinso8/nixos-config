@@ -39,7 +39,6 @@
     {
       nixpkgs,
       home-manager,
-      optiscaler-client,
       ...
     }@inputs:
     {

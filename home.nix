@@ -31,18 +31,21 @@
     kdePackages.ark
     pavucontrol
 
-    (symlinkJoin {
-      name = "OptiscalerClient";
-      paths = [ inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default ];
-      nativeBuildInputs = [ makeWrapper ];
-      postBuild = ''
-        rm $out/bin/OptiscalerClient
-        makeWrapper ${
-          inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default
-        }/bin/OptiscalerClient $out/bin/OptiscalerClient \
-          --prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [ libxcursor ]}
-      '';
-    })
+    (
+      let
+        pkg = inputs.optiscaler-client.packages.${stdenv.hostPlatform.system}.default;
+      in
+      symlinkJoin {
+        name = "OptiscalerClient";
+        paths = [ pkg ];
+        nativeBuildInputs = [ makeWrapper ];
+        postBuild = ''
+          rm $out/bin/OptiscalerClient
+          makeWrapper ${pkg}/bin/OptiscalerClient $out/bin/OptiscalerClient \
+            --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libxcursor ]}
+        '';
+      }
+    )
   ];
 
   programs.zen-browser.enable = true;
@@ -72,5 +75,5 @@
   home.username = "vinso";
   home.homeDirectory = "/home/vinso";
 
-  home.stateVersion = "${stateVersion}";
+  home.stateVersion = stateVersion;
 }

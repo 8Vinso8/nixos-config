@@ -10,6 +10,4 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  users.users.vinso.extraGroups = [ "realtime" ];
 }

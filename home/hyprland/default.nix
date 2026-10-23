@@ -49,9 +49,6 @@
   '';
 
   xdg.configFile."hypr/hypridle.conf".text = ''
-    general {
-    }
-
     listener {
         timeout = 1800
         on-timeout = systemctl suspend
