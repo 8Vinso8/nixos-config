@@ -28,7 +28,7 @@ in
     (import ./pkgs)
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   boot.initrd.systemd.enable = true;
 
   hardware.i2c.enable = true;
