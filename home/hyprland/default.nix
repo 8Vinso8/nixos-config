@@ -9,8 +9,6 @@
     hyprshot
     ddcutil
     cliphist
-    hyprpaper
-    hypridle
     hyprland-per-window-layout
     ddc-brightness
     toggle-audio
@@ -22,6 +20,31 @@
   # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
   services.hyprpolkitagent.enable = true;
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [ "${config.xdg.configHome}/wallpapers/gemini.jpg" ];
+      wallpaper = {
+        monitor = "DP-1";
+        path = "${config.xdg.configHome}/wallpapers/gemini.jpg";
+        fit_mode = "cover";
+      };
+      splash = false;
+    };
+  };
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      listener = [
+        {
+          timeout = 1800;
+          on-timeout = "systemctl suspend";
+        }
+      ];
+    };
+  };
 
   wayland.windowManager.hyprland.enable = true;
 
@@ -35,25 +58,6 @@
   };
 
   xdg.configFile."wallpapers/gemini.jpg".source = ../wallpapers/gemini.jpg;
-
-  xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${config.xdg.configHome}/wallpapers/gemini.jpg
-
-    wallpaper {
-        monitor = DP-1
-        path = ${config.xdg.configHome}/wallpapers/gemini.jpg
-        fit_mode = cover
-    }
-
-    splash = false
-  '';
-
-  xdg.configFile."hypr/hypridle.conf".text = ''
-    listener {
-        timeout = 1800
-        on-timeout = systemctl suspend
-    }
-  '';
 
   xdg.configFile."cliphist/config".text = "preview-width 120\n";
 }
