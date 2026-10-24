@@ -20,6 +20,7 @@
     ./home/theme.nix
     ./home/btop
     ./home/mangohud.nix
+    ./home/quickshell
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -31,7 +32,6 @@
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
-    quickshell
   ];
 
   programs.zen-browser.enable = true;
