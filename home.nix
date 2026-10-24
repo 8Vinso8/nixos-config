@@ -31,6 +31,7 @@
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
+    quickshell
   ];
 
   programs.zen-browser.enable = true;
