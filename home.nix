@@ -19,6 +19,7 @@
     ./home/nvim
     ./home/theme.nix
     ./home/btop
+    ./home/mangohud.nix
     inputs.zen-browser.homeModules.beta
   ];
 
