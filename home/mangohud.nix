@@ -10,6 +10,7 @@
   # (Home Manager's `settings` attrset sorts keys alphabetically, scrambling the HUD)
   xdg.configFile."MangoHud/MangoHud.conf".text = lib.mkForce ''
     # Position & Appearance (1440p)
+    no_display
     legacy_layout=0
     position=top-left
     offset_x=16
