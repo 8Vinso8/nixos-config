@@ -43,7 +43,7 @@
           "artist"
         ];
         max-length = 60;
-        on-click = "play-pause";
+        on-click = "playerctl -p fooyin play-pause";
         on-click-right = "fooyin & hyprctl dispatch \"hl.dsp.focus({ window = 'class:org.fooyin.fooyin' })\"";
         on-scroll-up = "playerctl -p fooyin next";
         on-scroll-down = "playerctl -p fooyin previous";
