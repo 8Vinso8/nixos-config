@@ -51,7 +51,13 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus window right" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move lines down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up" })
 
--- Paste in visual mode without overwriting register
-vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting register" })
+-- Delete in visual mode without overwriting clipboard
+vim.keymap.set("x", "d", [["_d]], { desc = "Delete without overwriting clipboard" })
+vim.keymap.set("x", "x", [["_x]], { desc = "Delete without overwriting clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete into black hole register" })
+
+-- Paste in visual mode without overwriting clipboard
+vim.keymap.set("x", "p", [["_dP]], { desc = "Paste without overwriting clipboard" })
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting clipboard" })
 
 
