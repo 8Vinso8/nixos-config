@@ -18,10 +18,6 @@
       ll = "eza -lh --icons --group-directories-first";
       lt = "eza --tree --icons";
     };
-    shellInit = ''
-      set -gx EDITOR nvim
-      set -gx VISUAL nvim
-    '';
     interactiveShellInit = ''
       set -g fish_greeting
 
