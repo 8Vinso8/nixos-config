@@ -46,5 +46,15 @@ vim.lsp.config("nixd", {
   },
 })
 
+vim.lsp.config("ts_ls", {
+  init_options = {
+    preferences = {
+      semicolons = "remove",
+    },
+  },
+})
+
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("nixd")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("cssls")
