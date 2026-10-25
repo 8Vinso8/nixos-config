@@ -44,7 +44,7 @@
       net_sync = true;
       base_10_bitrate = "Auto";
       show_battery = true;
-      save_config_on_exit = true;
+      save_config_on_exit = false;
       nvml_measure_pcie_speeds = true;
       rsmi_measure_pcie_speeds = true;
       gpu_mirror_graph = true;
