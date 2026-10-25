@@ -3,6 +3,14 @@
 {
   programs.fish = {
     enable = true;
+    shellAliases = {
+      eza = "eza --icons always --group-directories-first";
+      ls = "eza --icons always --group-directories-first";
+      ll = "eza -lh --icons always --group-directories-first";
+      la = "eza -a --icons always --group-directories-first";
+      lla = "eza -la --icons always --group-directories-first";
+      lt = "eza --tree --icons always --group-directories-first";
+    };
     plugins = with pkgs.fishPlugins; [
       {
         name = "hydro";
@@ -13,11 +21,6 @@
         src = fzf-fish.src;
       }
     ];
-    shellAliases = {
-      ls = "eza --icons --group-directories-first";
-      ll = "eza -lh --icons --group-directories-first";
-      lt = "eza --tree --icons";
-    };
     interactiveShellInit = ''
       set -g fish_greeting
 
@@ -54,9 +57,9 @@
     enable = true;
     enableFishIntegration = false;
   };
-  programs.eza.enable = true;
-  programs.eza.enableBashIntegration = false; # prevents spam in nix-shell
+
   home.packages = with pkgs; [
+    eza
     fd
     bat
   ];
