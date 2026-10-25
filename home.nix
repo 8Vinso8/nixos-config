@@ -25,6 +25,7 @@
 
   home.packages = with pkgs; [
     antigravity-cli
+    opencode
     boxflat
     fooyin
     qbittorrent
