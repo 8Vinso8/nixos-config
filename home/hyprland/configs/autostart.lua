@@ -1,5 +1,4 @@
 hl.on("hyprland.start", function()
-  hl.exec_cmd("ags-bar")
   hl.exec_cmd("hyprland-per-window-layout")
   hl.exec_cmd("ddc-brightness restore")
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
