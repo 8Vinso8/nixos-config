@@ -20,7 +20,6 @@
     ./home/theme.nix
     ./home/btop
     ./home/mangohud.nix
-    ./home/quickshell
     inputs.zen-browser.homeModules.beta
   ];
 

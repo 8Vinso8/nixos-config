@@ -29,7 +29,6 @@ let
           p.markdown
           p.toml
           p.vim
-          p.qmljs
         ]))
       ];
 
@@ -40,7 +39,6 @@ let
         ripgrep
         fd
         gcc
-        kdePackages.qtdeclarative
       ];
 
       settings.config_directory = ./config;
