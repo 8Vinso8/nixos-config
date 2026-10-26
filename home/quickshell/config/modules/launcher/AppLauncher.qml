@@ -27,23 +27,20 @@ Item {
         if (!apps || apps.length === 0)
             return;
 
-        root.indexedApps = apps
-            .filter(app => app && !app.noDisplay && app.name && app.name.length > 0)
-            .map(app => {
-                const nameLower = app.name.toLowerCase();
-                const sub = app.genericName || app.comment || "";
-                const kw = (app.keywords ?? []).join(" ");
-                return {
-                    entry: app,
-                    name: app.name,
-                    nameLower: nameLower,
-                    subtitle: sub,
-                    badge: (app.categories && app.categories.length > 0) ? app.categories[0] : "",
-                    iconSource: root.resolveIcon(app.icon ?? ""),
-                    searchBlob: `${nameLower} ${sub.toLowerCase()} ${(app.id ?? "").toLowerCase()} ${kw.toLowerCase()}`
-                };
-            })
-            .sort((a, b) => a.name.localeCompare(b.name));
+        root.indexedApps = apps.filter(app => app && !app.noDisplay && app.name && app.name.length > 0).map(app => {
+            const nameLower = app.name.toLowerCase();
+            const sub = app.genericName || app.comment || "";
+            const kw = (app.keywords ?? []).join(" ");
+            return {
+                entry: app,
+                name: app.name,
+                nameLower: nameLower,
+                subtitle: sub,
+                badge: (app.categories && app.categories.length > 0) ? app.categories[0] : "",
+                iconSource: root.resolveIcon(app.icon ?? ""),
+                searchBlob: `${nameLower} ${sub.toLowerCase()} ${(app.id ?? "").toLowerCase()} ${kw.toLowerCase()}`
+            };
+        }).sort((a, b) => a.name.localeCompare(b.name));
     }
 
     Component.onCompleted: reloadApps()
@@ -101,25 +98,27 @@ Item {
                 if (q.length === 0)
                     return root.indexedApps;
 
-                return root.indexedApps
-                    .filter(item => item.searchBlob.includes(q))
-                    .sort((a, b) => {
-                        const aStarts = a.nameLower.startsWith(q);
-                        const bStarts = b.nameLower.startsWith(q);
-                        if (aStarts !== bStarts)
-                            return aStarts ? -1 : 1;
-                        return a.name.localeCompare(b.name);
-                    });
+                return root.indexedApps.filter(item => item.searchBlob.includes(q)).sort((a, b) => {
+                    const aStarts = a.nameLower.startsWith(q);
+                    const bStarts = b.nameLower.startsWith(q);
+                    if (aStarts !== bStarts)
+                        return aStarts ? -1 : 1;
+                    return a.name.localeCompare(b.name);
+                });
             }
 
             function launchIndex(idx: int) {
                 if (idx >= 0 && idx < filteredApps.length) {
-                    const item = filteredApps[idx];
+                    const entry = filteredApps[idx].entry;
                     launcher.close();
-                    item.entry.execute();
+
+                    if (entry.runInTerminal) {
+                        Quickshell.execDetached(["xdg-terminal-exec", ...entry.command]);
+                    } else {
+                        entry.execute();
+                    }
                 }
             }
-
             onActivated: idx => launchIndex(idx)
 
             onSearchTextChanged: {

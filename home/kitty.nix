@@ -25,4 +25,9 @@
       notify_on_cmd_finish = "unfocused 10.0";
     };
   };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = [ "kitty.desktop" ];
+  };
 }
