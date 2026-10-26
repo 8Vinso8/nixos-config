@@ -34,6 +34,7 @@ let
           p.javascript
           p.css
           p.scss
+          p.qmljs
         ]))
       ];
 
@@ -47,6 +48,7 @@ let
         typescript-language-server
         typescript
         vscode-langservers-extracted
+        kdePackages.qtdeclarative
       ];
 
       settings.config_directory = ./config;
