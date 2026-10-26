@@ -9,13 +9,11 @@
   imports = [
     ./home/hyprland
     ./home/fish.nix
-    # ./home/waybar
     ./home/fastfetch.nix
     ./home/git.nix
     ./home/kitty.nix
-    ./home/mako.nix
     ./home/mpv.nix
-    ./home/rofi
+    ./home/quickshell
     ./home/nvim
     ./home/theme.nix
     ./home/btop
@@ -24,7 +22,6 @@
   ];
 
   home.packages = with pkgs; [
-    inputs.ags-bar.packages.${pkgs.stdenv.hostPlatform.system}.default
     antigravity-cli
     opencode
     boxflat
