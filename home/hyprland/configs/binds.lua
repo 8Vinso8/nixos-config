@@ -2,10 +2,9 @@ local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
 
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("rofi -show drun"))
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("rofi-powermenu"))
-hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd("rofi -modi emoji -show emoji -emoji-format '{emoji}'"))
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("rofi-clipboard"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("quickshell ipc call powermenu toggle"))
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("quickshell ipc call clipboard toggle"))
 
 -- music controls
 hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl -p fooyin next"), { ignore_mods = true })
