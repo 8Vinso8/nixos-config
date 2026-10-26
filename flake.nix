@@ -20,16 +20,6 @@
       };
     };
 
-    waybar = {
-      url = "github:Alexays/Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    ags-bar = {
-      url = "github:8Vinso8/ags-bar-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };

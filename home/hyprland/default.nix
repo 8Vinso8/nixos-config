@@ -14,8 +14,6 @@
     toggle-audio
     toggle-microphone
     sinkchange
-    rofi-powermenu
-    rofi-clipboard
   ];
   # Required for env variables to be exported to hyprland.
   programs.bash.enable = true;
