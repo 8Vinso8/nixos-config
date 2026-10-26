@@ -28,7 +28,6 @@ in
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_cachyos;
-  boot.initrd.systemd.enable = true;
 
   hardware.i2c.enable = true;
 
