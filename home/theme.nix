@@ -14,20 +14,15 @@ let
     flavour = [ "mocha" ];
     accents = [ "mauve" ];
   };
+  qtColorScheme = "${config.xdg.configHome}/qt6ct/colors/CatppuccinMochaMauve.conf";
 in
 {
   home.packages = [
-    catppuccinIcons
     pkgs.kdePackages.breeze
   ];
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "catppuccin-mocha-mauve-standard";
-      icon-theme = "Papirus-Dark";
-      cursor-theme = "Adwaita";
-    };
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
   };
 
   home.pointerCursor = {
@@ -36,8 +31,6 @@ in
     size = 24;
     package = pkgs.adwaita-icon-theme;
     gtk.enable = true;
-    hyprcursor.enable = true;
-    hyprcursor.size = 24;
     x11.enable = true;
   };
 
@@ -55,21 +48,55 @@ in
       name = "Papirus-Dark";
       package = catppuccinIcons;
     };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
 
-  # GTK4 / Libadwaita styles
-  xdg.configFile."gtk-4.0/assets".source =
-    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/assets";
-  xdg.configFile."gtk-4.0/gtk.css".source =
-    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk.css";
-  xdg.configFile."gtk-4.0/gtk-dark.css".source =
-    "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk-dark.css";
+  xdg.configFile = {
+    "gtk-4.0/assets".source =
+      "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source =
+      "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source =
+      "${catppuccinGtk}/share/themes/catppuccin-mocha-mauve-standard/gtk-4.0/gtk-dark.css";
+
+    "qt6ct/colors/CatppuccinMochaMauve.conf".text = ''
+      [ColorScheme]
+      active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
+      disabled_colors=#ffa6adc8, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffa6adc8, #ffffffff, #ffa6adc8, #ff1e1e2e, #ff181825, #ff11111b, #4dcba6f7, #ffa6adc8, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffa6adc8, #ff313244
+      inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
+    '';
+
+    "kdeglobals".text =
+      (builtins.readFile "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors")
+      + ''
+        [General]
+        TerminalApplication=kitty
+
+        [Icons]
+        Theme=Papirus-Dark
+      '';
+
+    "dolphinrc".text = ''
+      [General]
+      Version=202
+
+      [KFileDialog Settings]
+      Places Icons Auto-resize=false
+      Places Icons Static Size=22
+
+      [MainWindow]
+      MenuBar=Disabled
+
+      [UiSettings]
+      ColorScheme=CatppuccinMochaMauve
+    '';
+
+    "icons".source = ./icons;
+  };
+
+  xdg.dataFile."color-schemes/CatppuccinMochaMauve.colors".source =
+    "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors";
 
   qt = {
     enable = true;
@@ -80,7 +107,7 @@ in
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
-        color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/CatppuccinMochaMauve.conf";
+        color_scheme_path = qtColorScheme;
       };
       Fonts = {
         fixed = "\"Monospace,11\"";
@@ -93,7 +120,7 @@ in
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
-        color_scheme_path = "${config.xdg.configHome}/qt6ct/colors/CatppuccinMochaMauve.conf";
+        color_scheme_path = qtColorScheme;
       };
       Fonts = {
         fixed = "\"Monospace,11\"";
@@ -101,44 +128,4 @@ in
       };
     };
   };
-
-  xdg.configFile."qt6ct/colors/CatppuccinMochaMauve.conf".text = ''
-    [ColorScheme]
-    active_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
-    disabled_colors=#ffa6adc8, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffa6adc8, #ffffffff, #ffa6adc8, #ff1e1e2e, #ff181825, #ff11111b, #4dcba6f7, #ffa6adc8, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffa6adc8, #ff313244
-    inactive_colors=#ffcdd6f4, #ff313244, #ff45475a, #ff313244, #ff181825, #ff1e1e2e, #ffcdd6f4, #ffffffff, #ffcdd6f4, #ff1e1e2e, #ff181825, #ff11111b, #ffcba6f7, #ff11111b, #ff89b4fa, #ffcba6f7, #ff181825, #ff1e1e2e, #ff1e1e2e, #ffcdd6f4, #ff313244
-  '';
-
-  # KDE / Dolphin settings
-  xdg.configFile."kdeglobals".text =
-    (builtins.readFile "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors")
-    + ''
-      [General]
-      TerminalApplication=kitty
-
-      [Icons]
-      Theme=Papirus-Dark
-    '';
-
-  # Place scheme into color-schemes directory so applications discover it
-  xdg.dataFile."color-schemes/CatppuccinMochaMauve.colors".source =
-    "${catppuccinKde}/share/color-schemes/CatppuccinMochaMauve.colors";
-
-  xdg.configFile."dolphinrc".text = ''
-    [General]
-    Version=202
-
-    [KFileDialog Settings]
-    Places Icons Auto-resize=false
-    Places Icons Static Size=22
-
-    [MainWindow]
-    MenuBar=Disabled
-
-    [UiSettings]
-    ColorScheme=CatppuccinMochaMauve
-  '';
-
-  # Application icons (boxflat, throne)
-  xdg.configFile."icons".source = ./icons;
 }
