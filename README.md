@@ -13,3 +13,6 @@
 - **System Monitor**: btop
 - **Theme**: Catppuccin Mocha
 - **Font**: JetBrainsMono Nerd Font
+
+<img width="2560" height="1440" alt="изображение" src="https://github.com/user-attachments/assets/d7ad9817-8883-49cf-b674-464b1ac1782f" />
+
