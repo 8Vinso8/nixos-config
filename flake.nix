@@ -20,6 +20,13 @@
       };
     };
 
+    helium-browser = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };

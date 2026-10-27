@@ -35,6 +35,26 @@
         "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.5.0.tar.gz"
       }
     },
+    "helium-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792675705,
+        "narHash": "sha256-vpXmfb8qlS8LBySH713mg/kj707/VOKF737ixag351A=",
+        "owner": "oxcl",
+        "repo": "nix-flake-helium-browser",
+        "rev": "fe59343ee1fb7c25964ed3853bad3ddca10f65fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxcl",
+        "repo": "nix-flake-helium-browser",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -108,6 +128,7 @@
     "root": {
       "inputs": {
         "chaotic": "chaotic",
+        "helium-browser": "helium-browser",
         "home-manager": "home-manager_2",
         "nixpkgs": "nixpkgs_2",
         "wrappers": "wrappers",

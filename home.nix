@@ -19,6 +19,7 @@
     ./home/btop
     ./home/mangohud.nix
     inputs.zen-browser.homeModules.beta
+    inputs.helium-browser.homeModules.default
   ];
 
   home.packages = with pkgs; [
@@ -33,6 +34,7 @@
   ];
 
   programs.zen-browser.enable = true;
+  programs.helium.enable = true;
 
   services.syncthing.enable = true;
 
