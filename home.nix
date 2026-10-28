@@ -18,7 +18,6 @@
     ./home/theme.nix
     ./home/btop
     ./home/mangohud.nix
-    inputs.zen-browser.homeModules.beta
     inputs.helium-browser.homeModules.default
   ];
 
@@ -33,7 +32,6 @@
     pavucontrol
   ];
 
-  programs.zen-browser.enable = true;
   programs.helium.enable = true;
 
   services.syncthing.enable = true;
