@@ -50,6 +50,8 @@ SystemItem {
     }
 
     BarText {
+        width: 16
+        horizontalAlignment: Text.AlignHCenter
         text: "󰌌"
         color: Theme.mauve
     }

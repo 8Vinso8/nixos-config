@@ -17,6 +17,8 @@ SystemItem {
     }
 
     BarText {
+        width: 16
+        horizontalAlignment: Text.AlignHCenter
         text: root.active ? "󰒳" : "󰒲"
         color: root.active ? Theme.red : Theme.mauve
 

@@ -8,7 +8,7 @@ import "../../components"
 SystemItem {
     id: root
 
-    spacing: 6
+    spacing: 4
 
     // Обязательно привязываем узлы, чтобы работали .audio.muted и .audio.volume
     PwObjectTracker {

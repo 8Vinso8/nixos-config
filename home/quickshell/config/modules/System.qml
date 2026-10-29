@@ -6,7 +6,7 @@ import "system"
 Island {
     id: root
 
-    spacing: 10
+    spacing: 6
 
     IdleInhibitor {}
     Brightness {}

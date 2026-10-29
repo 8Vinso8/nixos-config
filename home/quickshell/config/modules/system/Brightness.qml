@@ -45,7 +45,7 @@ SystemItem {
     }
 
     BarText {
-        width: 36
+        width: 32
         horizontalAlignment: Text.AlignLeft
         text: `${root.brightness}%`
         color: Theme.text
