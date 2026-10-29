@@ -25,22 +25,31 @@ Island {
     // Подбор Nerd-иконки под активное приложение
     readonly property string appIcon: {
         const c = appClass;
+        const t = windowTitle.toLowerCase();
         if (!c)
             return "󰖯";
-        if (c.includes("firefox") || c.includes("zen") || c.includes("chrom") || c.includes("brave"))
+        if (c.includes("zen") || c.includes("helium"))
             return "󰈹";
-        if (c.includes("kitty") || c.includes("alacritty") || c.includes("wezterm") || c.includes("foot"))
+        if (c.includes("nvim") || (c.includes("kitty") && (t.includes("nvim") || t.includes("vim"))))
+            return "";
+        if (c.includes("kitty"))
             return "󰆍";
-        if (c.includes("code") || c.includes("nvim") || c.includes("zed") || c.includes("jetbrains"))
-            return "󰨞";
-        if (c.includes("telegram") || c.includes("discord") || c.includes("vesktop"))
-            return "󰭹";
-        if (c.includes("thunar") || c.includes("nautilus") || c.includes("dolphin") || c.includes("yazi"))
+        if (c.includes("dolphin"))
             return "󰉋";
-        if (c.includes("steam") || c.includes("gamescope") || c.includes("heroic"))
-            return "󰊗";
-        if (c.includes("fooyin") || c.includes("spotify") || c.includes("mpv"))
+        if (c.includes("ark"))
+            return "󰛫";
+        if (c.includes("qbittorrent"))
+            return "󰇚";
+        if (c.includes("fooyin"))
             return "󰎈";
+        if (c.includes("mpv"))
+            return "󰕼";
+        if (c.includes("pavucontrol"))
+            return "󰕾";
+        if (c.includes("steam") || c.includes("gamescope") || c.includes("beamng") || c.includes("boxflat"))
+            return "󰊗";
+        if (c.includes("throne"))
+            return "󰒄";
         return "󰖯";
     }
 
