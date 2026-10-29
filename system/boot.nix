@@ -9,4 +9,8 @@
     efi.canTouchEfiVariables = true;
     timeout = 0;
   };
+
+  boot.kernelParams = [
+    "fsck.repair=yes"
+  ];
 }
