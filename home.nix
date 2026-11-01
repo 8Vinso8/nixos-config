@@ -25,6 +25,7 @@
     antigravity-cli
     opencode
     boxflat
+    ed-odyssey-materials-helper
     fooyin
     qbittorrent
     kdePackages.dolphin

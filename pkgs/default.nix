@@ -4,4 +4,5 @@ final: prev: {
   toggle-microphone = final.callPackage ./scripts/toggle-microphone.nix { };
   sinkchange = final.callPackage ./scripts/sinkchange.nix { };
   boxflat = final.callPackage ./boxflat { };
+  ed-odyssey-materials-helper = final.callPackage ./ed-odyssey-materials-helper { };
 }
