@@ -26,6 +26,7 @@
     opencode
     boxflat
     ed-odyssey-materials-helper
+    edmarketconnector
     fooyin
     qbittorrent
     kdePackages.dolphin
