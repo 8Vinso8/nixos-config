@@ -106,7 +106,15 @@ end
 hl.window_rule({
   name = "proton-game-tag-all",
   match = {
-    class = "^steam_app_.*$",
+    class = "^(steam_app_.*|.*\\.exe)$",
+  },
+  tag = "+game",
+})
+
+hl.window_rule({
+  name = "proton-wayland-game-tag",
+  match = {
+    xdg_tag = "proton-game",
   },
   tag = "+game",
 })
