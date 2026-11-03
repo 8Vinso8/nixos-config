@@ -104,9 +104,9 @@ for id, _ in pairs(launcher_games) do
 end
 
 hl.window_rule({
-  name = "proton-game-tag-all",
+  name = "games-all",
   match = {
-    class = "^(steam_app_.*|.*\\.exe)$",
+    class = "^(steam_app_.*|.*\\.exe|BeamNG\\.drive)$",
   },
   tag = "+game",
 })
@@ -138,15 +138,6 @@ for id, title_regex in pairs(launcher_games) do
   })
 end
 
--- Native games
-hl.window_rule({
-  name = "beamng-native",
-  match = {
-    class = "^BeamNG\\.drive$"
-  },
-  tag = "+game",
-})
-
 hl.window_rule({
   name = "fullscreen-games",
   match = {
@@ -162,6 +153,7 @@ hl.window_rule({
   no_dim = true,
   no_shadow = true,
   idle_inhibit = "always",
+  suppress_event = "fullscreen fullscreenoutput activate activatefocus",
 })
 
 -- Racing & simulator games where minimum input latency is critical
