@@ -9,7 +9,6 @@ hl.monitor({ output = "" }) -- Fallback rule
 
 hl.config({
   general = {
-    allow_tearing = true, -- Enables per-window tearing/immediate presentation support (used by window rules)
     border_size   = 2,
     gaps_in       = 4,
     gaps_out      = 8,

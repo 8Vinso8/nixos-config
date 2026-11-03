@@ -153,31 +153,14 @@ hl.window_rule({
   no_dim = true,
   no_shadow = true,
   idle_inhibit = "always",
-  suppress_event = "fullscreen fullscreenoutput activate activatefocus",
-})
-
--- Racing & simulator games where minimum input latency is critical
-local tearing_game_ids = {
-  "3058630", -- Assetto Corsa EVO
-  "3917090", -- Assetto Corsa Rally
-  "284160",  -- BeamNG.drive (Steam Proton)
-  "1203190", -- Wreckfest 2
-  "3088700", -- Driving Rogue
-}
-
-hl.window_rule({
-  name = "racing-games-tearing",
-  match = {
-    class = "^(steam_app_(" .. table.concat(tearing_game_ids, "|") .. ")|BeamNG\\.drive)$",
-  },
-  immediate = true,
+  suppress_event = "fullscreenoutput activate activatefocus",
 })
 
 -- 3058630 - Assetto Corsa EVO: prevent brightness flicker on loading/dips
 hl.window_rule({
   name = "ac-evo-no-vrr",
   match = {
-    class = "^steam_app_3058630$",
+    class = "(?i)^(steam_app_3058630|assettocorsaevo\\.exe)$",
   },
   no_vrr = true,
 })
