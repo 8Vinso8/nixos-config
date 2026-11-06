@@ -18,7 +18,7 @@ Island {
         return tl;
     }
 
-    readonly property string windowTitle: activeTl?.title.trim() ?? ""
+    readonly property string windowTitle: activeTl?.title.replace(/[\r\n]+/g, " ").trim() ?? ""
     readonly property string appClass: (activeTl?.wayland ? activeTl.wayland.appId : (activeTl?.lastIpcObject?.class ?? "")).toLowerCase()
     readonly property bool hasWindow: windowTitle.length > 0
 
@@ -104,6 +104,7 @@ Island {
     }
 
     BarText {
+        id: iconLabel
         text: root.displayedIcon
         color: Theme.mauve
     }
@@ -112,6 +113,7 @@ Island {
         id: titleLabel
         text: root.displayedTitle
         color: Theme.subtext
+        height: iconLabel.implicitHeight
         width: Math.min(implicitWidth, root.maxTitleWidth)
         elide: Text.ElideRight
     }
