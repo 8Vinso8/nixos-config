@@ -13,10 +13,10 @@ Island {
     readonly property var daysShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
     readonly property var monthsNom: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
-    // Просыпается ровно раз в минуту на 00 секундах (0% нагрузки на CPU)
+    // В покое спит раз в минуту (0% CPU), при наведении на тултип считает секунды
     SystemClock {
         id: clock
-        precision: SystemClock.Minutes
+        precision: (root.hovered && !root.popupOpen) ? SystemClock.Seconds : SystemClock.Minutes
     }
 
     property date viewDate: new Date()
@@ -43,6 +43,24 @@ Island {
 
     BarText {
         text: `${root.daysShort[clock.date.getDay()]} ${Qt.formatDate(clock.date, "dd.MM.yyyy")}`
+    }
+
+    BarTooltip {
+        targetItem: root
+        active: root.hovered && !root.popupOpen
+
+        Row {
+            spacing: 8
+            BarText {
+                text: "󰥔"
+                color: Theme.mauve
+            }
+            BarText {
+                text: Qt.formatTime(clock.date, "hh:mm:ss")
+                color: Theme.text
+                font.bold: true
+            }
+        }
     }
 
     onClicked: {
