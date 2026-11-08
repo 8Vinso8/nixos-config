@@ -32,6 +32,7 @@
     kdePackages.dolphin
     kdePackages.ark
     pavucontrol
+    telegram-desktop
   ];
 
   programs.helium.enable = true;
