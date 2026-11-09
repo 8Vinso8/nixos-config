@@ -180,7 +180,6 @@ Island {
                             width: Math.max(144, entryRow.implicitWidth + 24)
                             height: modelData.isSeparator ? 9 : 26
 
-                            // Разделитель
                             Rectangle {
                                 visible: entryItem.modelData.isSeparator
                                 x: 6
@@ -190,7 +189,6 @@ Island {
                                 color: Theme.border
                             }
 
-                            // Кнопка пункта меню
                             Rectangle {
                                 visible: !entryItem.modelData.isSeparator
                                 x: 0
@@ -206,7 +204,6 @@ Island {
                                     anchors.leftMargin: 10
                                     spacing: 8
 
-                                    // Индикатор чекбокса / радио (если пункт переключаемый)
                                     BarText {
                                         visible: entryItem.isCheckable
                                         text: entryItem.isRadio ? (entryItem.isChecked ? "󰄵" : "󰄱") : (entryItem.isChecked ? "󰄴" : "󰄱")

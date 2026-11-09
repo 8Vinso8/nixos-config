@@ -49,7 +49,6 @@ Rectangle {
         anchors.rightMargin: 12
         spacing: 12
 
-        // Иконка
         Item {
             width: 32
             height: 32
@@ -76,7 +75,6 @@ Rectangle {
             }
         }
 
-        // Текстовый блок (Title + Subtitle)
         Column {
             width: parent.width - 32 - 12 - (badgeText.visible ? (badgeText.implicitWidth + 12) : 0)
             anchors.verticalCenter: parent.verticalCenter
@@ -102,7 +100,6 @@ Rectangle {
             }
         }
 
-        // Бейдж категории
         BarText {
             id: badgeText
             anchors.verticalCenter: parent.verticalCenter

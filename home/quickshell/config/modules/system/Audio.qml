@@ -18,7 +18,6 @@ SystemItem {
     readonly property bool sinkMuted: Pipewire.defaultAudioSink?.audio?.muted ?? false
     readonly property bool sourceMuted: Pipewire.defaultAudioSource?.audio?.muted ?? false
 
-    // Иконка вывода (наушники / динамики)
     BarText {
         width: 16
         horizontalAlignment: Text.AlignHCenter
@@ -32,7 +31,6 @@ SystemItem {
         }
     }
 
-    // Иконка ввода (микрофон)
     BarText {
         width: 16
         horizontalAlignment: Text.AlignHCenter
@@ -46,7 +44,6 @@ SystemItem {
         }
     }
 
-    // Обработка всех трех кликов одним хендлером
     TapHandler {
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         onTapped: (eventPoint, button) => {

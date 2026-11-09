@@ -91,7 +91,6 @@ Island {
         }
     }
 
-    // Иконка: играет (mauve нота) / пауза (subtext пауза)
     BarText {
         text: root.displayedPaused ? "󰏤" : "󰎈"
         color: root.displayedPaused ? Theme.subtext : Theme.mauve
@@ -103,7 +102,6 @@ Island {
         }
     }
 
-    // Название трека и артист
     BarText {
         id: trackLabel
         text: root.displayedText
@@ -117,10 +115,8 @@ Island {
         }
     }
 
-    // ЛКМ: play/pause (через стандартный onClicked островка)
     onClicked: root.player?.togglePlaying()
 
-    // ПКМ: если окно открыто — фокусируем через Hyprland, если скрыто в трее — поднимаем через процесс
     TapHandler {
         acceptedButtons: Qt.RightButton
         onTapped: {
@@ -134,7 +130,6 @@ Island {
         }
     }
 
-    // Колесико мыши: следующий / предыдущий трек
     WheelHandler {
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
         onWheel: event => {
@@ -154,7 +149,6 @@ Island {
         Column {
             spacing: 4
 
-            // Трек
             Row {
                 spacing: 8
                 BarText {
@@ -168,7 +162,6 @@ Island {
                 }
             }
 
-            // Исполнитель
             Row {
                 spacing: 8
                 visible: ((root.player?.trackArtist ?? "").trim().length) > 0
@@ -182,7 +175,6 @@ Island {
                 }
             }
 
-            // Альбом
             Row {
                 spacing: 8
                 visible: ((root.player?.trackAlbum ?? "").trim().length) > 0

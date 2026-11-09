@@ -43,7 +43,6 @@ ShellRoot {
             color: "transparent"
             exclusiveZone: Theme.islandHeight
 
-            // Левая группа (Workspaces, ActiveWindow)
             Row {
                 id: leftGroup
                 anchors.left: parent.left
@@ -54,7 +53,6 @@ ShellRoot {
                 ActiveWindow {}
             }
 
-            // Центральная группа (Часы)
             Row {
                 id: centerGroup
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -63,7 +61,6 @@ ShellRoot {
                 Clock {}
             }
 
-            // Правая группа (Mpris, System, Tray)
             Row {
                 id: rightGroup
                 anchors.right: parent.right

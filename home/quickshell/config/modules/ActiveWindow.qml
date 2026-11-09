@@ -149,7 +149,6 @@ Island {
         }
     }
 
-    // Курсор-пальчик при наведении
     HoverHandler {
         id: hoverHandler
         cursorShape: Qt.PointingHandCursor

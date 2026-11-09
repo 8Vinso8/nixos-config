@@ -22,7 +22,6 @@ Island {
     property bool popupOpen: false
 
     function shiftMonth(delta: int) {
-        // Всегда ставим 1-е число, чтобы 31-го числа setMonth не перескакивал через месяц
         root.viewDate = new Date(root.viewDate.getFullYear(), root.viewDate.getMonth() + delta, 1);
     }
 
@@ -69,7 +68,6 @@ Island {
         root.popupOpen = !root.popupOpen;
     }
 
-    // Создает окно календаря в ОЗУ только тогда, когда оно открыто
     LazyLoader {
         active: root.popupOpen
 
@@ -87,7 +85,6 @@ Island {
             visible: true
             grabFocus: true
 
-            // Если окно закрылось по потере фокуса (клик мимо), синхронизируем флаг
             onVisibleChanged: {
                 if (!visible)
                     root.popupOpen = false;
@@ -101,7 +98,6 @@ Island {
                 implicitWidth: 260
                 implicitHeight: 280
 
-                // Позволяет листать месяцы колесиком мыши прямо над календарем
                 WheelHandler {
                     target: calendarCard
                     acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
@@ -113,7 +109,6 @@ Island {
                     anchors.margins: 12
                     spacing: 10
 
-                    // Заголовок месяца и навигация < Месяц Год >
                     Row {
                         width: parent.width
 
@@ -139,7 +134,6 @@ Island {
                             }
                         }
 
-                        // Кнопка возврата к текущей дате («Сегодня»)
                         Rectangle {
                             id: monthBtn
                             width: parent.width - 48
@@ -189,7 +183,6 @@ Island {
                         }
                     }
 
-                    // Дни недели: Пн Вт Ср Чт Пт Сб Вс
                     Grid {
                         columns: 7
                         columnSpacing: 4
@@ -212,7 +205,6 @@ Island {
                         }
                     }
 
-                    // Сетка чисел месяца (42 ячейки)
                     Grid {
                         id: daysGrid
                         columns: 7
