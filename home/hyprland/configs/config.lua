@@ -17,6 +17,13 @@ hl.config({
       active_border   = "rgb(203,166,247)",
       inactive_border = "rgba(00000000)",
     },
+    snap = {
+      enabled = true,
+      window_gap = 10,
+      monitor_gap = 10,
+      border_overlap = false,
+      respect_gaps = false,
+    },
   },
   decoration = {
     rounding = 8,

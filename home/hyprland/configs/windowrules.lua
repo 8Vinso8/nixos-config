@@ -39,8 +39,7 @@ hl.window_rule({
   pin = true,
   keep_aspect_ratio = true,
   no_initial_focus = true,
-  size = { "monitor_w*0.25", "monitor_h*0.25" },
-  move = { "monitor_w-window_w-20", "monitor_h-window_h-20" },
+  move = { "monitor_w-window_w-10", "monitor_h-window_h-10" },
 })
 
 hl.window_rule({
