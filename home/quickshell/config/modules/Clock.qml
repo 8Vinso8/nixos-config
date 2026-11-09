@@ -13,10 +13,9 @@ Island {
     readonly property var daysShort: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"]
     readonly property var monthsNom: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
-    // В покое спит раз в минуту (0% CPU), при наведении на тултип считает секунды
     SystemClock {
         id: clock
-        precision: (root.hovered && !root.popupOpen) ? SystemClock.Seconds : SystemClock.Minutes
+        precision: SystemClock.Seconds
     }
 
     property date viewDate: new Date()
