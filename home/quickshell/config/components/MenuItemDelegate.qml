@@ -55,8 +55,9 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             Image {
+                id: itemIcon
                 anchors.fill: parent
-                visible: delegateRoot.iconSource.length > 0
+                visible: delegateRoot.iconSource.length > 0 && status === Image.Ready
                 source: delegateRoot.iconSource
                 fillMode: Image.PreserveAspectFit
                 sourceSize.width: 64
@@ -68,7 +69,7 @@ Rectangle {
 
             BarText {
                 anchors.centerIn: parent
-                visible: delegateRoot.iconSource.length === 0
+                visible: !itemIcon.visible
                 text: delegateRoot.fallbackIcon
                 font.pixelSize: delegateRoot.subtitle.length > 0 ? 22 : 18
                 color: delegateRoot.iconColor

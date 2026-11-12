@@ -11,15 +11,13 @@ Item {
     property bool active: false
     property var clipboardItems: []
     property string selectedFullText: ""
-    property string currentSelectedId: ""
+    property string selectedPartialText: ""
     property var activePreviewItem: null
-    property int imageCacheRev: 0
 
     readonly property string cacheDir: `${Quickshell.env("XDG_RUNTIME_DIR") || "/run/user/1000"}/quickshell/cliphist`
 
     Process {
         id: listProc
-        command: ["cliphist", "list"]
         stdout: StdioCollector {
             onStreamFinished: root.parseCliphist(text)
         }
@@ -33,21 +31,15 @@ Item {
     }
 
     Process {
-        id: cacheImagesProc
-        onExited: root.imageCacheRev++
-    }
-
-    Process {
         id: deleteProc
         onExited: root.reloadHistory()
     }
 
     function reloadHistory() {
-        listProc.exec(["cliphist", "list"]);
-        // Атомарная запись через .tmp, чтобы QML Image никогда не читал недописанный PNG
-        cacheImagesProc.exec([
+        // Сначала декодируем новые изображения в кэш, затем отдаем список — чтобы все PNG уже были на диске к моменту отрисовки делегатов
+        listProc.exec([
             "sh", "-c",
-            `mkdir -p "${root.cacheDir}" && cliphist list | grep '\\[\\[ binary data' | head -n 12 | awk '{print $1}' | while read -r id; do out="${root.cacheDir}/$id.png"; [ -f "$out" ] || (cliphist decode "$id" > "$out.tmp" && mv "$out.tmp" "$out"); done`
+            `mkdir -p "${root.cacheDir}" && cliphist list | head -n 150 | grep -a '\\[\\[ binary data' | head -n 40 | awk '{print $1}' | while read -r id; do out="${root.cacheDir}/$id.png"; [ -f "$out" ] || (cliphist decode "$id" > "$out.tmp" && mv "$out.tmp" "$out"); done && cliphist list | head -n 150`
         ]);
     }
 
@@ -86,11 +78,11 @@ Item {
             let imagePath = "";
 
             if (isBinary) {
+                imagePath = `file://${root.cacheDir}/${id}.png`;
                 const match = content.match(/binary data\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)\s+([^\s]+)/);
                 if (match) {
                     badge = `${match[3].toUpperCase()} ${match[1]} ${match[2]}`;
                     subtitle = match[4] ?? "";
-                    imagePath = `file://${root.cacheDir}/${id}.png`;
                 } else {
                     badge = "Image";
                     subtitle = "Бинарные данные";
@@ -129,6 +121,7 @@ Item {
     }
 
     function commitPreview() {
+        root.selectedPartialText = "";
         if (!loader.item)
             return;
         const overlay = loader.item;
@@ -139,11 +132,9 @@ Item {
         root.activePreviewItem = item;
         if (!item) {
             root.selectedFullText = "";
-            root.currentSelectedId = "";
             return;
         }
 
-        root.currentSelectedId = item.id;
         root.selectedFullText = item.title;
         if (!item.isBinary) {
             textDecodeProc.exec(["cliphist", "decode", item.id]);
@@ -155,6 +146,11 @@ Item {
             loader.item.close();
         else
             root.active = false;
+    }
+
+    function copyText(text: string) {
+        root.closeMenu();
+        Quickshell.execDetached(["wl-copy", "--", text.replace(/[\u2028\u2029]/g, "\n")]);
     }
 
     function copyItem(id: string) {
@@ -241,7 +237,9 @@ Item {
             }
 
             function activateIndex(idx: int) {
-                if (idx >= 0 && idx < filteredItems.length) {
+                if (root.selectedPartialText.length > 0) {
+                    root.copyText(root.selectedPartialText);
+                } else if (idx >= 0 && idx < filteredItems.length) {
                     root.copyItem(filteredItems[idx].id);
                 }
             }
@@ -250,6 +248,13 @@ Item {
             onDeleteRequested: idx => {
                 if (idx >= 0 && idx < filteredItems.length) {
                     root.deleteItem(filteredItems[idx]);
+                }
+            }
+            onCopyRequested: {
+                if (root.selectedPartialText.length > 0) {
+                    root.copyText(root.selectedPartialText);
+                } else if (root.activePreviewItem) {
+                    root.copyItem(root.activePreviewItem.id);
                 }
             }
 
@@ -272,7 +277,7 @@ Item {
                 subtitle: modelData.subtitle ?? ""
                 fallbackIcon: modelData.icon ?? "󰅍"
                 iconColor: modelData.color ?? Theme.mauve
-                iconSource: (modelData.imagePath && root.imageCacheRev >= 0) ? modelData.imagePath : ""
+                iconSource: modelData.imagePath ?? ""
                 badge: modelData.badge ?? ""
 
                 onSelected: {
@@ -285,6 +290,7 @@ Item {
 
             sidePanel: Component {
                 Rectangle {
+                    id: previewCard
                     radius: 12
                     color: Theme.surface
                     border.color: Theme.border
@@ -309,14 +315,14 @@ Item {
 
                                 BarText {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: currentItem ? (currentItem.isBinary ? "󰋩" : "󰅍") : "󰅍"
+                                    text: previewCard.currentItem ? (previewCard.currentItem.isBinary ? "󰋩" : "󰅍") : "󰅍"
                                     font.pixelSize: 16
-                                    color: currentItem ? currentItem.color : Theme.mauve
+                                    color: previewCard.currentItem ? previewCard.currentItem.color : Theme.mauve
                                 }
 
                                 BarText {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: currentItem ? (currentItem.isBinary ? "Изображение" : "Текст") : "Предпросмотр"
+                                    text: previewCard.currentItem ? (previewCard.currentItem.isBinary ? "Изображение" : "Текст") : "Предпросмотр"
                                     font.bold: true
                                     font.pixelSize: 12
                                     color: Theme.text
@@ -324,8 +330,8 @@ Item {
 
                                 BarText {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    visible: currentItem !== null
-                                    text: currentItem ? (currentItem.badge ? (currentItem.badge + (currentItem.subtitle ? `  •  ${currentItem.subtitle}` : "")) : currentItem.subtitle) : ""
+                                    visible: previewCard.currentItem !== null
+                                    text: previewCard.currentItem ? (previewCard.currentItem.badge ? (previewCard.currentItem.badge + (previewCard.currentItem.subtitle ? `  •  ${previewCard.currentItem.subtitle}` : "")) : previewCard.currentItem.subtitle) : ""
                                     font.pixelSize: 11
                                     color: Theme.subtext
                                 }
@@ -334,7 +340,7 @@ Item {
                             Rectangle {
                                 anchors.right: parent.right
                                 anchors.verticalCenter: parent.verticalCenter
-                                visible: currentItem !== null
+                                visible: previewCard.currentItem !== null
                                 width: copyBtnContent.implicitWidth + 14
                                 height: 26
                                 radius: 6
@@ -349,8 +355,10 @@ Item {
 
                                 TapHandler {
                                     onTapped: {
-                                        if (currentItem)
-                                            root.copyItem(currentItem.id);
+                                        if (previewFullText.selectedText.length > 0)
+                                            root.copyText(previewFullText.selectedText);
+                                        else if (previewCard.currentItem)
+                                            root.copyItem(previewCard.currentItem.id);
                                     }
                                 }
 
@@ -368,7 +376,7 @@ Item {
 
                                     BarText {
                                         anchors.verticalCenter: parent.verticalCenter
-                                        text: "Копировать"
+                                        text: previewFullText.selectedText.length > 0 ? "Копировать выделенное" : "Копировать"
                                         font.bold: true
                                         font.pixelSize: 11
                                         color: copyBtnHover.hovered ? Theme.base : Theme.text
@@ -389,7 +397,7 @@ Item {
 
                             BarText {
                                 anchors.centerIn: parent
-                                visible: !currentItem
+                                visible: !previewCard.currentItem
                                 text: "Ничего не выбрано"
                                 color: Theme.subtext
                                 font.pixelSize: 12
@@ -397,13 +405,21 @@ Item {
 
                             Item {
                                 anchors.fill: parent
-                                visible: currentItem !== null && currentItem.isBinary
+                                visible: previewCard.currentItem !== null && previewCard.currentItem.isBinary
+
+                                BarText {
+                                    anchors.centerIn: parent
+                                    visible: previewImage.status !== Image.Ready
+                                    text: previewImage.status === Image.Loading ? "Загрузка..." : "󰋩"
+                                    font.pixelSize: 32
+                                    color: Theme.subtext
+                                }
 
                                 Image {
                                     id: previewImage
                                     anchors.fill: parent
                                     fillMode: Image.PreserveAspectFit
-                                    source: (currentItem && currentItem.isBinary && currentItem.imagePath && root.imageCacheRev >= 0) ? currentItem.imagePath : ""
+                                    source: (previewCard.currentItem && previewCard.currentItem.isBinary && previewCard.currentItem.imagePath) ? previewCard.currentItem.imagePath : ""
                                     smooth: true
                                     asynchronous: true
                                     cache: false
@@ -413,7 +429,7 @@ Item {
                             Flickable {
                                 id: textFlickable
                                 anchors.fill: parent
-                                visible: currentItem !== null && !currentItem.isBinary
+                                visible: previewCard.currentItem !== null && !previewCard.currentItem.isBinary
                                 interactive: false
                                 contentWidth: width
                                 contentHeight: previewFullText.implicitHeight
@@ -435,7 +451,8 @@ Item {
                                     wrapMode: TextEdit.Wrap
                                     readOnly: true
                                     selectByMouse: true
-                                    activeFocusOnPress: false
+                                    persistentSelection: true
+                                    activeFocusOnPress: true
                                     cursorVisible: false
                                     selectionColor: Theme.mauve
                                     selectedTextColor: Theme.base
@@ -443,6 +460,27 @@ Item {
                                     font.family: Theme.fontFamily
                                     font.pixelSize: 11
                                     font.bold: false
+
+                                    onTextChanged: {
+                                        textFlickable.contentY = 0;
+                                        deselect();
+                                    }
+                                    onSelectedTextChanged: root.selectedPartialText = previewFullText.selectedText
+
+                                    Keys.forwardTo: [clipOverlay.keyScope, clipOverlay.searchField]
+
+                                    Keys.onPressed: event => {
+                                        if ((event.key === Qt.Key_C && (event.modifiers & Qt.ControlModifier)) || event.matches(StandardKey.Copy)) {
+                                            if (previewFullText.selectedText.length > 0)
+                                                root.copyText(previewFullText.selectedText);
+                                            else if (previewCard.currentItem)
+                                                root.copyItem(previewCard.currentItem.id);
+                                            event.accepted = true;
+                                        } else if (event.key === Qt.Key_Escape) {
+                                            root.closeMenu();
+                                            event.accepted = true;
+                                        }
+                                    }
                                 }
                             }
                         }

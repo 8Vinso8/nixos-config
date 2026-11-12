@@ -16,9 +16,12 @@ PanelWindow {
     property alias searchPlaceholder: searchInput.placeholderText
     property alias searchText: searchInput.text
     property alias listView: list
+    property alias searchField: searchInput
+    property alias keyScope: keyScope
 
     signal activated(int index)
     signal deleteRequested(int index)
+    signal copyRequested
     signal closedAndHidden
 
     Component.onCompleted: open()
@@ -94,6 +97,11 @@ PanelWindow {
                     rootWindow.activated(list.currentIndex);
                 }
                 event.accepted = true;
+            } else if ((event.key === Qt.Key_C && (event.modifiers & Qt.ControlModifier)) || event.matches(StandardKey.Copy)) {
+                if (searchInput.selectedText.length === 0) {
+                    rootWindow.copyRequested();
+                    event.accepted = true;
+                }
             } else if (
                 (event.key === Qt.Key_Delete && ((event.modifiers & Qt.ShiftModifier) || (event.modifiers & Qt.ControlModifier) || searchInput.text.length === 0)) ||
                 (event.key === Qt.Key_D && (event.modifiers & Qt.AltModifier))
