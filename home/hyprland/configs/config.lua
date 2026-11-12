@@ -58,6 +58,9 @@ hl.config({
     vrr = 3,
     background_color = "rgb(17,17,27)"
   },
+  render = {
+    cm_auto_hdr = 0,
+  },
   binds = {
     workspace_back_and_forth = true,
   },
