@@ -10,14 +10,12 @@ PanelWindow {
     property bool shown: false
     property int cardWidth: 540
     property int cardHeight: 460
-    property bool showSearch: true
     property Component sidePanel: null
     property int sidePanelWidth: 340
 
     property alias searchPlaceholder: searchInput.placeholderText
     property alias searchText: searchInput.text
     property alias listView: list
-    default property alias content: list.data
 
     signal activated(int index)
     signal deleteRequested(int index)
@@ -37,11 +35,7 @@ PanelWindow {
         searchInput.text = "";
         list.currentIndex = 0;
         list.positionViewAtBeginning();
-        if (rootWindow.showSearch) {
-            searchInput.forceActiveFocus();
-        } else {
-            keyScope.forceActiveFocus();
-        }
+        searchInput.forceActiveFocus();
     }
 
     function close() {
@@ -49,13 +43,6 @@ PanelWindow {
             return;
         rootWindow.shown = false;
         unloadTimer.restart();
-    }
-
-    function toggle() {
-        if (rootWindow.shown)
-            close();
-        else
-            open();
     }
 
     WlrLayershell.layer: WlrLayer.Overlay
@@ -151,7 +138,6 @@ PanelWindow {
 
                     Rectangle {
                         id: searchBar
-                        visible: rootWindow.showSearch
                         width: parent.width
                         height: 42
                         radius: 10
@@ -227,7 +213,7 @@ PanelWindow {
                     ListView {
                         id: list
                         width: parent.width
-                        height: parent.height - (searchBar.visible ? (searchBar.height + 10) : 0)
+                        height: parent.height - searchBar.height - 10
                         clip: true
                         spacing: 4
                         boundsBehavior: Flickable.StopAtBounds

@@ -1,6 +1,5 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import Quickshell
 import ".."
 
 Rectangle {
@@ -20,7 +19,7 @@ Rectangle {
     signal selected
 
     width: ListView.view ? ListView.view.width : parent.width
-    height: 48
+    height: delegateRoot.subtitle.length > 0 ? 48 : 38
     radius: 8
 
     color: (isCurrent || itemHover.hovered) ? Theme.surface : "transparent"
@@ -50,8 +49,9 @@ Rectangle {
         spacing: 12
 
         Item {
-            width: 32
-            height: 32
+            id: iconBox
+            width: delegateRoot.subtitle.length > 0 ? 32 : 24
+            height: width
             anchors.verticalCenter: parent.verticalCenter
 
             Image {
@@ -70,13 +70,13 @@ Rectangle {
                 anchors.centerIn: parent
                 visible: delegateRoot.iconSource.length === 0
                 text: delegateRoot.fallbackIcon
-                font.pixelSize: 22
+                font.pixelSize: delegateRoot.subtitle.length > 0 ? 22 : 18
                 color: delegateRoot.iconColor
             }
         }
 
         Column {
-            width: parent.width - 32 - 12 - (badgeText.visible ? (badgeText.implicitWidth + 12) : 0)
+            width: parent.width - iconBox.width - 12 - (badgeText.visible ? (badgeText.implicitWidth + 12) : 0)
             anchors.verticalCenter: parent.verticalCenter
             spacing: 2
 

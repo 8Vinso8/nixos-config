@@ -2,7 +2,6 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "../.."
 import "../../components"
 
 Item {
@@ -35,8 +34,6 @@ Item {
                 entry: app,
                 name: app.name,
                 nameLower: nameLower,
-                subtitle: sub,
-                badge: (app.categories && app.categories.length > 0) ? app.categories[0] : "",
                 iconSource: root.resolveIcon(app.icon ?? ""),
                 searchBlob: `${nameLower} ${sub.toLowerCase()} ${(app.id ?? "").toLowerCase()} ${kw.toLowerCase()}`
             };
@@ -88,8 +85,8 @@ Item {
         MenuOverlay {
             id: launcher
             searchPlaceholder: "Запуск приложения..."
-            cardWidth: 540
-            cardHeight: 460
+            cardWidth: 330
+            cardHeight: 400
 
             onClosedAndHidden: root.active = false
 
@@ -134,9 +131,7 @@ Item {
 
                 isCurrent: launcher.listView.currentIndex === index
                 title: modelData.name
-                subtitle: modelData.subtitle
                 iconSource: modelData.iconSource
-                badge: modelData.badge
 
                 onActivated: launcher.launchIndex(index)
             }
