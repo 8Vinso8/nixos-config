@@ -18,6 +18,7 @@
     ./home/theme.nix
     ./home/btop
     ./home/mangohud.nix
+    ./home/zen.nix
     inputs.helium-browser.homeModules.default
   ];
 
