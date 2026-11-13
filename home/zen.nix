@@ -29,6 +29,13 @@
         "sponsorBlocker@ajay.app" = "sponsorblock";
         "moz-addon-prod@7tv.app" = "7tv-extension";
       };
+
+      Preferences = {
+        "network.http.http3.enable" = {
+          Value = false;
+          Status = "locked";
+        };
+      };
     };
   };
 }
