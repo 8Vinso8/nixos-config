@@ -21,6 +21,7 @@ in
     ./system/time.nix
     ./system/pipewire.nix
     ./system/swap.nix
+    ./system/ollama.nix
   ];
 
   nixpkgs.overlays = [
