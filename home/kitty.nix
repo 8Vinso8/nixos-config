@@ -23,6 +23,7 @@
       detect_urls = true;
       url_style = "curly";
       notify_on_cmd_finish = "unfocused 10.0";
+      background_opacity = "0.85";
     };
   };
 
