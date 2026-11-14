@@ -22,10 +22,10 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "${config.xdg.configHome}/wallpapers/gemini.jpg" ];
+      preload = [ "${config.xdg.configHome}/wallpapers/wallpaper-2k.png" ];
       wallpaper = {
         monitor = "DP-1";
-        path = "${config.xdg.configHome}/wallpapers/gemini.jpg";
+        path = "${config.xdg.configHome}/wallpapers/wallpaper-2k.png";
         fit_mode = "cover";
       };
       splash = false;
@@ -55,7 +55,7 @@
     "envvars".content = ./configs/envvars.lua;
   };
 
-  xdg.configFile."wallpapers/gemini.jpg".source = ../wallpapers/gemini.jpg;
+  xdg.configFile."wallpapers/wallpaper-2k.png".source = ../wallpapers/wallpaper-2k.png;
 
   xdg.configFile."cliphist/config".text = "preview-width 120\n";
 }
