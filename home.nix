@@ -19,7 +19,6 @@
     ./home/btop
     ./home/mangohud.nix
     ./home/zen.nix
-    inputs.helium-browser.homeModules.default
   ];
 
   home.packages = with pkgs; [
@@ -35,8 +34,6 @@
     pavucontrol
     telegram-desktop
   ];
-
-  programs.helium.enable = true;
 
   services.syncthing.enable = true;
 

@@ -28,7 +28,7 @@ Island {
         const t = windowTitle.toLowerCase();
         if (!c)
             return "󰖯";
-        if (c.includes("zen") || c.includes("helium"))
+        if (c.includes("zen"))
             return "󰈹";
         if (c.includes("nvim") || (c.includes("kitty") && (t.includes("nvim") || t.includes("vim"))))
             return "";
