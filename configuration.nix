@@ -92,6 +92,7 @@ in
     isNormalUser = true;
     shell = pkgs.fish;
     description = "vinso";
+    linger = true;
     extraGroups = [
       "wheel"
       "i2c"
