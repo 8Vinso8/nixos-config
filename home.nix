@@ -19,6 +19,8 @@
     ./home/btop
     ./home/mangohud.nix
     ./home/zen.nix
+    ./home/yazi
+    ./home/mime.nix
   ];
 
   home.packages = with pkgs; [
@@ -29,20 +31,11 @@
     edmarketconnector
     fooyin
     qbittorrent
-    kdePackages.dolphin
-    kdePackages.ark
     pavucontrol
     telegram-desktop
   ];
 
   services.syncthing.enable = true;
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "inode/directory" = [ "org.kde.dolphin.desktop" ];
-    };
-  };
 
   xdg.userDirs = {
     enable = true;

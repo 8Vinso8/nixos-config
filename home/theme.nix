@@ -77,21 +77,6 @@ in
         Theme=Papirus-Dark
       '';
 
-    "dolphinrc".text = ''
-      [General]
-      Version=202
-
-      [KFileDialog Settings]
-      Places Icons Auto-resize=false
-      Places Icons Static Size=22
-
-      [MainWindow]
-      MenuBar=Disabled
-
-      [UiSettings]
-      ColorScheme=CatppuccinMochaMauve
-    '';
-
     "icons".source = ./icons;
   };
 
