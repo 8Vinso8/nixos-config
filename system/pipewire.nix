@@ -19,7 +19,7 @@
             48000
           ];
           "default.clock.quantum" = 2048;
-          "default.clock.min-quantum" = 1024;
+          "default.clock.min-quantum" = 2048;
           "default.clock.max-quantum" = 4096;
         };
       };
@@ -30,27 +30,12 @@
           {
             matches = [
               {
-                "node.name" = "~alsa_input.*";
-              }
-              {
                 "node.name" = "~alsa_output.*";
               }
             ];
             actions = {
               update-props = {
-                "session.suspend-timeout-seconds" = 0;
-              };
-            };
-          }
-          {
-            matches = [
-              {
-                "node.name" = "alsa_output.pci-0000_09_00.4.analog-stereo";
-              }
-            ];
-            actions = {
-              update-props = {
-                "api.alsa.headroom" = 1024;
+                "session.suspend-timeout-seconds" = 300;
               };
             };
           }
