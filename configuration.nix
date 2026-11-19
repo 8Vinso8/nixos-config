@@ -27,7 +27,7 @@ in
     (import ./pkgs)
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
 
   hardware.i2c.enable = true;
 
