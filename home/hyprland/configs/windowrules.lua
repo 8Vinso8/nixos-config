@@ -19,7 +19,7 @@ hl.window_rule({
 
 hl.layer_rule({
   match = { namespace = "notifications" },
-  animation = "slide bottom",
+  no_anim = true,
 })
 
 hl.window_rule({

@@ -86,7 +86,7 @@ PanelWindow {
         onTriggered: osdWindow.shown = false
     }
 
-    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.layer: WlrLayer.Top
 
     anchors {
         bottom: true

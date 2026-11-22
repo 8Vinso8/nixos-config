@@ -9,6 +9,7 @@ Rectangle {
     id: root
 
     property Notification notification: null
+    property bool pauseTimer: false
 
     signal dismissRequested
     signal dismissAllRequested
@@ -23,7 +24,11 @@ Rectangle {
 
     onNotificationChanged: {
         if (root.notification && !slideOutAnim.running && root.duration > 0) {
-            progressAnim.restart();
+            if (root.pauseTimer) {
+                root.progress = 1.0;
+            } else {
+                progressAnim.restart();
+            }
         }
     }
 
@@ -112,7 +117,7 @@ Rectangle {
         from: 1.0
         to: 0.0
         duration: Math.max(100, root.duration)
-        running: root.duration > 0
+        running: root.duration > 0 && !root.pauseTimer && !slideOutAnim.running
         paused: cardHover.hovered
         onFinished: root.closeWithAnim()
     }

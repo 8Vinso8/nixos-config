@@ -60,13 +60,14 @@ hl.config({
   },
   render = {
     cm_auto_hdr = 0,
+    direct_scanout = 2,
   },
   binds = {
     workspace_back_and_forth = true,
   },
   cursor = {
     inactive_timeout = 5,
-    min_refresh_rate = 30,
+    min_refresh_rate = 48,
     no_break_fs_vrr  = 2,
     no_warps = true,
   },

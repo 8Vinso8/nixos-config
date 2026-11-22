@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
 import Quickshell.Wayland
+import Quickshell.Hyprland
 import Quickshell.Services.Notifications
 import "../.."
 
@@ -9,6 +10,8 @@ PanelWindow {
     id: overlayWindow
 
     required property NotificationServer server
+    readonly property bool isFullscreen: Hyprland.focusedWorkspace?.hasFullscreen ?? false
+    property double lastSoundMs: 0
 
     ListModel {
         id: cardsModel
@@ -61,6 +64,19 @@ PanelWindow {
                 }
             }
 
+            if (overlayWindow.isFullscreen) {
+                const now = Date.now();
+                if (now - overlayWindow.lastSoundMs > 1500) {
+                    overlayWindow.lastSoundMs = now;
+                    Quickshell.execDetached(["pw-play", "--volume", "1.0", "/run/current-system/sw/share/sounds/freedesktop/stereo/message.oga"]);
+                }
+            }
+
+            while (cardsModel.count >= 5) {
+                const oldestId = cardsModel.get(0).notifId;
+                overlayWindow.removeById(oldestId);
+            }
+
             cardsModel.append({
                 syncKey: key,
                 notifId: notification.id
@@ -79,7 +95,8 @@ PanelWindow {
             n.dismiss();
     }
 
-    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.layer: WlrLayer.Top
+    WlrLayershell.namespace: "notifications"
 
     anchors {
         top: true
@@ -96,7 +113,7 @@ PanelWindow {
 
     implicitWidth: 320
     implicitHeight: Math.max(1, notifCol.implicitHeight)
-    visible: cardsModel.count > 0
+    visible: cardsModel.count > 0 && !isFullscreen
 
     mask: Region {
         item: notifCol
@@ -122,6 +139,8 @@ PanelWindow {
             NotificationCard {
                 required property int notifId
                 required property string syncKey
+
+                pauseTimer: overlayWindow.isFullscreen
 
                 notification: overlayWindow.server.trackedNotifications.values.find(n => n.id === notifId) ?? null
 
