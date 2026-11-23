@@ -10,7 +10,7 @@ PanelWindow {
     id: overlayWindow
 
     required property NotificationServer server
-    readonly property bool isFullscreen: Hyprland.focusedWorkspace?.hasFullscreen ?? false
+    readonly property bool isFullscreen: ToplevelManager.activeToplevel?.fullscreen ?? false
     property double lastSoundMs: 0
 
     ListModel {
