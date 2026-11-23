@@ -59,6 +59,7 @@
             actions = {
               update-props = {
                 "session.suspend-timeout-seconds" = 300;
+                "api.alsa.headroom" = 1024;
               };
             };
           }
@@ -66,6 +67,10 @@
       };
     };
   };
+
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="08bb", TEST=="power/control", ATTR{power/control}="on"
+  '';
 
   # Disable HDA Intel power saving to prevent power-state transition clicks
   boot.extraModprobeConfig = ''
