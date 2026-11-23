@@ -71,4 +71,11 @@
   boot.extraModprobeConfig = ''
     options snd_hda_intel power_save=0 power_save_controller=N
   '';
+
+  # Autostart pipewire to prevent errors from fooyin on boot
+  systemd.user.services = {
+    pipewire.wantedBy = [ "default.target" ];
+    pipewire-pulse.wantedBy = [ "default.target" ];
+    wireplumber.wantedBy = [ "default.target" ];
+  };
 }
