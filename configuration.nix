@@ -21,6 +21,7 @@ in
     ./system/time.nix
     ./system/pipewire.nix
     ./system/swap.nix
+    ./system/gaming.nix
   ];
 
   nixpkgs.overlays = [
@@ -103,14 +104,6 @@ in
     vim
     wget
   ];
-
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-  };
-  programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
   programs.dconf.enable = true;

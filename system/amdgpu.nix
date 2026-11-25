@@ -10,4 +10,8 @@
   hardware.amdgpu.overdrive.enable = true;
 
   services.lact.enable = true;
+
+  environment.sessionVariables = {
+    MESA_SHADER_CACHE_MAX_SIZE = "12G";
+  };
 }
