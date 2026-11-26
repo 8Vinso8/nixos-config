@@ -9,10 +9,10 @@ vim.diagnostic.config({
   },
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = " ",
-      [vim.diagnostic.severity.WARN]  = " ",
-      [vim.diagnostic.severity.HINT]  = " ",
-      [vim.diagnostic.severity.INFO]  = " ",
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN]  = " ",
+      [vim.diagnostic.severity.HINT]  = "󰌵 ",
+      [vim.diagnostic.severity.INFO]  = " ",
     },
   },
   underline = true,
@@ -59,3 +59,5 @@ vim.lsp.enable("nixd")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("cssls")
 vim.lsp.enable("qmlls")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("html")

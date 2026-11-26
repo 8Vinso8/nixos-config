@@ -50,3 +50,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
+
+-- Перечитывание файла при изменении снаружи
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  desc = "Reload file when changed externally",
+  group = augroup,
+  callback = function()
+    if vim.bo.buftype == "" then
+      vim.cmd("checktime")
+    end
+  end,
+})

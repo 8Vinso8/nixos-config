@@ -17,6 +17,7 @@ let
         lualine-nvim
         which-key-nvim
         blink-cmp
+        gitsigns-nvim
         nvim-autopairs
         lazydev-nvim
         nvim-lspconfig

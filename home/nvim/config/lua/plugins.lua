@@ -6,6 +6,7 @@ require("catppuccin").setup({
     mini = true,
     which_key = true,
     blink_cmp = true,
+    gitsigns = true,
   },
 })
 vim.cmd.colorscheme "catppuccin-nvim"
@@ -22,6 +23,7 @@ require("oil").setup({
 require("telescope").setup({
   defaults = {
     file_ignore_patterns = { "%.git/", "node_modules/" },
+    vimgrep_arguments = { "rg", "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--hidden" },
     mappings = {
       i = {
         ["<C-j>"] = "move_selection_next",
@@ -29,7 +31,13 @@ require("telescope").setup({
       },
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+    },
+  },
 })
+require("telescope").load_extension("fzf")
 
 require("lualine").setup({
   options = {
@@ -47,9 +55,30 @@ require("nvim-autopairs").setup({
 require("which-key").setup({
   preset = "modern",
 })
+require("which-key").add({
+  { "<leader>f", group = "Find" },
+  { "<leader>d", group = "Document" },
+  { "<leader>h", group = "Git hunk" },
+})
+
+require("gitsigns").setup({
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+    local map = function(mode, lhs, rhs, desc)
+      vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+    end
+
+    map("n", "]h", function() gs.nav_hunk("next") end, "Next git hunk")
+    map("n", "[h", function() gs.nav_hunk("prev") end, "Previous git hunk")
+    map("n", "<leader>hs", gs.stage_hunk, "Stage hunk")
+    map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
+    map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
+    map("n", "<leader>hb", function() gs.blame_line({ full = true }) end, "Blame line")
+  end,
+})
 
 require("blink.cmp").setup({
-  keymap = { preset = "super-tab" },
+  keymap = { preset = "enter" },
   appearance = {
     use_nvim_cmp_as_default = true,
     nerd_font_variant = "mono",
@@ -58,6 +87,12 @@ require("blink.cmp").setup({
     default = { "lsp", "path", "snippets", "buffer" },
   },
   completion = {
+    list = {
+      selection = {
+        preselect = false,
+        auto_insert = false,
+      },
+    },
     documentation = {
       auto_show = true,
       auto_show_delay_ms = 200,

@@ -43,5 +43,6 @@ vim.opt.laststatus = 3
 -- Буфер обмена, история и тайминги
 vim.opt.clipboard = "unnamedplus"
 vim.opt.undofile = true
+vim.opt.autoread = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
