@@ -62,4 +62,24 @@ in
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
+
+  xdg.desktopEntries.nvim = {
+    name = "nvim";
+    genericName = "Text Editor";
+    comment = "Edit text files";
+    icon = "nvim";
+    exec = "xdg-terminal-exec nvim %F";
+    terminal = false;
+    categories = [
+      "Utility"
+      "TextEditor"
+      "Development"
+    ];
+    mimeType = [
+      "text/plain"
+      "text/markdown"
+      "application/json"
+      "application/x-shellscript"
+    ];
+  };
 }
