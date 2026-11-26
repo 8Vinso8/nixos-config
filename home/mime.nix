@@ -3,6 +3,7 @@
 let
   browser = [ "zen-beta.desktop" ];
   fileManager = [ "yazi.desktop" ];
+  textEditor = [ "nvim.desktop" ];
   videoPlayer = [ "mpv.desktop" ];
   audioPlayer = [ "org.fooyin.fooyin.desktop" ];
   torrentClient = [ "org.qbittorrent.qBittorrent.desktop" ];
@@ -17,9 +18,20 @@ in
       "application/x-tar" = fileManager;
       "application/x-7z-compressed" = fileManager;
       "application/x-rar" = fileManager;
+      "application/x-xz" = fileManager;
+      "application/gzip" = fileManager;
+      "application/zstd" = fileManager;
+
+      # Текст и конфиги
+      "text/plain" = textEditor;
+      "text/markdown" = textEditor;
+      "application/json" = textEditor;
+      "application/x-shellscript" = textEditor;
 
       # Web & Ссылки
       "text/html" = browser;
+      "application/xhtml+xml" = browser;
+      "text/xml" = browser;
       "x-scheme-handler/http" = browser;
       "x-scheme-handler/https" = browser;
       "x-scheme-handler/about" = browser;
@@ -40,8 +52,14 @@ in
       "video/mkv" = videoPlayer;
       "video/webm" = videoPlayer;
       "video/x-matroska" = videoPlayer;
+      "video/x-msvideo" = videoPlayer;
+      "video/quicktime" = videoPlayer;
       "audio/mpeg" = audioPlayer;
       "audio/flac" = audioPlayer;
+      "audio/ogg" = audioPlayer;
+      "audio/wav" = audioPlayer;
+      "audio/aac" = audioPlayer;
+      "audio/opus" = audioPlayer;
 
       # Торренты
       "x-scheme-handler/magnet" = torrentClient;
