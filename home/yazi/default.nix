@@ -4,6 +4,22 @@
   programs.yazi = {
     enable = true;
 
+    settings = {
+      mgr = {
+        show_hidden = true;
+        sort_by = "natural";
+        sort_dir_first = true;
+      };
+
+      opener.open = [
+        {
+          run = "xdg-open %s1";
+          desc = "Open";
+          orphan = true;
+        }
+      ];
+    };
+
     plugins = {
       mount = pkgs.yaziPlugins.mount;
     };
