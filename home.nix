@@ -35,8 +35,6 @@
     telegram-desktop
   ];
 
-  services.syncthing.enable = true;
-
   xdg.userDirs = {
     enable = true;
     desktop = "Desktop";
