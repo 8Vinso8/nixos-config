@@ -3,9 +3,9 @@ hl.monitor({
   mode     = "2560x1440@165",
   position = "0x0",
   scale    = "1",
+  bitdepth = 10,
+  supports_hdr = -1,
 })
-
-hl.monitor({ output = "" }) -- Fallback rule
 
 hl.config({
   general = {
