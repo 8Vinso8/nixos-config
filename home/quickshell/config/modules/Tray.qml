@@ -1,6 +1,7 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.SystemTray
 import ".."
 import "../components"
@@ -10,6 +11,20 @@ Island {
 
     spacing: 8
     shown: SystemTray.items.values.length > 0
+
+    Timer {
+        interval: 500
+        running: true
+        onTriggered: recoverTrayProc.running = true
+    }
+
+    Process {
+        id: recoverTrayProc
+        command: [
+            "sh", "-c",
+            "busctl --user list --no-legend | while read -r name _; do case \"$name\" in org.kde.StatusNotifierItem-*) busctl --user call org.kde.StatusNotifierWatcher /StatusNotifierWatcher org.kde.StatusNotifierWatcher RegisterStatusNotifierItem s \"$name\" ;; esac; done"
+        ]
+    }
 
     // Текущий открытый элемент трея и координата X для поповера
     property SystemTrayItem activeMenuItem: null
