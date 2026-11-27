@@ -30,11 +30,6 @@ let
           p.markdown
           p.toml
           p.vim
-          p.typescript
-          p.tsx
-          p.javascript
-          p.css
-          p.scss
           p.qmljs
         ]))
       ];
@@ -46,9 +41,6 @@ let
         ripgrep
         fd
         gcc
-        typescript-language-server
-        typescript
-        vscode-langservers-extracted
         kdePackages.qtdeclarative
       ];
 
