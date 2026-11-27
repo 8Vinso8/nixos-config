@@ -1,15 +1,17 @@
 { pkgs, ... }:
 
+let
+  ezaBase = "eza --icons always --group-directories-first";
+in
 {
   programs.fish = {
     enable = true;
     shellAliases = {
-      eza = "eza --icons always --group-directories-first";
-      ls = "eza --icons always --group-directories-first";
-      ll = "eza -lh --icons always --group-directories-first";
-      la = "eza -a --icons always --group-directories-first";
-      lla = "eza -la --icons always --group-directories-first";
-      lt = "eza --tree --icons always --group-directories-first";
+      eza = ezaBase;
+      ls = ezaBase;
+      ll = "${ezaBase} -lh";
+      la = "${ezaBase} -a";
+      lt = "${ezaBase} --tree";
     };
     plugins = with pkgs.fishPlugins; [
       {
