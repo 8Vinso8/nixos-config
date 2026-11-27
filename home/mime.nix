@@ -12,15 +12,8 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      # Папки и архивы
+      # Папки
       "inode/directory" = fileManager;
-      "application/zip" = fileManager;
-      "application/x-tar" = fileManager;
-      "application/x-7z-compressed" = fileManager;
-      "application/x-rar" = fileManager;
-      "application/x-xz" = fileManager;
-      "application/gzip" = fileManager;
-      "application/zstd" = fileManager;
 
       # Текст и конфиги
       "text/plain" = textEditor;
