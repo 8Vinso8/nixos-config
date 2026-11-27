@@ -18,7 +18,6 @@ in
     ./system/network.nix
     ./system/nix-settings.nix
     ./system/nowatchdog.nix
-    ./system/time.nix
     ./system/pipewire.nix
     ./system/swap.nix
     ./system/gaming.nix
@@ -108,14 +107,12 @@ in
   programs.nix-ld.enable = true;
   programs.dconf.enable = true;
 
-  # Virtual filesystem and automounting for file managers
-  services.gvfs.enable = true;
-
-  services.power-profiles-daemon.enable = true;
+  services.udisks2.enable = true;
   services.fstrim.enable = true;
 
   documentation.nixos.enable = false;
 
+  time.timeZone = "Asia/Vladivostok";
   i18n.defaultLocale = "ru_RU.UTF-8";
 
   fileSystems."/".options = [ "noatime" ];
