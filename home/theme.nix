@@ -49,7 +49,6 @@ in
       package = catppuccinIcons;
     };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
 
   xdg.configFile = {
@@ -89,19 +88,6 @@ in
     qt6ctSettings = {
       Appearance = {
         style = "Breeze";
-        icon_theme = "Papirus-Dark";
-        standard_dialogs = "xdgdesktopportal";
-        custom_palette = true;
-        color_scheme_path = qtColorScheme;
-      };
-      Fonts = {
-        fixed = "\"Monospace,11\"";
-        general = "\"Sans Serif,11\"";
-      };
-    };
-    qt5ctSettings = {
-      Appearance = {
-        style = "Fusion";
         icon_theme = "Papirus-Dark";
         standard_dialogs = "xdgdesktopportal";
         custom_palette = true;
