@@ -89,6 +89,7 @@ Item {
             cardHeight: 400
 
             onClosedAndHidden: root.active = false
+            onShownChanged: if (shown) Quickshell.execDetached(["hyprctl", "switchxkblayout", "all", "0"])
 
             readonly property var filteredApps: {
                 const q = launcher.searchText.trim().toLowerCase();
@@ -109,11 +110,11 @@ Item {
                     const entry = filteredApps[idx].entry;
                     launcher.close();
 
-                    if (entry.runInTerminal) {
-                        Quickshell.execDetached(["xdg-terminal-exec", ...entry.command]);
-                    } else {
-                        entry.execute();
-                    }
+                    const cmd = entry.runInTerminal ? ["xdg-terminal-exec", ...entry.command] : entry.command;
+                    const args = ["systemd-run", "--user", "--scope", "--quiet", "--slice=app.slice"];
+                    if (entry.workingDirectory)
+                        args.push(`--working-directory=${entry.workingDirectory}`);
+                    Quickshell.execDetached([...args, "--", ...cmd]);
                 }
             }
             onActivated: idx => launchIndex(idx)
