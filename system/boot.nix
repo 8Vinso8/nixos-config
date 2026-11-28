@@ -14,7 +14,7 @@
   boot.kernelModules = [ "ntsync" ];
 
   services.udev.extraRules = ''
-    KERNEL=="ntsync", MODE="0660", TAG+="uaccess"
+    KERNEL=="ntsync", MODE="0666"
   '';
 
   boot.consoleLogLevel = 0;
