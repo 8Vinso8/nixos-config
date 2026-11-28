@@ -11,6 +11,12 @@
     timeout = 0;
   };
 
+  boot.kernelModules = [ "ntsync" ];
+
+  services.udev.extraRules = ''
+    KERNEL=="ntsync", MODE="0660", TAG+="uaccess"
+  '';
+
   boot.consoleLogLevel = 0;
 
   boot.kernelParams = [
