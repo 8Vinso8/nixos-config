@@ -5,14 +5,9 @@
 
 {
   networking.hostName = hostname;
-  networking.useNetworkd = true;
+  networking.networkmanager.enable = true;
   services.resolved.enable = true;
   networking.firewall.enable = false;
-  systemd.network.wait-online.enable = false;
-  systemd.network.networks."10-lan" = {
-    matchConfig.Name = "en*";
-    networkConfig.DHCP = "yes";
-  };
 
   programs.throne = {
     enable = true;
