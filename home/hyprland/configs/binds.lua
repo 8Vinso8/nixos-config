@@ -1,6 +1,8 @@
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("kitty"))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("zen-beta"))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("xdg-terminal-exec yazi"))
 
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("quickshell ipc call launcher toggle"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("quickshell ipc call powermenu toggle"))
