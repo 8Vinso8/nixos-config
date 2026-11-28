@@ -11,7 +11,10 @@
 
   services.lact.enable = true;
 
-  chaotic.mesa-git.enable = true;
+  chaotic.mesa-git = {
+    enable = true;
+    fallbackSpecialisation = false;
+  };
 
   environment.sessionVariables = {
     MESA_SHADER_CACHE_MAX_SIZE = "12G";
